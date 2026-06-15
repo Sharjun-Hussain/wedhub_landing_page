@@ -79,7 +79,7 @@ const TrustBar2 = memo(function TrustBar2() {
 
       {/* ── TOP EDITORIAL STRIP ────────────────────────────────────── */}
       <div className="bg-[#fdf8f0] border-y border-[#ede2cc] py-4 overflow-hidden">
-        <div className="flex items-center gap-0" style={{ animation: "marquee2 24s linear infinite", willChange: "transform", transform: "translateZ(0)" }}>
+        <div className="flex items-center gap-0" style={{ animation: "marquee2 24s linear infinite" }}>
           {[...TAGS, ...TAGS, ...TAGS, ...TAGS].map((tag, i) => (
             <span key={i} className="inline-flex items-center gap-3 px-6 text-[12px] font-bold uppercase tracking-widest text-[#4a3728] whitespace-nowrap">
               {i % TAGS.length === 0 && (
@@ -308,9 +308,9 @@ const TrustBar2 = memo(function TrustBar2() {
           70%  { transform: scale(1.65); opacity: 0; }
           100% { transform: scale(1.65); opacity: 0; }
         }
-        .animate-spin-slow       { animation: spin-slow 8s linear infinite; will-change: transform; transform: translateZ(0); }
-        .animate-spin-very-slow  { animation: spin-very-slow 18s linear infinite; will-change: transform; transform: translateZ(0); }
-        .animate-ping-slow       { animation: ping-slow 2.5s cubic-bezier(0,0,0.2,1) infinite; will-change: transform; transform: translateZ(0); }
+        .animate-spin-slow       { animation: spin-slow 8s linear infinite; }
+        .animate-spin-very-slow  { animation: spin-very-slow 18s linear infinite; }
+        .animate-ping-slow       { animation: ping-slow 2.5s cubic-bezier(0,0,0.2,1) infinite; }
       `}</style>
     </section>
   );

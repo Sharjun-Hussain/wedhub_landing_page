@@ -70,29 +70,28 @@ const CategoryCard = memo(function CategoryCard({ item, priority = false }) {
   return (
     <Link
       href={item.href}
-      className={`group relative overflow-hidden rounded-2xl ${item.span} cursor-pointer block`}
-      style={{ minHeight: isLarge ? "420px" : isWide ? "200px" : "200px" }}
+      className={`group relative overflow-hidden rounded-2xl ${item.span} cursor-pointer block h-full min-h-[200px]`}
     >
       {/* Background image */}
       <img
         src={item.image}
         alt={item.name}
-        loading={priority ? "eager" : "lazy"}
+        loading="eager"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 transform-gpu will-change-transform"
       />
 
       {/* Gradient overlay — stronger at bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/85" />
 
       {/* Gold shimmer on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#d4a853]/0 via-transparent to-[#8B1A2D]/0 group-hover:from-[#d4a853]/10 group-hover:to-[#8B1A2D]/15 transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#d4a853]/0 via-transparent to-[#8B1A2D]/0 group-hover:from-[#d4a853]/10 group-hover:to-[#8B1A2D]/15 transition-opacity duration-500" />
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6">
         {/* Vendor count pill */}
-        <div className="mb-2.5 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[11px] font-semibold text-white/90 tracking-wide">
+        <div className="mb-2.5 transform-gpu translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300 ease-out will-change-transform">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[11px] font-semibold text-white/90 tracking-wide">
             {item.count}
           </span>
         </div>
@@ -108,13 +107,13 @@ const CategoryCard = memo(function CategoryCard({ item, priority = false }) {
           </h3>
 
           {/* Arrow icon */}
-          <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 flex items-center justify-center transform translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out group-hover:bg-[#d4a853] group-hover:border-[#d4a853]">
+          <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center transform-gpu translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition duration-300 ease-out group-hover:bg-[#d4a853] group-hover:border-[#d4a853] will-change-transform">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
         </div>
 
         {/* Gold accent line */}
-        <div className="mt-3 h-[2px] w-0 group-hover:w-12 bg-[#d4a853] rounded-full transition-all duration-500 ease-out" />
+        <div className="mt-3 h-[2px] w-0 group-hover:w-12 bg-[#d4a853] rounded-full transition-all duration-500 ease-out transform-gpu" />
       </div>
     </Link>
   );
@@ -170,9 +169,9 @@ const VendorCategories = memo(function VendorCategories() {
               <img
                 src={cat.image}
                 alt={cat.name}
-                loading={i < 4 ? "eager" : "lazy"}
+                loading="eager"
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu will-change-transform"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-4">
