@@ -1,0 +1,307 @@
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  PlayCircle,
+  Zap,
+  Star,
+} from "lucide-react";
+
+// --- SLIDE DATA ---
+const SLIDES = [
+  {
+    id: 1,
+    tag: "New Arrival",
+    title: "iPhone 15 Pro",
+    subtitle: "Titanium. So strong. So light. So Pro.",
+    description:
+      "The first iPhone to feature an aerospace-grade titanium design, using the same alloy that spacecraft use for missions to Mars.",
+    price: "Rs. 425,000",
+    image:
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=1000",
+    blobColor: "bg-blue-600/20",
+    accent: "text-blue-600",
+    fill: "fill-blue-600",
+  },
+  {
+    id: 2,
+    tag: "Best Seller",
+    title: "Sony WH-1000XM5",
+    subtitle: "Your world. Nothing else.",
+    description:
+      "Industry-leading noise cancellation. Two processors control 8 microphones for unprecedented silence and clarity.",
+    price: "Rs. 115,000",
+    image:
+      "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=1000",
+    blobColor: "bg-stone-500/20",
+    accent: "text-stone-600",
+    fill: "fill-stone-600",
+  },
+  {
+    id: 3,
+    tag: "Just Landed",
+    title: "Galaxy S24 Ultra",
+    subtitle: "Galaxy AI is here.",
+    description:
+      "Unleash whole new levels of creativity, productivity and possibility — starting with the most important device in your life.",
+    price: "Rs. 395,000",
+    image:
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=1000",
+    blobColor: "bg-violet-600/20",
+    accent: "text-violet-600",
+    fill: "fill-violet-600",
+  },
+];
+
+export default function HeroSlider() {
+  const containerRef = useRef(null);
+  const [current, setCurrent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const SLIDE_DURATION = 6000; // 6s
+  const UPDATE_INTERVAL = 50; // Update progress every 50ms
+
+  // --- AUTOPLAY LOGIC ---
+  useEffect(() => {
+    let slideInterval;
+    let progressInterval;
+
+    const startAutoplay = () => {
+      setProgress(0);
+
+      progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + 100 / (SLIDE_DURATION / UPDATE_INTERVAL);
+        });
+      }, UPDATE_INTERVAL);
+
+      slideInterval = setInterval(() => {
+        nextSlide();
+      }, SLIDE_DURATION);
+    };
+
+    startAutoplay();
+
+    return () => {
+      clearInterval(slideInterval);
+      clearInterval(progressInterval);
+    };
+  }, [current]);
+
+  // --- NAVIGATION ---
+  const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrent((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrent((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
+
+  const goToSlide = (idx) => {
+    if (isAnimating || idx === current) return;
+    setIsAnimating(true);
+    setCurrent(idx);
+  };
+
+  // --- GSAP ANIMATIONS ---
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        onComplete: () => setIsAnimating(false),
+      });
+
+      // 1. Text Stagger In
+      tl.fromTo(
+        ".hero-animate-text",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }
+      );
+
+      // 2. Image Transition
+      tl.fromTo(
+        ".hero-animate-img",
+        { scale: 0.9, opacity: 0, x: 50 },
+        { scale: 1, opacity: 1, x: 0, duration: 1, ease: "power2.out" },
+        "-=0.6"
+      );
+
+      // 3. Background Blob Color Change
+      gsap.to(".hero-blob", {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power1.inOut",
+      });
+    },
+    { dependencies: [current], scope: containerRef }
+  );
+
+  const activeSlide = SLIDES[current];
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative h-screen min-h-[700px] w-full bg-[#F8FAFC] overflow-hidden font-sans text-slate-900 flex flex-col justify-center"
+    >
+      {/* --- AMBIENT BACKGROUND --- */}
+      <div
+        className={`hero-blob absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] rounded-full blur-[120px] pointer-events-none transition-colors duration-1000 ease-in-out ${activeSlide.blobColor}`}
+      />
+
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full">
+          {/* --- LEFT: TEXT CONTENT --- */}
+          <div className="text-center lg:text-left order-2 lg:order-1 pb-20 lg:pb-0">
+            {/* Tag */}
+            <div
+              key={`tag-${current}`}
+              className="hero-animate-text inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold uppercase tracking-wider mb-6"
+            >
+              <Zap
+                className={`w-3.5 h-3.5 ${activeSlide.fill} ${activeSlide.accent}`}
+              />
+              {activeSlide.tag}
+            </div>
+
+            {/* Title */}
+            <h1
+              key={`title-${current}`}
+              className="hero-animate-text text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-4 tracking-tight"
+            >
+              {activeSlide.title}
+            </h1>
+
+            {/* Subtitle */}
+            <h2
+              key={`sub-${current}`}
+              className="hero-animate-text text-xl lg:text-3xl font-bold text-slate-400 mb-6"
+            >
+              {activeSlide.subtitle}
+            </h2>
+
+            {/* Description */}
+            <p
+              key={`desc-${current}`}
+              className="hero-animate-text text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+            >
+              {activeSlide.description}
+            </p>
+
+            {/* Price */}
+            <div key={`price-${current}`} className="hero-animate-text mb-8">
+              <span className="text-3xl font-bold text-slate-900">
+                {activeSlide.price}
+              </span>
+            </div>
+
+            {/* Buttons */}
+            <div
+              key={`btn-${current}`}
+              className="hero-animate-text flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <Link
+                href="/shop"
+                className="bg-slate-900 text-white h-14 px-8 rounded-2xl text-base font-bold shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition-all active:scale-[0.98] flex items-center justify-center gap-2 group"
+              >
+                Buy Now
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <button className="bg-white text-slate-900 h-14 px-8 rounded-2xl text-base font-bold border border-slate-200 hover:bg-slate-50 transition-all flex items-center justify-center gap-2 group">
+                <PlayCircle className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                Watch Trailer
+              </button>
+            </div>
+          </div>
+
+          {/* --- RIGHT: HERO IMAGE --- */}
+          <div className="order-1 lg:order-2 relative h-[350px] lg:h-[600px] flex items-center justify-center">
+            {/* Image Wrapper for Animation */}
+            <div
+              key={`img-${current}`}
+              className="hero-animate-img relative w-full h-full flex items-center justify-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/60 rounded-full blur-3xl transform scale-90" />
+              <img
+                src={activeSlide.image}
+                alt={activeSlide.title}
+                className="relative z-10 w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- CONTROLS LAYER (Bottom) --- */}
+      <div className="absolute bottom-10 left-0 w-full z-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex justify-between items-end">
+          {/* Pagination Dots */}
+          <div className="flex gap-3">
+            {SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  current === idx
+                    ? "w-8 bg-slate-900"
+                    : "w-2 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex gap-4">
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm flex items-center justify-center text-slate-600 hover:bg-white transition-all active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Next Button with Progress Ring */}
+            <div className="relative w-12 h-12">
+              <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="23"
+                  className="stroke-slate-200"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="23"
+                  className="stroke-slate-900 transition-all duration-75 ease-linear"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeDasharray="145"
+                  strokeDashoffset={145 - (145 * progress) / 100}
+                />
+              </svg>
+
+              <button
+                onClick={nextSlide}
+                className="absolute inset-0 w-full h-full rounded-full flex items-center justify-center text-slate-900 hover:bg-slate-100/50 transition-colors active:scale-95 m-[2px]"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

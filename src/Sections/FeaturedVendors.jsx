@@ -1,0 +1,304 @@
+"use client";
+
+import React, { useRef, useState, useMemo, useCallback, memo } from "react";
+import Link from "next/link";
+import {
+  MapPin, ChevronLeft, ChevronRight, ArrowRight,
+  BadgeCheck, Heart, MessageCircle
+} from "lucide-react";
+
+// ── Vendor Data (module-level — never re-created on render) ────────────────────
+const VENDORS = [
+  {
+    id: 1,
+    name: "Aman Colombo Residences",
+    category: "Wedding Venue",
+    categoryColor: "#8B1A2D",
+    location: "Colombo 03",
+    district: "Western Province",
+    price: "LKR 350,000",
+    priceNote: "per event",
+    tags: ["Ballroom", "Garden", "400 Pax"],
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop",
+    verified: true,
+    saved: false,
+  },
+  {
+    id: 2,
+    name: "Kalindu Photography Studio",
+    category: "Photographer",
+    categoryColor: "#1a4d8B",
+    location: "Kandy",
+    district: "Central Province",
+    price: "LKR 85,000",
+    priceNote: "starting package",
+    tags: ["Pre-shoot", "Album", "Drone"],
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop",
+    verified: true,
+    saved: false,
+  },
+  {
+    id: 3,
+    name: "Nelum Bridal Studio",
+    category: "Makeup Artist",
+    categoryColor: "#6b3fa0",
+    location: "Galle",
+    district: "Southern Province",
+    price: "LKR 45,000",
+    priceNote: "bridal package",
+    tags: ["Bridal", "Hair", "Mehendi"],
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=2069&auto=format&fit=crop",
+    verified: false,
+    saved: false,
+  },
+  {
+    id: 4,
+    name: "Ceylon Bloom Decorators",
+    category: "Decorator",
+    categoryColor: "#1a6b4a",
+    location: "Negombo",
+    district: "Western Province",
+    price: "LKR 120,000",
+    priceNote: "per setup",
+    tags: ["Floral", "Stage", "Lighting"],
+    image: "https://images.unsplash.com/photo-1478146059778-26028b07395a?q=80&w=2069&auto=format&fit=crop",
+    verified: true,
+    saved: false,
+  },
+  {
+    id: 5,
+    name: "Royal Luxury Cars",
+    category: "Wedding Cars",
+    categoryColor: "#b8830a",
+    location: "Colombo 07",
+    district: "Western Province",
+    price: "LKR 25,000",
+    priceNote: "per day",
+    tags: ["Rolls Royce", "Vintage", "Decorated"],
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop",
+    verified: true,
+    saved: false,
+  },
+  {
+    id: 6,
+    name: "Paradise Beach Resort",
+    category: "Honeymoon",
+    categoryColor: "#0e6b78",
+    location: "Bentota",
+    district: "Southern Province",
+    price: "LKR 180,000",
+    priceNote: "per couple / night",
+    tags: ["Beach", "All-inclusive", "Spa"],
+    image: "https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=2033&auto=format&fit=crop",
+    verified: true,
+    saved: false,
+  },
+];
+
+const FILTERS = ["All", "Venues", "Photographers", "Makeup", "Decorators", "Cars", "Honeymoon"];
+
+// ── VendorCard — memoized, only re-renders when vendor prop changes ─────────────
+const VendorCard = memo(function VendorCard({ vendor }) {
+  const [saved, setSaved] = useState(vendor.saved);
+
+  const toggleSaved = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSaved((s) => !s);
+  }, []);
+
+  return (
+    <div className="fv-card flex-shrink-0 w-[295px] sm:w-[315px] rounded-3xl overflow-hidden bg-white border border-[#ede2cc] cursor-pointer">
+      <div className="relative h-[205px] overflow-hidden">
+        <img
+          src={vendor.image}
+          alt={vendor.name}
+          loading="lazy"
+          decoding="async"
+          width={315}
+          height={205}
+          className="fv-img w-full h-full object-cover"
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/45 to-transparent pointer-events-none" />
+        <button
+          onClick={toggleSaved}
+          className="fv-heart-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10"
+          aria-label={saved ? "Remove from saved" : "Save vendor"}
+        >
+          <Heart className={`w-4 h-4 ${saved ? "fill-[#8B1A2D] text-[#8B1A2D]" : "text-[#4a3728]"}`} />
+        </button>
+        <div
+          className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+          style={{ backgroundColor: vendor.categoryColor + "dd" }}
+        >
+          {vendor.category}
+        </div>
+      </div>
+
+      <div className="p-5">
+        <div className="flex items-center gap-1.5 mb-1">
+          <h3 className="fv-name text-[15px] font-bold text-[#2C1A0E] leading-snug line-clamp-1 flex-1">
+            {vendor.name}
+          </h3>
+          {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0" />}
+        </div>
+
+        <div className="flex items-center gap-1.5 text-[#9a8070] mb-3">
+          <MapPin className="w-3 h-3 flex-shrink-0" />
+          <span className="text-[12px] truncate">{vendor.location} · {vendor.district}</span>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {vendor.tags.map((tag) => (
+            <span key={tag} className="px-2.5 py-1 rounded-full bg-[#f5efe4] text-[10px] font-bold text-[#4a3728] uppercase tracking-wide">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="h-px bg-[#f0e6d3] mb-4" />
+
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[15px] font-black text-[#8B1A2D] leading-none">{vendor.price}</p>
+            <p className="text-[10px] text-[#9a8070] mt-0.5">{vendor.priceNote}</p>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <Link
+              href={`/vendors/${vendor.id}#contact`}
+              onClick={(e) => e.stopPropagation()}
+              className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all"
+              title="Enquire"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              href={`/vendors/${vendor.id}`}
+              onClick={(e) => e.stopPropagation()}
+              className="h-8 px-4 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[11px] font-bold transition-colors flex items-center"
+            >
+              View
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+// ── FilterPill — memoized ──────────────────────────────────────────────────────
+const FilterPill = memo(function FilterPill({ label, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex-shrink-0 px-4 py-2 rounded-full text-[12px] font-bold uppercase tracking-wider transition-all duration-200 ${
+        active
+          ? "bg-[#8B1A2D] text-white shadow-md shadow-[#8B1A2D]/20"
+          : "bg-white border border-[#ede2cc] text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D]"
+      }`}
+    >
+      {label}
+    </button>
+  );
+});
+
+// ── Main Section ───────────────────────────────────────────────────────────────
+const FeaturedVendors = memo(function FeaturedVendors() {
+  const scrollRef = useRef(null);
+  const [active, setActive] = useState("All");
+
+  const filtered = useMemo(
+    () => active === "All" ? VENDORS : VENDORS.filter((v) => v.category.toLowerCase().includes(active.toLowerCase())),
+    [active]
+  );
+
+  const scrollLeft  = useCallback(() => scrollRef.current?.scrollBy({ left: -350, behavior: "smooth" }), []);
+  const scrollRight = useCallback(() => scrollRef.current?.scrollBy({ left:  350, behavior: "smooth" }), []);
+
+  return (
+    <section className="py-16 md:py-24 bg-[#fdf8f0] overflow-hidden">
+      {/* Shared CSS injected once for all cards */}
+      <style>{`
+        .fv-card { box-shadow: 0 1px 4px rgba(44,26,14,0.08); transition: box-shadow 0.25s ease, transform 0.25s ease; will-change: transform; }
+        .fv-card:hover { box-shadow: 0 20px 48px rgba(44,26,14,0.16); transform: translateY(-6px); }
+        .fv-img { transition: transform 0.5s ease; will-change: transform; }
+        .fv-card:hover .fv-img { transform: scale(1.06); }
+        .fv-name { transition: color 0.2s ease; }
+        .fv-card:hover .fv-name { color: #8B1A2D; }
+        .fv-heart-btn { transition: transform 0.15s ease; }
+        .fv-heart-btn:hover { transform: scale(1.15); }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
+          <div>
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+              Hand-Picked For You
+            </span>
+            <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
+              Featured Vendors
+            </h2>
+            <div className="flex items-center gap-3 mt-3">
+              <div className="h-px w-14 bg-[#d4a853]" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#d4a853]" />
+              <div className="h-px w-14 bg-[#d4a853]" />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button onClick={scrollLeft} aria-label="Scroll left" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#8B1A2D] hover:bg-[#8B1A2D] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button onClick={scrollRight} aria-label="Scroll right" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#8B1A2D] hover:bg-[#8B1A2D] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <Link href="/vendors" className="hidden sm:inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] hover:text-[#6d1422] transition-colors group ml-2">
+              View All
+              <span className="w-7 h-7 rounded-full border-2 border-[#8B1A2D] flex items-center justify-center group-hover:bg-[#8B1A2D] group-hover:text-white transition-all">
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Filter Pills */}
+        <div className="flex items-center gap-2 mb-7 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+          {FILTERS.map((f) => (
+            <FilterPill
+              key={f}
+              label={f}
+              active={active === f}
+              onClick={() => setActive(f)}
+            />
+          ))}
+        </div>
+
+        {/* Card Row */}
+        <div
+          ref={scrollRef}
+          className="flex gap-5 overflow-x-auto pb-4"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {filtered.map((v) => <VendorCard key={v.id} vendor={v} />)}
+
+          <Link
+            href="/vendors"
+            className="flex-shrink-0 w-[200px] rounded-3xl border-2 border-dashed border-[#d4a853]/50 hover:border-[#d4a853] bg-white hover:bg-[#fdf3e3] flex flex-col items-center justify-center gap-4 transition-all duration-300 group"
+            style={{ minHeight: "390px" }}
+          >
+            <div className="w-14 h-14 rounded-full border-2 border-[#d4a853] flex items-center justify-center group-hover:bg-[#d4a853] transition-colors">
+              <ArrowRight className="w-5 h-5 text-[#d4a853] group-hover:text-white transition-colors" />
+            </div>
+            <p className="text-[13px] font-bold text-[#4a3728] group-hover:text-[#8B1A2D] text-center px-6 transition-colors leading-relaxed">
+              Browse All<br />
+              <span className="text-[#8B1A2D]">1,500+</span> Vendors
+            </p>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+});
+
+export default FeaturedVendors;

@@ -1,0 +1,446 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
+import Link from "next/link";
+import {
+  Search, MapPin, MessageCircle, ChevronDown,
+  ChevronLeft, ChevronRight, SlidersHorizontal, X, BadgeCheck
+} from "lucide-react";
+import { AdBanner } from "@/components/ui/AdBanner";
+
+// ── Mock Vendor Data ───────────────────────────────────────────────────────────
+const VENDORS = [
+  {
+    id: 1, name: "The Shangri-La Grand", initials: "SL",
+    category: "Wedding Halls",
+    district: "Colombo", city: "Colombo 01",
+    rating: 4.9, price: "LKR 350,000",
+    desc: "Experience unparalleled luxury and breathtaking ocean views in our iconic grand ballroom, seating up to 500 guests.",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop",
+    tags: ["Ballroom", "Ocean View"],
+    verified: true,
+  },
+  {
+    id: 2, name: "Mount Lavinia Hotel", initials: "ML",
+    category: "Wedding Halls",
+    district: "Colombo", city: "Mount Lavinia, Colombo",
+    rating: 4.8, price: "LKR 280,000",
+    desc: "Heritage and romance intertwine at this iconic colonial venue. Offering private beach access and majestic terrace views for a timeless celebration.",
+    image: "https://images.unsplash.com/photo-1478146059778-26028b07395a?q=80&w=800&auto=format&fit=crop",
+    tags: ["Beach", "Heritage"],
+    verified: true,
+  },
+  {
+    id: 3, name: "Waters Edge", initials: "W",
+    category: "Wedding Halls",
+    district: "Colombo", city: "Battaramulla, Colombo",
+    rating: 4.7, price: "LKR 220,000",
+    desc: "Surrounded by tranquil waterways and manicured gardens, providing a versatile setting for intimate and grand celebrations alike.",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop",
+    tags: ["Garden", "Lakeside"],
+    verified: true,
+  },
+  {
+    id: 4, name: "Cinnamon Grand", initials: "CG",
+    category: "Wedding Halls",
+    district: "Colombo", city: "Colombo 03",
+    rating: 4.9, price: "LKR 400,000",
+    desc: "The epitome of classic grandeur in the heart of the city, offering opulent ballroom settings and world-class hospitality.",
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop",
+    tags: ["Grand", "City"],
+    verified: true,
+  },
+  {
+    id: 5, name: "Kalindu Photography", initials: "KP",
+    category: "Photographers",
+    district: "Kandy", city: "Kandy",
+    rating: 5.0, price: "LKR 85,000",
+    desc: "Award-winning wedding photographer capturing timeless Sri Lankan moments with cinematic precision and artistic flair.",
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop",
+    tags: ["Cinematic", "Drone"],
+    verified: true,
+  },
+  {
+    id: 6, name: "Nelum Bridal Studio", initials: "NB",
+    category: "Bridal Wear",
+    district: "Galle", city: "Galle",
+    rating: 4.8, price: "LKR 45,000",
+    desc: "Bespoke bridal couture crafted with the finest fabrics, blending traditional Sri Lankan elegance with contemporary design.",
+    image: "https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=800&auto=format&fit=crop",
+    tags: ["Saree", "Gown"],
+    verified: false,
+  },
+  {
+    id: 7, name: "Ceylon Bloom Florists", initials: "CB",
+    category: "Florists",
+    district: "Colombo", city: "Colombo 05",
+    rating: 4.9, price: "LKR 35,000",
+    desc: "Exquisite floral arrangements sourced from the finest local and imported blooms, transforming venues into breathtaking botanical dreams.",
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+    tags: ["Floral", "Decor"],
+    verified: true,
+  },
+  {
+    id: 8, name: "Paradise Beach Resort", initials: "PB",
+    category: "Wedding Halls",
+    district: "Galle", city: "Bentota",
+    rating: 4.9, price: "LKR 180,000",
+    desc: "A tropical paradise offering beachfront ceremonies and receptions with stunning Indian Ocean sunsets as your backdrop.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
+    tags: ["Beachfront", "Tropical"],
+    verified: true,
+  },
+];
+
+const CATEGORIES = ["Wedding Halls", "Photographers", "Bridal Wear", "Florists"];
+const DISTRICTS  = ["All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Jaffna"];
+const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Price: Low to High", "Price: High to Low", "Newest"];
+
+// ── Vendor Card ───────────────────────────────────────────────────────────────
+function VendorCard({ vendor }) {
+  return (
+    <div className="bg-white border border-[#ede2cc] rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      {/* Image */}
+      <div className="relative h-52 overflow-hidden">
+        <img
+          src={vendor.image}
+          alt={vendor.name}
+          loading="lazy"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
+        {/* Badge (Category Only) */}
+        <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#8B1A2D] text-white shadow-md">
+          {vendor.category}
+        </span>
+        {/* Initials circle */}
+        <div className="absolute bottom-3 left-3 w-9 h-9 rounded-full bg-[#d4a853] text-[#1a0a05] text-[11px] font-black flex items-center justify-center border-2 border-white shadow">
+          {vendor.initials}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-start gap-1.5 mb-1">
+          <h3 className="text-[16px] font-bold text-[#2C1A0E] leading-snug flex-1 hover:text-[#8B1A2D] transition-colors">
+            {vendor.name}
+          </h3>
+          {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0 mt-0.5" />}
+        </div>
+
+        <div className="flex items-center gap-1 text-[#9a8070] mb-3">
+          <MapPin className="w-3 h-3 flex-shrink-0" />
+          <span className="text-[12px]">{vendor.city}</span>
+        </div>
+
+        <p className="text-[13px] text-[#4a3728]/70 leading-relaxed line-clamp-2 flex-1 mb-4">
+          {vendor.desc}
+        </p>
+
+        {/* Price */}
+        <div className="text-[12px] font-bold text-[#8B1A2D] mb-4">
+          From {vendor.price}
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-3 pt-3 border-t border-[#f0e6d3]">
+          <button className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all flex-shrink-0">
+            <MessageCircle className="w-4 h-4" />
+          </button>
+          <Link
+            href={`/vendors/${vendor.slug || vendor.id}`}
+            className="flex-1 text-center py-2.5 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[12px] font-bold uppercase tracking-wider transition-colors"
+          >
+            View Details
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Main Client Component ────────────────────────────────────────────────────
+export default function VendorsClient() {
+  const [search,    setSearch]    = useState("");
+  const [cats,      setCats]      = useState([]);
+  const [district,  setDistrict]  = useState("All Districts");
+  const [city,      setCity]      = useState("");
+  const [sort,      setSort]      = useState("Featured");
+  const [page,      setPage]      = useState(1);
+  const [sideOpen,  setSideOpen]  = useState(false);
+  const [applied,   setApplied]   = useState({ cats: [], district: "All Districts", city: "" });
+
+  const PER_PAGE = 6;
+
+  // Toggle a category checkbox
+  const toggleCat = (c) =>
+    setCats((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
+
+  const applyFilters = () => {
+    setApplied({ cats, district, city });
+    setPage(1);
+    setSideOpen(false);
+  };
+
+  const clearFilters = () => {
+    setCats([]); setDistrict("All Districts"); setCity(""); setSearch("");
+    setApplied({ cats: [], district: "All Districts", city: "" });
+    setPage(1);
+  };
+
+  const filtered = useMemo(() => {
+    let v = [...VENDORS];
+    if (search)                v = v.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+    if (applied.cats.length)   v = v.filter(x => applied.cats.includes(x.category));
+    if (applied.district !== "All Districts") v = v.filter(x => x.district === applied.district);
+    if (applied.city)          v = v.filter(x => x.city.toLowerCase().includes(applied.city.toLowerCase()));
+    if (sort === "Rating: High to Low")    v = v.sort((a,b) => b.rating - a.rating);
+    if (sort === "Price: Low to High")     v = v.sort((a,b) => parseInt(a.price.replace(/\D/g,"")) - parseInt(b.price.replace(/\D/g,"")));
+    if (sort === "Price: High to Low")     v = v.sort((a,b) => parseInt(b.price.replace(/\D/g,"")) - parseInt(a.price.replace(/\D/g,"")));
+    return v;
+  }, [search, applied, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const paged = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  // Active category label for title
+  const catLabel = applied.cats.length === 1 ? applied.cats[0] : "All Vendors";
+  const districtLabel = applied.district !== "All Districts" ? ` in ${applied.district}` : " Across Sri Lanka";
+
+  const activeFilterCount = (applied.cats.length > 0 ? 1 : 0) + (applied.district !== "All Districts" ? 1 : 0) + (applied.city ? 1 : 0);
+
+  // ── Sidebar content (reused on mobile sheet + desktop) ──────────────────
+  const Sidebar = () => (
+    <div className="space-y-7">
+      {/* Search */}
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Search Vendors</p>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9a8070]" />
+          <input
+            type="text"
+            placeholder="e.g. Shangri-La…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl pl-9 pr-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#8B1A2D] transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Category */}
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Category</p>
+        <div className="space-y-2.5">
+          {CATEGORIES.map((c) => (
+            <label key={c} className="flex items-center gap-3 cursor-pointer group">
+              <div
+                onClick={() => toggleCat(c)}
+                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${cats.includes(c) ? "bg-[#8B1A2D] border-[#8B1A2D]" : "border-[#ede2cc] group-hover:border-[#8B1A2D]"}`}
+              >
+                {cats.includes(c) && <span className="text-white text-[10px] font-black">✓</span>}
+              </div>
+              <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#8B1A2D] transition-colors">{c}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* District */}
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">District</p>
+        <div className="relative">
+          <select
+            value={district}
+            onChange={(e) => setDistrict(e.target.value)}
+            className="w-full appearance-none bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] focus:outline-none focus:border-[#8B1A2D] transition-colors cursor-pointer"
+          >
+            {DISTRICTS.map((d) => <option key={d}>{d}</option>)}
+          </select>
+          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9a8070] pointer-events-none" />
+        </div>
+      </div>
+
+      {/* City */}
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">City</p>
+        <input
+          type="text"
+          placeholder="Enter city name…"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#8B1A2D] transition-colors"
+        />
+      </div>
+
+      {/* Buttons */}
+      <div className="space-y-3 pt-2">
+        <button
+          onClick={applyFilters}
+          className="w-full py-3 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[12px] font-bold uppercase tracking-widest transition-colors"
+        >
+          Apply Filters
+        </button>
+        {activeFilterCount > 0 && (
+          <button
+            onClick={clearFilters}
+            className="w-full py-3 rounded-xl border border-[#ede2cc] hover:border-[#8B1A2D] text-[#4a3728] text-[12px] font-bold uppercase tracking-widest transition-all"
+          >
+            Clear All
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* ── Mobile filter sheet ────────────────────────────────────────── */}
+      {sideOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="flex-1 bg-black/40 backdrop-blur-sm" onClick={() => setSideOpen(false)} />
+          <div className="w-80 max-w-[85vw] bg-white h-full overflow-y-auto p-6 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-bold text-[#2C1A0E] text-[16px]">Refine Search</h3>
+              <button onClick={() => setSideOpen(false)} className="w-8 h-8 rounded-full bg-[#fdf8f0] flex items-center justify-center text-[#4a3728] hover:text-[#8B1A2D] transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <Sidebar />
+          </div>
+        </div>
+      )}
+
+      <main className="pt-24 md:pt-28 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* ── Breadcrumb ──────────────────────────────────────────── */}
+          <div className="flex items-center gap-2 text-[12px] text-[#9a8070] mb-6">
+            <Link href="/"       className="hover:text-[#8B1A2D] transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/vendors" className="hover:text-[#8B1A2D] transition-colors">Vendors</Link>
+            {applied.cats.length === 1 && <>
+              <span>/</span>
+              <span className="text-[#2C1A0E] font-semibold">{applied.cats[0]}</span>
+            </>}
+          </div>
+
+          {/* ── Page Title + Sort ────────────────────────────────────── */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+              <h1 className="text-[2rem] md:text-[2.8rem] font-serif font-bold text-[#2C1A0E] leading-tight">
+                {catLabel === "Wedding Halls" ? "Luxury Wedding Halls" : catLabel}
+              </h1>
+              <p className="text-[14px] text-[#9a8070] mt-1">
+                Curated spaces for your unforgettable day{districtLabel}.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 flex-shrink-0">
+              {/* Mobile filter button */}
+              <button
+                onClick={() => setSideOpen(true)}
+                className="lg:hidden flex items-center gap-2 border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] font-bold text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+                Filters {activeFilterCount > 0 && <span className="bg-[#8B1A2D] text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center">{activeFilterCount}</span>}
+              </button>
+
+              {/* Sort */}
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] text-[#9a8070] hidden sm:block">Sort by:</span>
+                <div className="relative">
+                  <select
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
+                    className="appearance-none bg-white border border-[#ede2cc] rounded-xl pl-4 pr-8 py-2.5 text-[13px] font-semibold text-[#2C1A0E] focus:outline-none focus:border-[#8B1A2D] cursor-pointer transition-colors"
+                  >
+                    {SORT_OPTIONS.map((o) => <option key={o}>{o}</option>)}
+                  </select>
+                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#9a8070] pointer-events-none" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Results count ──────────────────────────────────────────── */}
+          <p className="text-[13px] text-[#9a8070] mb-6">
+            Showing <strong className="text-[#2C1A0E]">{filtered.length}</strong> vendors
+          </p>
+
+          {/* ── Main Layout: Sidebar + Grid ─────────────────────────── */}
+          <div className="flex gap-8 items-start">
+
+            {/* Desktop Sidebar */}
+            <aside className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28">
+              <h2 className="text-[15px] font-bold text-[#2C1A0E] mb-6">Refine Search</h2>
+              <Sidebar />
+            </aside>
+
+            {/* Cards Grid */}
+            <div className="flex-1 min-w-0">
+              {paged.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {paged.map((v, index) => (
+                    <React.Fragment key={v.id}>
+                      <VendorCard vendor={v} />
+                      {/* Inject Ad after the 3rd card */}
+                      {index === 2 && (
+                        <div className="col-span-1 sm:col-span-2 lg:col-span-3">
+                          <AdBanner 
+                            imageSrc="/ads/resort_banner.png"
+                            title="The Ultimate Romantic Escape"
+                            subtitle="Honeymoon in Paradise"
+                            link="#"
+                            linkText="Book Now"
+                          />
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-24">
+                  <p className="text-[1.2rem] font-serif font-bold text-[#2C1A0E] mb-2">No vendors found</p>
+                  <p className="text-[#9a8070] text-[14px] mb-6">Try adjusting your filters or search term.</p>
+                  <button onClick={clearFilters} className="inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] border-2 border-[#8B1A2D]/20 hover:border-[#8B1A2D] px-6 py-3 rounded-xl transition-all">
+                    Clear Filters
+                  </button>
+                </div>
+              )}
+
+              {/* ── Pagination ──────────────────────────────────────── */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-12">
+                  <button
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={page === 1}
+                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => setPage(n)}
+                      className={`w-9 h-9 rounded-xl text-[13px] font-bold transition-all ${page === n ? "bg-[#8B1A2D] text-white shadow-md shadow-[#8B1A2D]/20" : "border border-[#ede2cc] text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D]"}`}
+                    >
+                      {n}
+                    </button>
+                  ))}
+
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={page === totalPages}
+                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}

@@ -1,0 +1,189 @@
+"use client";
+
+import React, { useRef } from "react";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import {
+  ArrowUpRight,
+  ShoppingBag,
+  Zap,
+  PlayCircle,
+  Smartphone,
+  Watch,
+  Headphones,
+} from "lucide-react";
+
+export default function HeroBento() {
+  const containerRef = useRef(null);
+
+  // --- ANIMATIONS ---
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
+
+      // 1. Grid Items Stagger In
+      tl.fromTo(
+        ".bento-item",
+        { y: 50, opacity: 0, scale: 0.95 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        }
+      );
+
+      // 2. Text Reveal
+      tl.fromTo(
+        ".bento-text",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.05 },
+        "-=0.4"
+      );
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <div
+      ref={containerRef}
+      className="min-h-screen bg-white font-sans text-slate-900 pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center"
+    >
+      {/* HEADER TEXT */}
+      <div className="max-w-7xl mx-auto w-full mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h1 className="bento-text text-4xl lg:text-6xl font-black tracking-tight mb-2">
+            The Future <br /> is <span className="text-blue-600">Ready.</span>
+          </h1>
+          <p className="bento-text text-slate-500 text-lg">
+            Curated tech for the modern creator.
+          </p>
+        </div>
+        <div className="bento-text hidden md:block">
+          <Link
+            href="/shop"
+            className="group flex items-center gap-2 font-bold text-slate-900 hover:text-blue-600 transition-colors"
+          >
+            View All Products{" "}
+            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
+        </div>
+      </div>
+
+      {/* --- BENTO GRID --- */}
+      <div className="max-w-7xl mx-auto w-full h-auto lg:h-[750px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-6">
+        {/* ITEM 1: MAIN HERO (iPhone) - Spans 8 cols */}
+        <div className="bento-item lg:col-span-8 relative group overflow-hidden rounded-[2.5rem] bg-slate-100 min-h-[400px] lg:min-h-0">
+          {/* Background & Image */}
+          <div className="absolute inset-0 bg-[#F5F5F7]" />
+          <img
+            src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=1200"
+            alt="iPhone 15 Pro"
+            className="absolute bottom-0 right-[-10%] lg:right-[-5%] w-[80%] lg:w-[60%] object-contain transition-transform duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2 z-10"
+          />
+
+          {/* Content */}
+          <div className="absolute top-0 left-0 p-8 lg:p-12 z-20 max-w-md">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider mb-4">
+              <Zap className="w-3.5 h-3.5 fill-current" /> New Arrival
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4 leading-tight">
+              iPhone 15 Pro.
+              <br />
+              Titanium.
+            </h2>
+            <p className="text-slate-500 mb-8 font-medium">From Rs. 425,000</p>
+
+            <Link
+              href="/shop"
+              className="bg-slate-900 text-white h-12 px-8 rounded-xl font-bold inline-flex items-center gap-2 shadow-lg hover:bg-blue-600 transition-colors"
+            >
+              Buy Now <ShoppingBag className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+
+        {/* ITEM 2: SECONDARY (Galaxy/Samsung) - Spans 4 cols */}
+        <div className="bento-item lg:col-span-4 relative group overflow-hidden rounded-[2.5rem] bg-slate-900 text-white min-h-[400px] lg:min-h-0">
+          {/* Ambient BG */}
+          <div className="absolute top-[-20%] right-[-20%] w-[400px] h-[400px] bg-purple-600/30 rounded-full blur-[80px]" />
+
+          <img
+            src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600"
+            alt="Samsung S24"
+            className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[70%] object-contain transition-transform duration-700 ease-out group-hover:scale-110 z-10"
+          />
+
+          <div className="absolute top-0 left-0 w-full p-8 text-center z-20">
+            <Smartphone className="w-8 h-8 text-purple-400 mx-auto mb-4" />
+            <h3 className="text-3xl font-bold mb-2">Galaxy AI</h3>
+            <p className="text-slate-400 text-sm">S24 Ultra Series</p>
+          </div>
+
+          <div className="absolute bottom-8 left-0 w-full flex justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <span className="text-sm font-bold border-b border-white pb-0.5">
+              Shop Galaxy
+            </span>
+          </div>
+        </div>
+
+        {/* ITEM 3: AUDIO (Sony) - Spans 4 cols */}
+        <div className="bento-item lg:col-span-4 relative group overflow-hidden rounded-[2.5rem] bg-stone-100 min-h-[300px]">
+          <img
+            src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=600"
+            alt="Sony Headphones"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] object-contain transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6 mix-blend-multiply"
+          />
+          <div className="absolute bottom-0 left-0 w-full p-8 flex justify-between items-end bg-gradient-to-t from-stone-200/50 to-transparent">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-1">
+                Audio
+              </p>
+              <h3 className="text-xl font-bold text-slate-900">Sony XM5</h3>
+            </div>
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-colors">
+              <ArrowUpRight className="w-5 h-5" />
+            </div>
+          </div>
+        </div>
+
+        {/* ITEM 4: WEARABLES (Watch) - Spans 4 cols */}
+        <div className="bento-item lg:col-span-4 relative group overflow-hidden rounded-[2.5rem] bg-orange-50 min-h-[300px]">
+          <div className="absolute top-0 right-0 p-8">
+            <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded">
+              -15%
+            </div>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&q=80&w=600"
+            alt="Apple Watch"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] object-contain transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
+          />
+
+          <div className="absolute bottom-0 left-0 w-full p-8">
+            <h3 className="text-xl font-bold text-slate-900">Ultra Watch</h3>
+            <p className="text-sm text-slate-500">Adventure awaits.</p>
+          </div>
+        </div>
+
+        {/* ITEM 5: PROMO VIDEO/BANNER - Spans 4 cols */}
+        <div className="bento-item lg:col-span-4 relative group overflow-hidden rounded-[2.5rem] bg-black min-h-[300px] flex items-center justify-center">
+          {/* Mock Video BG */}
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1616469829941-c7200edec809?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-60 group-hover:opacity-40 transition-opacity" />
+
+          <div className="relative z-10 text-center">
+            <button className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+              <PlayCircle className="w-8 h-8 fill-white" />
+            </button>
+            <h3 className="text-white font-bold text-lg">Watch the Film</h3>
+            <p className="text-white/60 text-sm">Experience the ecosystem</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
