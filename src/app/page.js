@@ -11,9 +11,9 @@ import TrustBar2 from "@/Sections/TrustBar2";
 
 // Below-fold — lazy loaded so they don't block first paint
 const VendorCategories = dynamic(() => import("@/Sections/VendorCategories"), { ssr: true });
-const HowItWorks       = dynamic(() => import("@/Sections/HowItWorks"),       { ssr: true });
-const FeaturedVendors  = dynamic(() => import("@/Sections/FeaturedVendors"),  { ssr: true });
-const PlanningTools    = dynamic(() => import("@/Sections/PlanningTools"),    { ssr: true });
+const HowItWorks = dynamic(() => import("@/Sections/HowItWorks"), { ssr: true });
+const FeaturedVendors = dynamic(() => import("@/Sections/FeaturedVendors"), { ssr: true });
+const PlanningTools = dynamic(() => import("@/Sections/PlanningTools"), { ssr: true });
 
 import { API_BASE_URL } from "@/lib/api";
 import { AdBanner } from "@/components/ui/AdBanner";
@@ -43,17 +43,17 @@ const page = async () => {
       <div className="">
         <Header initialCmsData={cmsData} />
         <ScrollToTop />
-        
+
         <WeddingHero />
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}
         <TrustBar2 />      {/* Design v2 — editorial magazine */}
         <VendorCategories />
         <HowItWorks />
         <FeaturedVendors />
-        
+
         {/* Premium Ad Placement */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <AdBanner 
+          <AdBanner
             imageSrc="/ads/jewelry_banner.png"
             title="The Aurelia & Co. Bridal Collection"
             subtitle="Fine Bridal Jewelry"
@@ -62,8 +62,8 @@ const page = async () => {
           />
         </section>
 
-        <PlanningTools />
-        
+        {/* <PlanningTools /> */}
+
       </div>
       <Footer initialCmsData={cmsData} />
     </Fragment>
