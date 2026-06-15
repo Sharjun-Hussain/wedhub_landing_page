@@ -149,12 +149,12 @@ export function HeaderClient({
               </Link>
 
               {/* Language / Globe */}
-              <button
+              {/* <button
                 className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-[#4a3728] hover:text-[#8B1A2D] hover:bg-rose-50 transition-colors"
                 aria-label="Language"
               >
                 <Globe className="w-5 h-5" />
-              </button>
+              </button> */}
 
               {/* User Auth */}
               {session && !sessionInvalid ? (
