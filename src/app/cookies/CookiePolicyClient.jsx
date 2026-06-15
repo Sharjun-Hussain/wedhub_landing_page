@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Settings } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
 
-export function TermsAndConditionsClient() {
+export function CookiePolicyClient() {
   const sectionsRef = useRef([]);
 
   useEffect(() => {
@@ -40,8 +40,8 @@ export function TermsAndConditionsClient() {
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <div className="w-px h-16 bg-[#d4a853] mb-8" />
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight leading-[1.1] mb-6">
-            Terms &<br/>
-            <span className="text-[#d4a853] italic font-normal">Conditions</span>
+            Cookie<br/>
+            <span className="text-[#d4a853] italic font-normal">Policy</span>
           </h1>
           <p className="text-xs md:text-sm font-bold text-[#fdf8f0]/80 tracking-[0.2em] uppercase mb-8">
             Last Updated: Mar 2026
@@ -63,14 +63,11 @@ export function TermsAndConditionsClient() {
               <span className="text-sm font-bold tracking-widest text-[#d4a853]">01.</span>
               <div className="h-px w-12 bg-[#ede2cc]" />
             </div>
-            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">Acceptance of Terms</h2>
+            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">What Are Cookies?</h2>
             <div className="text-[#6d513e] leading-relaxed space-y-6 text-base">
               <p>
-                <span className="float-left text-6xl font-serif font-bold text-[#8B1A2D] mr-3 mt-1 leading-none">B</span>
-                y accessing and using our marketplace services (the "Site") provided by <strong>WedHub</strong>, you agree to comply with and be bound by these Terms and Conditions.
-              </p>
-              <p>
-                If you do not agree to these terms, please do not use our Site or services. We reserve the right to modify these terms at any time without prior notice.
+                <span className="float-left text-6xl font-serif font-bold text-[#8B1A2D] mr-3 mt-1 leading-none">C</span>
+                ookies are small text files that are stored on your device when you visit our website. They help us understand how you interact with our platform and enable us to provide a seamless, premium experience.
               </p>
             </div>
           </div>
@@ -86,10 +83,10 @@ export function TermsAndConditionsClient() {
               <span className="text-sm font-bold tracking-widest text-[#d4a853]">02.</span>
               <div className="h-px w-12 bg-[#ede2cc]" />
             </div>
-            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">Account Responsibilities</h2>
+            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">How We Use Them</h2>
             <div className="text-[#6d513e] leading-relaxed space-y-6 text-base">
               <p>
-                To access premium features, contact vendors, or complete bookings, you are required to register for a customer account.
+                We use cookies exclusively to enhance your journey through WedHub. Here is a breakdown of the types we use:
               </p>
               <div className="bg-white border border-[#ede2cc] rounded-2xl p-6 md:p-8 space-y-6 shadow-xl shadow-[#2C1A0E]/5 hover:shadow-2xl hover:border-[#d4a853]/30 transition duration-500">
                 <div className="flex gap-4 items-start">
@@ -97,8 +94,8 @@ export function TermsAndConditionsClient() {
                     <ArrowRight className="w-3.5 h-3.5 text-[#8B1A2D]" />
                   </div>
                   <div>
-                    <strong className="text-[#2C1A0E] font-bold block mb-1">Confidentiality</strong>
-                    <p className="text-sm">You are responsible for maintaining the strict confidentiality of your account credentials and for all activities that occur under your account.</p>
+                    <strong className="text-[#2C1A0E] font-bold block mb-1">Essential Cookies</strong>
+                    <p className="text-sm">These are necessary for the website to function, such as maintaining your login session and remembering your cart items.</p>
                   </div>
                 </div>
                 <div className="w-full h-px bg-[#ede2cc]" />
@@ -107,8 +104,8 @@ export function TermsAndConditionsClient() {
                     <ArrowRight className="w-3.5 h-3.5 text-[#8B1A2D]" />
                   </div>
                   <div>
-                    <strong className="text-[#2C1A0E] font-bold block mb-1">Unauthorized Access</strong>
-                    <p className="text-sm">You must notify us immediately of any unauthorized use of your account or any other breach of security.</p>
+                    <strong className="text-[#2C1A0E] font-bold block mb-1">Analytics Cookies</strong>
+                    <p className="text-sm">These help us anonymously track usage patterns so we can continually improve the speed and layout of our marketplace.</p>
                   </div>
                 </div>
               </div>
@@ -126,19 +123,19 @@ export function TermsAndConditionsClient() {
               <span className="text-sm font-bold tracking-widest text-[#d4a853]">03.</span>
               <div className="h-px w-12 bg-[#ede2cc]" />
             </div>
-            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">Vendor Bookings & Payments</h2>
+            <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">Managing Preferences</h2>
             <div className="text-[#6d513e] leading-relaxed space-y-6 text-base">
               <p>
-                WedHub acts as a marketplace to connect couples with wedding vendors. Please note the following regarding transactions:
+                You have full control over your data.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-center gap-4 p-4 rounded-xl hover:bg-white border border-transparent hover:border-[#ede2cc] transition-all duration-300 shadow-sm shadow-transparent hover:shadow-md">
-                  <CheckCircle2 className="w-5 h-5 text-[#d4a853] shrink-0" />
-                  WedHub is not responsible for the fulfillment of services by third-party vendors.
+                  <Settings className="w-5 h-5 text-[#d4a853] shrink-0" />
+                  You can clear or block cookies directly from your browser settings at any time.
                 </li>
                 <li className="flex items-center gap-4 p-4 rounded-xl hover:bg-white border border-transparent hover:border-[#ede2cc] transition-all duration-300 shadow-sm shadow-transparent hover:shadow-md">
-                  <CheckCircle2 className="w-5 h-5 text-[#d4a853] shrink-0" />
-                  Any disputes regarding payments, cancellations, or refunds must be handled directly with the vendor based on their specific policies.
+                  <Settings className="w-5 h-5 text-[#d4a853] shrink-0" />
+                  Note that blocking essential cookies may prevent you from logging in or completing bookings.
                 </li>
               </ul>
             </div>

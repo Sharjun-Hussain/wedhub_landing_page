@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Terms & Conditions | Foreign Emporium",
+  title: "Terms & Conditions | WedHub",
   description:
-    "Read the Terms and Conditions for using Foreign Emporium services and website.",
+    "Read the Terms and Conditions for using WedHub services and website.",
 };
 
 export default function TermsAndConditionsLayout({ children }) {
