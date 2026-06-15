@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Privacy Policy | Foreign Emporium",
+  title: "Privacy Policy | WedHub",
   description:
-    "Learn how Foreign Emporium protects your personal information and respects your privacy.",
+    "Learn how WedHub protects your personal information and respects your privacy.",
 };
 
 export default function PrivacyPolicyLayout({ children }) {
