@@ -13,6 +13,7 @@ import TrustBar2 from "@/Sections/TrustBar2";
 const VendorCategories = dynamic(() => import("@/Sections/VendorCategories"), { ssr: true });
 const HowItWorks = dynamic(() => import("@/Sections/HowItWorks"), { ssr: true });
 const FeaturedVendors = dynamic(() => import("@/Sections/FeaturedVendors"), { ssr: true });
+const MagazinesSection = dynamic(() => import("@/Sections/MagazinesSection"), { ssr: true });
 const PlanningTools = dynamic(() => import("@/Sections/PlanningTools"), { ssr: true });
 
 import { API_BASE_URL } from "@/lib/api";
@@ -61,6 +62,8 @@ const page = async () => {
             linkText="Explore the Collection"
           />
         </section>
+
+        <MagazinesSection />
 
         {/* <PlanningTools /> */}
 
