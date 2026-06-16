@@ -4,9 +4,9 @@ export const mockMagazines = [
     title: "Vogue Ceylon Weddings",
     issue: "Spring 2026",
     date: "March 15, 2026",
-    coverImage: "https://images.unsplash.com/photo-1583939000140-6c66ce6218d6?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/homebanner1.png",
     description: "The ultimate guide to spring weddings in Sri Lanka. Featuring exclusive interviews with top decorators, the latest bridal fashion trends straight from Colombo fashion week, and breathtaking real weddings set against the backdrop of the tea country.",
-    pdfUrl: "#", // Mock PDF link
+    pdfUrl: "/Interim Report E2447101.pdf", // Real local PDF
     pages: 142,
     publisher: "WedHub Publications",
   },

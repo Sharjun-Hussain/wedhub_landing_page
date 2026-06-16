@@ -55,19 +55,18 @@ export default async function MagazineDetailPage({ params }) {
 
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             
-            {/* ── LEFT: Large Cover ─────────────────────────── */}
-            <div className="lg:col-span-5 relative perspective-1000">
-              <div className="relative w-full aspect-[1/1.35] shadow-[0_30px_60px_-15px_rgba(44,26,14,0.3)] transform-gpu rotate-y-[-5deg]">
-                <div className="absolute left-0 top-0 bottom-0 w-[6px] bg-gradient-to-r from-black/40 to-transparent z-20" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-10 pointer-events-none" />
+            {/* ── LEFT: Flat Clean Cover ──────────────────────── */}
+            <div className="lg:col-span-5">
+              <div className="relative w-full aspect-[1/1.3] rounded-3xl overflow-hidden bg-white border border-[#ede2cc] shadow-2xl shadow-[#2C1A0E]/10">
                 <Image
                   src={magazine.coverImage}
                   alt={magazine.title}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover rounded-sm"
+                  className="object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 pointer-events-none" />
               </div>
             </div>
 
@@ -129,7 +128,6 @@ export default async function MagazineDetailPage({ params }) {
       </main>
 
       <Footer initialCmsData={cmsData} />
-
     </div>
   );
 }
