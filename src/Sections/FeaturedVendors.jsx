@@ -14,7 +14,7 @@ const VENDORS = [
     id: 1,
     name: "Aman Colombo Residences",
     category: "Wedding Venue",
-    categoryColor: "#8B1A2D",
+    categoryColor: "#fc0a7a",
     location: "Colombo 03",
     district: "Western Province",
     price: "LKR 350,000",
@@ -124,7 +124,7 @@ const VendorCard = memo(function VendorCard({ vendor }) {
           className="fv-heart-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10"
           aria-label={saved ? "Remove from saved" : "Save vendor"}
         >
-          <Heart className={`w-4 h-4 ${saved ? "fill-[#8B1A2D] text-[#8B1A2D]" : "text-[#4a3728]"}`} />
+          <Heart className={`w-4 h-4 ${saved ? "fill-[#fc0a7a] text-[#fc0a7a]" : "text-[#4a3728]"}`} />
         </button>
         <div
           className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
@@ -159,14 +159,14 @@ const VendorCard = memo(function VendorCard({ vendor }) {
 
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[15px] font-black text-[#8B1A2D] leading-none">{vendor.price}</p>
+            <p className="text-[15px] font-black text-[#fc0a7a] leading-none">{vendor.price}</p>
             <p className="text-[10px] text-[#9a8070] mt-0.5">{vendor.priceNote}</p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <Link
               href={`/vendors/${vendor.id}#contact`}
               onClick={(e) => e.stopPropagation()}
-              className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-colors"
+              className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-colors"
               title="Enquire"
               aria-label="Enquire with vendor"
             >
@@ -175,7 +175,7 @@ const VendorCard = memo(function VendorCard({ vendor }) {
             <Link
               href={`/vendors/${vendor.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="h-8 px-4 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[11px] font-bold transition-colors flex items-center"
+              className="h-8 px-4 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[11px] font-bold transition-colors flex items-center"
             >
               View
             </Link>
@@ -193,8 +193,8 @@ const FilterPill = memo(function FilterPill({ label, active, onClick }) {
       onClick={onClick}
       className={`flex-shrink-0 px-4 py-2 rounded-full text-[12px] font-bold uppercase tracking-wider transition-all duration-200 ${
         active
-          ? "bg-[#8B1A2D] text-white shadow-md shadow-[#8B1A2D]/20"
-          : "bg-white border border-[#ede2cc] text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D]"
+          ? "bg-[#fc0a7a] text-white shadow-md shadow-[#fc0a7a]/20"
+          : "bg-white border border-[#ede2cc] text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a]"
       }`}
     >
       {label}
@@ -224,7 +224,7 @@ const FeaturedVendors = memo(function FeaturedVendors() {
         .fv-img { transition: transform 0.5s ease; will-change: transform; }
         .fv-card:hover .fv-img { transform: scale(1.06); }
         .fv-name { transition: color 0.2s ease; }
-        .fv-card:hover .fv-name { color: #8B1A2D; }
+        .fv-card:hover .fv-name { color: #fc0a7a; }
         .fv-heart-btn { transition: transform 0.15s ease; }
         .fv-heart-btn:hover { transform: scale(1.15); }
       `}</style>
@@ -233,7 +233,7 @@ const FeaturedVendors = memo(function FeaturedVendors() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
           <div>
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
               Hand-Picked For You
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
@@ -247,15 +247,15 @@ const FeaturedVendors = memo(function FeaturedVendors() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button onClick={scrollLeft} aria-label="Scroll left" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#8B1A2D] hover:bg-[#8B1A2D] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
+            <button onClick={scrollLeft} aria-label="Scroll left" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#fc0a7a] hover:bg-[#fc0a7a] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button onClick={scrollRight} aria-label="Scroll right" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#8B1A2D] hover:bg-[#8B1A2D] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
+            <button onClick={scrollRight} aria-label="Scroll right" className="w-10 h-10 rounded-full border-2 border-[#ede2cc] hover:border-[#fc0a7a] hover:bg-[#fc0a7a] text-[#4a3728] hover:text-white flex items-center justify-center transition-all duration-200">
               <ChevronRight className="w-4 h-4" />
             </button>
-            <Link href="/vendors" className="hidden sm:inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] hover:text-[#6d1422] transition-colors group ml-2">
+            <Link href="/vendors" className="hidden sm:inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group ml-2">
               View All
-              <span className="w-7 h-7 rounded-full border-2 border-[#8B1A2D] flex items-center justify-center group-hover:bg-[#8B1A2D] group-hover:text-white transition-all">
+              <span className="w-7 h-7 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-all">
                 <ArrowRight className="w-3 h-3" />
               </span>
             </Link>
@@ -290,9 +290,9 @@ const FeaturedVendors = memo(function FeaturedVendors() {
             <div className="w-14 h-14 rounded-full border-2 border-[#d4a853] flex items-center justify-center group-hover:bg-[#d4a853] transition-colors">
               <ArrowRight className="w-5 h-5 text-[#d4a853] group-hover:text-white transition-colors" />
             </div>
-            <p className="text-[13px] font-bold text-[#4a3728] group-hover:text-[#8B1A2D] text-center px-6 transition-colors leading-relaxed">
+            <p className="text-[13px] font-bold text-[#4a3728] group-hover:text-[#fc0a7a] text-center px-6 transition-colors leading-relaxed">
               Browse All<br />
-              <span className="text-[#8B1A2D]">1,500+</span> Vendors
+              <span className="text-[#fc0a7a]">1,500+</span> Vendors
             </p>
           </Link>
         </div>

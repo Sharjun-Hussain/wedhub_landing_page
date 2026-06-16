@@ -68,7 +68,7 @@ export default function TrustBar() {
   return (
     <>
       {/* ── SCROLLING MARQUEE ───────────────────────────────────────── */}
-      <div className="bg-[#8B1A2D] overflow-hidden py-3 select-none">
+      <div className="bg-[#fc0a7a] overflow-hidden py-3 select-none">
         <div
           className="flex items-center whitespace-nowrap"
           style={{ animation: "marquee 30s linear infinite" }}
@@ -98,7 +98,7 @@ export default function TrustBar() {
 
         {/* Decorative gold orb */}
         <div className="absolute top-1/2 right-[-80px] -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#d4a853]/8 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-[-60px] left-[30%] w-[300px] h-[300px] rounded-full bg-[#8B1A2D]/15 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-60px] left-[30%] w-[300px] h-[300px] rounded-full bg-[#fc0a7a]/15 blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20 md:py-28">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -106,7 +106,7 @@ export default function TrustBar() {
             {/* ── LEFT: Headline + Feature Pills ──────────────────── */}
             <div>
               {/* Label */}
-              <div className="inline-flex items-center gap-2 bg-[#8B1A2D]/30 border border-[#8B1A2D]/50 rounded-full px-4 py-1.5 mb-6">
+              <div className="inline-flex items-center gap-2 bg-[#fc0a7a]/30 border border-[#fc0a7a]/50 rounded-full px-4 py-1.5 mb-6">
                 <BadgeCheck className="w-3.5 h-3.5 text-[#d4a853]" />
                 <span className="text-[11px] font-bold uppercase tracking-widest text-[#d4a853]">
                   Sri Lanka's #1 Wedding Marketplace
@@ -178,7 +178,7 @@ export default function TrustBar() {
                   key={stat.label}
                   className={`relative overflow-hidden rounded-2xl p-6 border flex flex-col justify-between min-h-[160px] ${
                     i === 0
-                      ? "bg-[#8B1A2D]/30 border-[#8B1A2D]/50 col-span-2"
+                      ? "bg-[#fc0a7a]/30 border-[#fc0a7a]/50 col-span-2"
                       : "bg-white/5 border-white/10 hover:border-[#d4a853]/40 hover:bg-white/8"
                   } transition-all duration-300 group`}
                 >

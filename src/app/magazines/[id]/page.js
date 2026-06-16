@@ -51,7 +51,7 @@ export default async function MagazineDetailPage({ params }) {
           {/* Back button */}
           <Link
             href="/magazines"
-            className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[#9a8070] hover:text-[#8B1A2D] transition-colors mb-8 group"
+            className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[#9a8070] hover:text-[#fc0a7a] transition-colors mb-8 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Back to Newsstand
@@ -65,7 +65,7 @@ export default async function MagazineDetailPage({ params }) {
             
             <div className="flex flex-wrap items-center gap-6 text-[13px] font-medium text-[#9a8070] mb-6">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[#8B1A2D]" />
+                <Calendar className="w-4 h-4 text-[#fc0a7a]" />
                 {magazine.date}
               </div>
             </div>
@@ -101,7 +101,7 @@ export default async function MagazineDetailPage({ params }) {
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-center p-10 bg-[#f9f5ed]">
                     <div>
-                      <p className="text-[#8B1A2D] font-bold text-lg mb-2">Publication Not Available</p>
+                      <p className="text-[#fc0a7a] font-bold text-lg mb-2">Publication Not Available</p>
                       <p className="text-[#9a8070]">The requested file could not be loaded.</p>
                     </div>
                   </div>

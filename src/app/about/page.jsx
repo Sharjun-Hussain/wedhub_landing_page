@@ -49,7 +49,7 @@ export default function AboutPage() {
             
             {/* Left Image Composition */}
             <div className="lg:col-span-5 relative">
-              <div className="absolute -inset-4 bg-[#8B1A2D] rounded-[2.5rem] transform -rotate-3 opacity-10" />
+              <div className="absolute -inset-4 bg-[#fc0a7a] rounded-[2.5rem] transform -rotate-3 opacity-10" />
               <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop"
@@ -75,7 +75,7 @@ export default function AboutPage() {
             {/* Right Content */}
             <div className="lg:col-span-7">
               <h2 className="text-[2.2rem] md:text-[3rem] font-serif font-bold text-[#2C1A0E] leading-[1.1] mb-8">
-                Planning your big day should be a <span className="italic text-[#8B1A2D]">joy</span>, not a chore.
+                Planning your big day should be a <span className="italic text-[#fc0a7a]">joy</span>, not a chore.
               </h2>
               
               <div className="space-y-6 text-[#4a3728]/80 text-[16px] leading-relaxed mb-10 border-l-2 border-[#d4a853] pl-6">
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
               <Link
                 href="/vendors"
-                className="inline-flex items-center justify-center gap-3 bg-[#2C1A0E] hover:bg-[#8B1A2D] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10"
+                className="inline-flex items-center justify-center gap-3 bg-[#2C1A0E] hover:bg-[#fc0a7a] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10"
               >
                 Explore Vendors <ArrowRight className="w-4 h-4" />
               </Link>
@@ -99,11 +99,11 @@ export default function AboutPage() {
 
         {/* ── ENHANCED PILLARS (Bento Grid) ─────────────────────────────── */}
         <section className="bg-white py-32 border-y border-[#ede2cc] mb-32 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#8B1A2D]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#fc0a7a]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="inline-block text-[12px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-[#8B1A2D]/5 px-4 py-2 rounded-full mb-4">
+              <span className="inline-block text-[12px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-[#fc0a7a]/5 px-4 py-2 rounded-full mb-4">
                 The WedHub Standard
               </span>
               <h2 className="text-[2.5rem] md:text-[3.5rem] font-serif font-bold text-[#2C1A0E]">
@@ -117,10 +117,10 @@ export default function AboutPage() {
               {/* Large Card 1 */}
               <div className="md:col-span-2 bg-[#fdf8f0] p-10 rounded-[2rem] border border-[#ede2cc] group hover:border-[#d4a853] transition-colors relative overflow-hidden">
                 <div className="absolute right-0 top-0 w-64 h-full opacity-10 pointer-events-none transition-transform duration-700 group-hover:scale-110">
-                  <ShieldCheck className="w-full h-full text-[#8B1A2D]" />
+                  <ShieldCheck className="w-full h-full text-[#fc0a7a]" />
                 </div>
                 <div className="relative z-10 max-w-sm">
-                  <div className="w-14 h-14 rounded-full bg-[#8B1A2D] text-white flex items-center justify-center mb-8 shadow-lg shadow-[#8B1A2D]/30">
+                  <div className="w-14 h-14 rounded-full bg-[#fc0a7a] text-white flex items-center justify-center mb-8 shadow-lg shadow-[#fc0a7a]/30">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <h3 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E] mb-4">Verified Excellence</h3>
@@ -146,8 +146,8 @@ export default function AboutPage() {
               </div>
 
               {/* Square Card 3 */}
-              <div className="bg-[#fdf8f0] p-10 rounded-[2rem] border border-[#ede2cc] hover:border-[#8B1A2D]/30 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-white border border-[#ede2cc] flex items-center justify-center mb-6 text-[#8B1A2D]">
+              <div className="bg-[#fdf8f0] p-10 rounded-[2rem] border border-[#ede2cc] hover:border-[#fc0a7a]/30 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-white border border-[#ede2cc] flex items-center justify-center mb-6 text-[#fc0a7a]">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <h3 className="text-[1.4rem] font-serif font-bold text-[#2C1A0E] mb-3">Island-wide Reach</h3>
@@ -157,7 +157,7 @@ export default function AboutPage() {
               </div>
 
               {/* Large Card 4 */}
-              <div className="md:col-span-2 bg-[#8B1A2D] p-10 rounded-[2rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
+              <div className="md:col-span-2 bg-[#fc0a7a] p-10 rounded-[2rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#a62138,transparent_50%)] opacity-50" />
                 <div className="relative z-10 flex-1">
                   <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 backdrop-blur-md">
@@ -169,7 +169,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <div className="relative z-10 flex-shrink-0 w-full md:w-auto">
-                  <Link href="/register" className="inline-flex w-full md:w-auto items-center justify-center gap-2 bg-white text-[#8B1A2D] font-bold text-[13px] uppercase tracking-wider px-8 py-4 rounded-full hover:bg-[#fdf8f0] transition-colors">
+                  <Link href="/register" className="inline-flex w-full md:w-auto items-center justify-center gap-2 bg-white text-[#fc0a7a] font-bold text-[13px] uppercase tracking-wider px-8 py-4 rounded-full hover:bg-[#fdf8f0] transition-colors">
                     Create Account
                   </Link>
                 </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
             {/* Overlay Layers for Depth */}
             <div className="absolute inset-0 bg-[#2C1A0E]/90 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a05] via-[#1a0a05]/95 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#8B1A2D_0%,transparent_40%)] opacity-40" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#fc0a7a_0%,transparent_40%)] opacity-40" />
 
             {/* Content Content */}
             <div className="relative z-10 p-12 md:p-24 flex flex-col md:flex-row items-center justify-between gap-12">

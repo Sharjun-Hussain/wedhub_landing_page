@@ -156,7 +156,7 @@ export default function VendorDetailClient({ productData }) {
                   onClick={(e) => { e.stopPropagation(); openLightbox(0); }}
                   className="absolute bottom-5 right-5 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full text-[13px] font-bold text-[#2C1A0E] shadow-xl flex items-center gap-2 hover:bg-white hover:scale-105 transition-all duration-300"
                 >
-                  <ImageIcon className="w-4 h-4 text-[#8B1A2D]" />
+                  <ImageIcon className="w-4 h-4 text-[#fc0a7a]" />
                   View All {displayImages.length}
                 </button>
               )}
@@ -185,10 +185,10 @@ export default function VendorDetailClient({ productData }) {
           </div>
           
           <div className="flex items-center gap-3">
-            <button className="w-12 h-12 rounded-full border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-colors">
+            <button className="w-12 h-12 rounded-full border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-colors">
               <Share2 className="w-5 h-5" />
             </button>
-            <button className="w-12 h-12 rounded-full border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-colors">
+            <button className="w-12 h-12 rounded-full border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-colors">
               <Heart className="w-5 h-5" />
             </button>
           </div>
@@ -203,7 +203,7 @@ export default function VendorDetailClient({ productData }) {
             {/* The Experience */}
             <section>
               <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#8B1A2D]/30" />
+                <div className="h-px w-8 bg-[#fc0a7a]/30" />
                 <h2 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E]">The Experience</h2>
               </div>
               <div
@@ -215,7 +215,7 @@ export default function VendorDetailClient({ productData }) {
             {/* Amenities & Offerings */}
             <section>
               <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#8B1A2D]/30" />
+                <div className="h-px w-8 bg-[#fc0a7a]/30" />
                 <h2 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E]">Amenities & Offerings</h2>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -229,7 +229,7 @@ export default function VendorDetailClient({ productData }) {
                   return (
                     <div key={idx} className="group bg-white p-6 border border-[#ede2cc] rounded-2xl hover:border-[#d4a853] transition-all duration-300 hover:shadow-lg hover:shadow-[#d4a853]/10 hover:-translate-y-1 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#d4a853]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="w-12 h-12 rounded-xl bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center text-[#9a8070] group-hover:text-[#8B1A2D] group-hover:border-[#8B1A2D]/30 group-hover:bg-[#8B1A2D]/5 transition-all duration-300 mb-5 relative z-10">
+                      <div className="w-12 h-12 rounded-xl bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center text-[#9a8070] group-hover:text-[#fc0a7a] group-hover:border-[#fc0a7a]/30 group-hover:bg-[#fc0a7a]/5 transition-all duration-300 mb-5 relative z-10">
                         <Icon className="w-5 h-5" />
                       </div>
                       <p className="text-[15px] font-bold text-[#2C1A0E] mb-2 relative z-10">{amenity.title}</p>
@@ -243,7 +243,7 @@ export default function VendorDetailClient({ productData }) {
             {/* Location */}
             <section>
               <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#8B1A2D]/30" />
+                <div className="h-px w-8 bg-[#fc0a7a]/30" />
                 <h2 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E]">Location</h2>
               </div>
               <div className="bg-[#ede2cc] h-64 md:h-96 rounded-[2rem] relative overflow-hidden flex items-end shadow-sm border border-[#ede2cc]">
@@ -278,7 +278,7 @@ export default function VendorDetailClient({ productData }) {
               <button className="w-full flex items-center justify-center gap-2 bg-[#6a5413] hover:bg-[#4a3709] text-white py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
                 <MessageCircle className="w-4 h-4" /> WhatsApp Artisan
               </button>
-              <button className="w-full flex items-center justify-center gap-2 border border-[#ede2cc] hover:border-[#8B1A2D] hover:text-[#8B1A2D] text-[#4a3728] py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
+              <button className="w-full flex items-center justify-center gap-2 border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] text-[#4a3728] py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
                 <Phone className="w-4 h-4" /> Direct Call
               </button>
             </div>
@@ -292,7 +292,7 @@ export default function VendorDetailClient({ productData }) {
                     <input
                       type="text"
                       placeholder="Full Name"
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.name ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#8B1A2D]'}`}
+                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.name ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
                       {...register("name")}
                     />
                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
@@ -302,7 +302,7 @@ export default function VendorDetailClient({ productData }) {
                     <input
                       type="email"
                       placeholder="Email Address"
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.email ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#8B1A2D]'}`}
+                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.email ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
                       {...register("email")}
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
@@ -312,7 +312,7 @@ export default function VendorDetailClient({ productData }) {
                     <input
                       type="tel"
                       placeholder="Phone Number"
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.phone ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#8B1A2D]'}`}
+                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.phone ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
                       {...register("phone")}
                     />
                     {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
@@ -322,7 +322,7 @@ export default function VendorDetailClient({ productData }) {
                     <input
                       type="text"
                       placeholder="Estimated Wedding Date"
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.date ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#8B1A2D]'}`}
+                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.date ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
                       {...register("date")}
                     />
                     {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date.message}</p>}
@@ -332,7 +332,7 @@ export default function VendorDetailClient({ productData }) {
                     <textarea
                       placeholder="Tell us about your vision..."
                       rows={2}
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#8B1A2D]'}`}
+                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
                       {...register("message")}
                     />
                     {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}

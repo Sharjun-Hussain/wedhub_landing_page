@@ -109,7 +109,7 @@ function VendorCard({ vendor }) {
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
         />
         {/* Badge (Category Only) */}
-        <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#8B1A2D] text-white shadow-md">
+        <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#fc0a7a] text-white shadow-md">
           {vendor.category}
         </span>
         {/* Initials circle */}
@@ -121,7 +121,7 @@ function VendorCard({ vendor }) {
       {/* Info */}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start gap-1.5 mb-1">
-          <h3 className="text-[16px] font-bold text-[#2C1A0E] leading-snug flex-1 hover:text-[#8B1A2D] transition-colors">
+          <h3 className="text-[16px] font-bold text-[#2C1A0E] leading-snug flex-1 hover:text-[#fc0a7a] transition-colors">
             {vendor.name}
           </h3>
           {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0 mt-0.5" />}
@@ -137,18 +137,18 @@ function VendorCard({ vendor }) {
         </p>
 
         {/* Price */}
-        <div className="text-[12px] font-bold text-[#8B1A2D] mb-4">
+        <div className="text-[12px] font-bold text-[#fc0a7a] mb-4">
           From {vendor.price}
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-3 pt-3 border-t border-[#f0e6d3]">
-          <button className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all flex-shrink-0">
+          <button className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-all flex-shrink-0">
             <MessageCircle className="w-4 h-4" />
           </button>
           <Link
             href={`/vendors/${vendor.slug || vendor.id}`}
-            className="flex-1 text-center py-2.5 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[12px] font-bold uppercase tracking-wider transition-colors"
+            className="flex-1 text-center py-2.5 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[12px] font-bold uppercase tracking-wider transition-colors"
           >
             View Details
           </Link>
@@ -221,7 +221,7 @@ export default function VendorsClient() {
             placeholder="e.g. Shangri-La…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl pl-9 pr-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#8B1A2D] transition-colors"
+            className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl pl-9 pr-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#fc0a7a] transition-colors"
           />
         </div>
       </div>
@@ -234,11 +234,11 @@ export default function VendorsClient() {
             <label key={c} className="flex items-center gap-3 cursor-pointer group">
               <div
                 onClick={() => toggleCat(c)}
-                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${cats.includes(c) ? "bg-[#8B1A2D] border-[#8B1A2D]" : "border-[#ede2cc] group-hover:border-[#8B1A2D]"}`}
+                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${cats.includes(c) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}
               >
                 {cats.includes(c) && <span className="text-white text-[10px] font-black">✓</span>}
               </div>
-              <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#8B1A2D] transition-colors">{c}</span>
+              <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#fc0a7a] transition-colors">{c}</span>
             </label>
           ))}
         </div>
@@ -251,7 +251,7 @@ export default function VendorsClient() {
           <select
             value={district}
             onChange={(e) => setDistrict(e.target.value)}
-            className="w-full appearance-none bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] focus:outline-none focus:border-[#8B1A2D] transition-colors cursor-pointer"
+            className="w-full appearance-none bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] focus:outline-none focus:border-[#fc0a7a] transition-colors cursor-pointer"
           >
             {DISTRICTS.map((d) => <option key={d}>{d}</option>)}
           </select>
@@ -267,7 +267,7 @@ export default function VendorsClient() {
           placeholder="Enter city name…"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#8B1A2D] transition-colors"
+          className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#fc0a7a] transition-colors"
         />
       </div>
 
@@ -275,14 +275,14 @@ export default function VendorsClient() {
       <div className="space-y-3 pt-2">
         <button
           onClick={applyFilters}
-          className="w-full py-3 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[12px] font-bold uppercase tracking-widest transition-colors"
+          className="w-full py-3 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[12px] font-bold uppercase tracking-widest transition-colors"
         >
           Apply Filters
         </button>
         {activeFilterCount > 0 && (
           <button
             onClick={clearFilters}
-            className="w-full py-3 rounded-xl border border-[#ede2cc] hover:border-[#8B1A2D] text-[#4a3728] text-[12px] font-bold uppercase tracking-widest transition-all"
+            className="w-full py-3 rounded-xl border border-[#ede2cc] hover:border-[#fc0a7a] text-[#4a3728] text-[12px] font-bold uppercase tracking-widest transition-all"
           >
             Clear All
           </button>
@@ -300,7 +300,7 @@ export default function VendorsClient() {
           <div className="w-80 max-w-[85vw] bg-white h-full overflow-y-auto p-6 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-bold text-[#2C1A0E] text-[16px]">Refine Search</h3>
-              <button onClick={() => setSideOpen(false)} className="w-8 h-8 rounded-full bg-[#fdf8f0] flex items-center justify-center text-[#4a3728] hover:text-[#8B1A2D] transition-colors">
+              <button onClick={() => setSideOpen(false)} className="w-8 h-8 rounded-full bg-[#fdf8f0] flex items-center justify-center text-[#4a3728] hover:text-[#fc0a7a] transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -314,9 +314,9 @@ export default function VendorsClient() {
 
           {/* ── Breadcrumb ──────────────────────────────────────────── */}
           <div className="flex items-center gap-2 text-[12px] text-[#9a8070] mb-6">
-            <Link href="/"       className="hover:text-[#8B1A2D] transition-colors">Home</Link>
+            <Link href="/"       className="hover:text-[#fc0a7a] transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/vendors" className="hover:text-[#8B1A2D] transition-colors">Vendors</Link>
+            <Link href="/vendors" className="hover:text-[#fc0a7a] transition-colors">Vendors</Link>
             {applied.cats.length === 1 && <>
               <span>/</span>
               <span className="text-[#2C1A0E] font-semibold">{applied.cats[0]}</span>
@@ -338,10 +338,10 @@ export default function VendorsClient() {
               {/* Mobile filter button */}
               <button
                 onClick={() => setSideOpen(true)}
-                className="lg:hidden flex items-center gap-2 border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] font-bold text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all"
+                className="lg:hidden flex items-center gap-2 border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] font-bold text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-all"
               >
                 <SlidersHorizontal className="w-4 h-4" />
-                Filters {activeFilterCount > 0 && <span className="bg-[#8B1A2D] text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center">{activeFilterCount}</span>}
+                Filters {activeFilterCount > 0 && <span className="bg-[#fc0a7a] text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center">{activeFilterCount}</span>}
               </button>
 
               {/* Sort */}
@@ -351,7 +351,7 @@ export default function VendorsClient() {
                   <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
-                    className="appearance-none bg-white border border-[#ede2cc] rounded-xl pl-4 pr-8 py-2.5 text-[13px] font-semibold text-[#2C1A0E] focus:outline-none focus:border-[#8B1A2D] cursor-pointer transition-colors"
+                    className="appearance-none bg-white border border-[#ede2cc] rounded-xl pl-4 pr-8 py-2.5 text-[13px] font-semibold text-[#2C1A0E] focus:outline-none focus:border-[#fc0a7a] cursor-pointer transition-colors"
                   >
                     {SORT_OPTIONS.map((o) => <option key={o}>{o}</option>)}
                   </select>
@@ -401,7 +401,7 @@ export default function VendorsClient() {
                 <div className="text-center py-24">
                   <p className="text-[1.2rem] font-serif font-bold text-[#2C1A0E] mb-2">No vendors found</p>
                   <p className="text-[#9a8070] text-[14px] mb-6">Try adjusting your filters or search term.</p>
-                  <button onClick={clearFilters} className="inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] border-2 border-[#8B1A2D]/20 hover:border-[#8B1A2D] px-6 py-3 rounded-xl transition-all">
+                  <button onClick={clearFilters} className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] border-2 border-[#fc0a7a]/20 hover:border-[#fc0a7a] px-6 py-3 rounded-xl transition-all">
                     Clear Filters
                   </button>
                 </div>
@@ -413,7 +413,7 @@ export default function VendorsClient() {
                   <button
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
                     disabled={page === 1}
-                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -422,7 +422,7 @@ export default function VendorsClient() {
                     <button
                       key={n}
                       onClick={() => setPage(n)}
-                      className={`w-9 h-9 rounded-xl text-[13px] font-bold transition-all ${page === n ? "bg-[#8B1A2D] text-white shadow-md shadow-[#8B1A2D]/20" : "border border-[#ede2cc] text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D]"}`}
+                      className={`w-9 h-9 rounded-xl text-[13px] font-bold transition-all ${page === n ? "bg-[#fc0a7a] text-white shadow-md shadow-[#fc0a7a]/20" : "border border-[#ede2cc] text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a]"}`}
                     >
                       {n}
                     </button>
@@ -431,7 +431,7 @@ export default function VendorsClient() {
                   <button
                     onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}
-                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-9 h-9 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>

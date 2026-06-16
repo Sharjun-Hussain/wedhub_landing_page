@@ -93,7 +93,7 @@ const WeddingHero = memo(function WeddingHero() {
               onClick={toggleCat}
               className="w-full flex items-center gap-2.5 px-4 py-4 text-left hover:bg-[#fdf7ef] transition-colors group"
             >
-              <svg className="w-4 h-4 text-[#8B1A2D] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h10" />
               </svg>
               <span className={`flex-1 text-[14px] font-medium ${category ? "text-[#2C1A0E]" : "text-[#9a8070]"}`}>
@@ -107,7 +107,7 @@ const WeddingHero = memo(function WeddingHero() {
                   <button
                     key={c}
                     onClick={() => pickCat(c)}
-                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#8B1A2D] transition-colors"
+                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a] transition-colors"
                   >
                     {c}
                   </button>
@@ -122,7 +122,7 @@ const WeddingHero = memo(function WeddingHero() {
               onClick={toggleDist}
               className="w-full flex items-center gap-2.5 px-4 py-4 text-left hover:bg-[#fdf7ef] transition-colors"
             >
-              <svg className="w-4 h-4 text-[#8B1A2D] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -137,7 +137,7 @@ const WeddingHero = memo(function WeddingHero() {
                   <button
                     key={d}
                     onClick={() => pickDist(d)}
-                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#8B1A2D] transition-colors"
+                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a] transition-colors"
                   >
                     {d}
                   </button>
@@ -148,7 +148,7 @@ const WeddingHero = memo(function WeddingHero() {
 
           {/* City input */}
           <div className="flex-1 flex items-center gap-2.5 px-4 py-4 border-b sm:border-b-0 sm:border-r border-[#e8d9c0]">
-            <MapPin className="w-4 h-4 text-[#8B1A2D] flex-shrink-0" />
+            <MapPin className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" />
             <input
               type="text"
               value={city}
@@ -159,7 +159,7 @@ const WeddingHero = memo(function WeddingHero() {
           </div>
 
           {/* Search Button */}
-          <button className="flex items-center justify-center gap-2 bg-[#8B1A2D] hover:bg-[#6d1422] text-white font-bold text-[14px] uppercase tracking-wider px-8 py-4 transition-colors duration-200 min-w-[130px]">
+          <button className="flex items-center justify-center gap-2 bg-[#fc0a7a] hover:bg-[#d90066] text-white font-bold text-[14px] uppercase tracking-wider px-8 py-4 transition-colors duration-200 min-w-[130px]">
             <Search className="w-4 h-4" />
             Search
           </button>

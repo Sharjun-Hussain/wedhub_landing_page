@@ -33,9 +33,9 @@ export function CookiePolicyClient() {
       <ScrollToTop />
       
       {/* LEFT SIDEBAR (Sticky on Desktop) */}
-      <aside className="relative md:w-5/12 lg:w-1/3 bg-[#8B1A2D] text-[#fdf8f0] overflow-hidden flex flex-col justify-center items-center py-24 px-8 md:sticky md:top-[88px] md:h-[calc(100vh-88px)] z-10 self-start">
+      <aside className="relative md:w-5/12 lg:w-1/3 bg-[#fc0a7a] text-[#fdf8f0] overflow-hidden flex flex-col justify-center items-center py-24 px-8 md:sticky md:top-[88px] md:h-[calc(100vh-88px)] z-10 self-start">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop')", backgroundSize: "cover", backgroundPosition: "center" }} />
-        <div className="absolute inset-0 bg-[#8B1A2D]/85 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[#fc0a7a]/85 mix-blend-multiply" />
         
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <div className="w-px h-16 bg-[#d4a853] mb-8" />
@@ -66,7 +66,7 @@ export function CookiePolicyClient() {
             <h2 className="text-3xl font-serif font-bold text-[#2C1A0E] mb-6">What Are Cookies?</h2>
             <div className="text-[#6d513e] leading-relaxed space-y-6 text-base">
               <p>
-                <span className="float-left text-6xl font-serif font-bold text-[#8B1A2D] mr-3 mt-1 leading-none">C</span>
+                <span className="float-left text-6xl font-serif font-bold text-[#fc0a7a] mr-3 mt-1 leading-none">C</span>
                 ookies are small text files that are stored on your device when you visit our website. They help us understand how you interact with our platform and enable us to provide a seamless, premium experience.
               </p>
             </div>
@@ -90,8 +90,8 @@ export function CookiePolicyClient() {
               </p>
               <div className="bg-white border border-[#ede2cc] rounded-2xl p-6 md:p-8 space-y-6 shadow-xl shadow-[#2C1A0E]/5 hover:shadow-2xl hover:border-[#d4a853]/30 transition duration-500">
                 <div className="flex gap-4 items-start">
-                  <div className="mt-1 w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 border border-[#8B1A2D]/10">
-                    <ArrowRight className="w-3.5 h-3.5 text-[#8B1A2D]" />
+                  <div className="mt-1 w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 border border-[#fc0a7a]/10">
+                    <ArrowRight className="w-3.5 h-3.5 text-[#fc0a7a]" />
                   </div>
                   <div>
                     <strong className="text-[#2C1A0E] font-bold block mb-1">Essential Cookies</strong>
@@ -100,8 +100,8 @@ export function CookiePolicyClient() {
                 </div>
                 <div className="w-full h-px bg-[#ede2cc]" />
                 <div className="flex gap-4 items-start">
-                  <div className="mt-1 w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 border border-[#8B1A2D]/10">
-                    <ArrowRight className="w-3.5 h-3.5 text-[#8B1A2D]" />
+                  <div className="mt-1 w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 border border-[#fc0a7a]/10">
+                    <ArrowRight className="w-3.5 h-3.5 text-[#fc0a7a]" />
                   </div>
                   <div>
                     <strong className="text-[#2C1A0E] font-bold block mb-1">Analytics Cookies</strong>

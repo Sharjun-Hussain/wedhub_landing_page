@@ -82,7 +82,7 @@ const TrustBar2 = memo(function TrustBar2() {
 
             {/* Editorial headline */}
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#8B1A2D] mb-4">
+              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#fc0a7a] mb-4">
                 The Numbers Speak
               </p>
               <h2 className="text-[2.2rem] sm:text-[3rem] font-serif font-bold text-[#2C1A0E] leading-[1.1]">
@@ -116,7 +116,7 @@ const TrustBar2 = memo(function TrustBar2() {
                   key={stat.label}
                   className="bg-white p-6 flex flex-col gap-1 hover:bg-[#fdf8f0] transition-colors group"
                 >
-                  <p className="text-[2.4rem] sm:text-[2.8rem] font-serif font-black text-[#8B1A2D] leading-none">
+                  <p className="text-[2.4rem] sm:text-[2.8rem] font-serif font-black text-[#fc0a7a] leading-none">
                     <Counter to={stat.value} suffix={stat.suffix} duration={2000 + i * 150} />
                   </p>
                   <p className="text-[14px] font-bold text-[#2C1A0E]">{stat.label}</p>
@@ -131,13 +131,13 @@ const TrustBar2 = memo(function TrustBar2() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/vendors"
-                className="inline-flex items-center gap-2 bg-[#8B1A2D] hover:bg-[#6d1422] text-white font-bold text-[13px] uppercase tracking-wider px-7 py-4 rounded-xl transition-colors duration-200"
+                className="inline-flex items-center gap-2 bg-[#fc0a7a] hover:bg-[#d90066] text-white font-bold text-[13px] uppercase tracking-wider px-7 py-4 rounded-xl transition-colors duration-200"
               >
                 Explore All Vendors
               </Link>
               <Link
                 href="/vendor-signup"
-                className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#8B1A2D] border-2 border-[#8B1A2D]/30 hover:border-[#8B1A2D] px-7 py-4 rounded-xl transition-all duration-200 hover:bg-[#8B1A2D]/5"
+                className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#fc0a7a] border-2 border-[#fc0a7a]/30 hover:border-[#fc0a7a] px-7 py-4 rounded-xl transition-all duration-200 hover:bg-[#fc0a7a]/5"
               >
                 List Your Business <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
@@ -211,7 +211,7 @@ const TrustBar2 = memo(function TrustBar2() {
                     />
                   ))}
                  
-                  <div className="w-7 h-7 rounded-full bg-[#8B1A2D] border-2 border-white flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-[#fc0a7a] border-2 border-white flex items-center justify-center">
                     <span className="text-[8px] font-black text-white">+2k</span>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ const TrustBar2 = memo(function TrustBar2() {
                     style={{
                       height: `${h}%`,
                       background: i === 5
-                        ? "linear-gradient(to top, #8B1A2D, #d4a853)"
+                        ? "linear-gradient(to top, #fc0a7a, #d4a853)"
                         : "#ede2cc",
                     }}
                   />

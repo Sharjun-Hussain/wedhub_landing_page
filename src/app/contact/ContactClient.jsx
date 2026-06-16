@@ -39,9 +39,9 @@ const FAQS = [
 // ── Floating label input ────────────────────────────────────────────────────
 function FloatInput({ label, type = "text", id, value, onChange, multiline = false }) {
   const base =
-    "peer w-full bg-transparent border-b-2 border-[#ede2cc] pt-6 pb-2 text-[15px] text-[#2C1A0E] placeholder-transparent focus:outline-none focus:border-[#8B1A2D] transition-colors resize-none";
+    "peer w-full bg-transparent border-b-2 border-[#ede2cc] pt-6 pb-2 text-[15px] text-[#2C1A0E] placeholder-transparent focus:outline-none focus:border-[#fc0a7a] transition-colors resize-none";
   const labelBase =
-    "absolute left-0 top-6 text-[14px] text-[#9a8070] pointer-events-none transition-all duration-200 peer-placeholder-shown:top-6 peer-placeholder-shown:text-[14px] peer-focus:top-0 peer-focus:text-[11px] peer-focus:text-[#8B1A2D] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wider";
+    "absolute left-0 top-6 text-[14px] text-[#9a8070] pointer-events-none transition-all duration-200 peer-placeholder-shown:top-6 peer-placeholder-shown:text-[14px] peer-focus:top-0 peer-focus:text-[11px] peer-focus:text-[#fc0a7a] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wider";
 
   return (
     <div className="relative">
@@ -65,7 +65,7 @@ function FloatInput({ label, type = "text", id, value, onChange, multiline = fal
         />
       )}
       <label htmlFor={id} className={labelBase}>{label}</label>
-      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8B1A2D] peer-focus:w-full transition-all duration-300" />
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#fc0a7a] peer-focus:w-full transition-all duration-300" />
     </div>
   );
 }
@@ -81,7 +81,7 @@ function FaqItem({ q, a }) {
         onClick={() => setOpen((o) => !o)}
         className="w-full flex items-center justify-between gap-4 p-6 text-left"
       >
-        <span className={`text-[15px] font-bold transition-colors ${open ? "text-[#8B1A2D]" : "text-[#2C1A0E]"}`}>
+        <span className={`text-[15px] font-bold transition-colors ${open ? "text-[#fc0a7a]" : "text-[#2C1A0E]"}`}>
           {q}
         </span>
         <ChevronDown
@@ -154,7 +154,7 @@ export default function ContactClient() {
             {/* Dark info card */}
             <div className="bg-[#2C1A0E] rounded-[2rem] p-8 relative overflow-hidden">
               {/* Decorative glow */}
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#8B1A2D] rounded-full blur-[80px] opacity-40 pointer-events-none" />
+              <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#fc0a7a] rounded-full blur-[80px] opacity-40 pointer-events-none" />
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4a853] to-transparent opacity-50" />
 
               <h3 className="text-[1.4rem] font-serif font-bold text-white mb-8">Contact Details</h3>
@@ -211,7 +211,7 @@ export default function ContactClient() {
               </div>
               <div>
                 <p className="text-[16px] font-bold text-[#2C1A0E]">We reply fast</p>
-                <p className="text-[13px] text-[#9a8070]">Average response time under <strong className="text-[#8B1A2D]">2 hours</strong></p>
+                <p className="text-[13px] text-[#9a8070]">Average response time under <strong className="text-[#fc0a7a]">2 hours</strong></p>
               </div>
             </div>
 
@@ -222,7 +222,7 @@ export default function ContactClient() {
                 { value: "10,000+", label: "Couples Served" },
               ].map(({ value, label }) => (
                 <div key={label} className="bg-white border border-[#ede2cc] rounded-2xl p-6 text-center">
-                  <p className="text-[2rem] font-serif font-black text-[#8B1A2D] leading-none">{value}</p>
+                  <p className="text-[2rem] font-serif font-black text-[#fc0a7a] leading-none">{value}</p>
                   <p className="text-[11px] font-bold text-[#9a8070] uppercase tracking-wider mt-2">{label}</p>
                 </div>
               ))}
@@ -251,7 +251,7 @@ export default function ContactClient() {
                           onClick={() => setSubject(id)}
                           className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 text-center transition-all duration-200 ${
                             subject === id
-                              ? "border-[#8B1A2D] bg-[#8B1A2D]/5 text-[#8B1A2D]"
+                              ? "border-[#fc0a7a] bg-[#fc0a7a]/5 text-[#fc0a7a]"
                               : "border-[#ede2cc] text-[#4a3728] hover:border-[#d4a853]"
                           }`}
                         >
@@ -273,7 +273,7 @@ export default function ContactClient() {
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="group w-full flex items-center justify-between bg-[#2C1A0E] hover:bg-[#8B1A2D] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10 hover:shadow-[#8B1A2D]/20"
+                    className="group w-full flex items-center justify-between bg-[#2C1A0E] hover:bg-[#fc0a7a] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10 hover:shadow-[#fc0a7a]/20"
                   >
                     <span>Send Message</span>
                     <span className="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-all group-hover:scale-110">
@@ -283,7 +283,7 @@ export default function ContactClient() {
 
                   <p className="text-center text-[12px] text-[#9a8070]">
                     By submitting, you agree to our{" "}
-                    <Link href="/privacy" className="underline underline-offset-2 hover:text-[#8B1A2D] transition-colors">Privacy Policy</Link>.
+                    <Link href="/privacy" className="underline underline-offset-2 hover:text-[#fc0a7a] transition-colors">Privacy Policy</Link>.
                   </p>
                 </form>
               ) : (
@@ -300,7 +300,7 @@ export default function ContactClient() {
                   </div>
                   <button
                     onClick={() => setSent(false)}
-                    className="inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] border-2 border-[#8B1A2D]/20 hover:border-[#8B1A2D] px-6 py-3 rounded-xl transition-all"
+                    className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] border-2 border-[#fc0a7a]/20 hover:border-[#fc0a7a] px-6 py-3 rounded-xl transition-all"
                   >
                     Send another message <ArrowRight className="w-4 h-4" />
                   </button>
@@ -313,7 +313,7 @@ export default function ContactClient() {
         {/* ── FAQ SECTION ────────────────────────────────────────────── */}
         <div className="mt-24">
           <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
               FAQ
             </span>
             <h2 className="text-[2rem] md:text-[2.5rem] font-serif font-bold text-[#2C1A0E]">

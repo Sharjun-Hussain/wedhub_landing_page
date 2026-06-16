@@ -111,8 +111,8 @@ export function HeaderClient({
                       className={cn(
                         "flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-wide transition-colors duration-200 rounded",
                         isActive(link.href)
-                          ? "text-[#8B1A2D]"
-                          : "text-[#4a3728] hover:text-[#8B1A2D]"
+                          ? "text-[#fc0a7a]"
+                          : "text-[#4a3728] hover:text-[#fc0a7a]"
                       )}
                     >
                       {link.label}
@@ -120,14 +120,14 @@ export function HeaderClient({
                         <ChevronDown
                           className={cn(
                             "w-3.5 h-3.5 transition-transform duration-200",
-                            activeMega === link.hasMega ? "rotate-180 text-[#8B1A2D]" : ""
+                            activeMega === link.hasMega ? "rotate-180 text-[#fc0a7a]" : ""
                           )}
                         />
                       )}
                     </Link>
                     {/* Underline active indicator */}
                     {isActive(link.href) && (
-                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#8B1A2D] rounded-full" />
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#fc0a7a] rounded-full" />
                     )}
                   </div>
                 ))}
@@ -139,7 +139,7 @@ export function HeaderClient({
               {/* Saved/Wishlist */}
               <Link
                 href="/wishlist"
-                className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-[#4a3728] hover:text-[#8B1A2D] hover:bg-rose-50 transition-colors"
+                className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-[#4a3728] hover:text-[#fc0a7a] hover:bg-rose-50 transition-colors"
                 aria-label="My Wishlist"
               >
                 <Heart className="w-5 h-5" />
@@ -147,7 +147,7 @@ export function HeaderClient({
 
               {/* Language / Globe */}
               {/* <button
-                className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-[#4a3728] hover:text-[#8B1A2D] hover:bg-rose-50 transition-colors"
+                className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-[#4a3728] hover:text-[#fc0a7a] hover:bg-rose-50 transition-colors"
                 aria-label="Language"
               >
                 <Globe className="w-5 h-5" />
@@ -161,13 +161,13 @@ export function HeaderClient({
                   onMouseLeave={() => setIsUserMenuOpen(false)}
                 >
                   <button
-                    className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#e8d9c0] hover:border-[#8B1A2D] transition-colors bg-[#f9f3eb] flex items-center justify-center shadow-sm"
+                    className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#e8d9c0] hover:border-[#fc0a7a] transition-colors bg-[#f9f3eb] flex items-center justify-center shadow-sm"
                     aria-label="Account options"
                   >
                     {session.user?.image ? (
                       <img src={session.user.image} alt="User" className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-xs font-bold text-[#8B1A2D]">{getInitials(session.user?.name)}</span>
+                      <span className="text-xs font-bold text-[#fc0a7a]">{getInitials(session.user?.name)}</span>
                     )}
                   </button>
 
@@ -181,13 +181,13 @@ export function HeaderClient({
                         <p className="text-sm font-bold text-gray-900 truncate">{session.user?.name}</p>
                         <p className="text-xs text-gray-500 truncate mt-0.5">{session.user?.email}</p>
                       </div>
-                      <Link href="/account?tab=planning" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#8B1A2D] transition-colors">
+                      <Link href="/account?tab=planning" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#fc0a7a] transition-colors">
                         <Heart className="w-4 h-4" /> My Vendors
                       </Link>
-                      <Link href="/account?tab=messages" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#8B1A2D] transition-colors">
+                      <Link href="/account?tab=messages" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#fc0a7a] transition-colors">
                         <MessageSquare className="w-4 h-4" /> Messages
                       </Link>
-                      <Link href="/account?tab=profile" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#8B1A2D] transition-colors">
+                      <Link href="/account?tab=profile" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-[#fc0a7a] transition-colors">
                         <User className="w-4 h-4" /> Profile
                       </Link>
                       <div className="border-t border-gray-100 my-1" />
@@ -199,7 +199,7 @@ export function HeaderClient({
                 </div>
               ) : (
                 <div className="hidden sm:flex items-center gap-2">
-                  <Link href="/login" className="text-[13px] font-semibold text-[#4a3728] hover:text-[#8B1A2D] transition-colors px-3 py-2">
+                  <Link href="/login" className="text-[13px] font-semibold text-[#4a3728] hover:text-[#fc0a7a] transition-colors px-3 py-2">
                     Log in
                   </Link>
                 </div>
@@ -208,7 +208,7 @@ export function HeaderClient({
               {/* ADVERTISE CTA */}
               <Link
                 href="/advertise"
-                className="hidden md:flex items-center text-[12px] font-bold uppercase tracking-wider text-[#8B1A2D] border-2 border-[#8B1A2D] hover:bg-[#8B1A2D] hover:text-white transition-all duration-200 px-4 py-[7px] rounded-sm"
+                className="hidden md:flex items-center text-[12px] font-bold uppercase tracking-wider text-[#fc0a7a] border-2 border-[#fc0a7a] hover:bg-[#fc0a7a] hover:text-white transition-all duration-200 px-4 py-[7px] rounded-sm"
               >
                 Advertise With Us
               </Link>

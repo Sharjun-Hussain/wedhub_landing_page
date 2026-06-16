@@ -22,9 +22,9 @@ export default function WishlistPage() {
             Curate your dream wedding. Here are the vendors and items you've saved for your special day.
           </p>
           <div className="mt-6 flex items-center justify-center">
-            <div className="w-16 h-px bg-[#8B1A2D]"></div>
-            <div className="w-2 h-2 rounded-full bg-[#8B1A2D] mx-3"></div>
-            <div className="w-16 h-px bg-[#8B1A2D]"></div>
+            <div className="w-16 h-px bg-[#fc0a7a]"></div>
+            <div className="w-2 h-2 rounded-full bg-[#fc0a7a] mx-3"></div>
+            <div className="w-16 h-px bg-[#fc0a7a]"></div>
           </div>
         </div>
 

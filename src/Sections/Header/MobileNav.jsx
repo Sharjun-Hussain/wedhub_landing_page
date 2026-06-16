@@ -173,7 +173,7 @@ export function MobileNav({
           <button
             onClick={close}
             aria-label="Close menu"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#ede2cc]/70 text-[#2C1A0E] hover:bg-[#8B1A2D] hover:text-white transition-colors duration-150"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#ede2cc]/70 text-[#2C1A0E] hover:bg-[#fc0a7a] hover:text-white transition-colors duration-150"
             style={tapStyle}
           >
             <X className="w-4 h-4" />
@@ -206,7 +206,7 @@ export function MobileNav({
             <button
               type="submit"
               aria-label="Search"
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-[#8B1A2D] text-white flex items-center justify-center active:scale-95 transition-transform duration-150"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-[#fc0a7a] text-white flex items-center justify-center active:scale-95 transition-transform duration-150"
               style={tapStyle}
             >
               <Search className="w-3.5 h-3.5" />
@@ -240,7 +240,7 @@ export function MobileNav({
                     style={tapStyle}
                   >
                     <span className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#8B1A2D]">
+                      <span className="text-[#fc0a7a]">
                         {getCategoryIcon(cat.iconKey, "w-[18px] h-[18px]")}
                       </span>
                     </span>
@@ -343,7 +343,7 @@ export function MobileNav({
                 ) : (
                   <div
                     className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center ring-2 ring-[#d4a853]/30"
-                    style={{ background: "linear-gradient(135deg,#8B1A2D 0%,#d4a853 100%)" }}
+                    style={{ background: "linear-gradient(135deg,#fc0a7a 0%,#d4a853 100%)" }}
                   >
                     <span className="text-sm font-black text-white tracking-wider">
                       {getInitials(session.user?.name)}
@@ -367,7 +367,7 @@ export function MobileNav({
                   className="flex items-center justify-center gap-1.5 h-10 rounded-xl bg-[#fdf8f0] border border-[#ede2cc] text-xs font-bold text-[#2C1A0E] active:scale-[0.97] transition-transform duration-100"
                   style={tapStyle}
                 >
-                  <Heart className="w-3.5 h-3.5 text-[#8B1A2D]" />
+                  <Heart className="w-3.5 h-3.5 text-[#fc0a7a]" />
                   Saved
                 </Link>
                 <Link
@@ -376,7 +376,7 @@ export function MobileNav({
                   className="flex items-center justify-center gap-1.5 h-10 rounded-xl bg-[#fdf8f0] border border-[#ede2cc] text-xs font-bold text-[#2C1A0E] active:scale-[0.97] transition-transform duration-100"
                   style={tapStyle}
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#8B1A2D]" />
+                  <MessageSquare className="w-3.5 h-3.5 text-[#fc0a7a]" />
                   Messages
                 </Link>
               </div>
@@ -406,10 +406,10 @@ export function MobileNav({
               <Link
                 href="/login"
                 onClick={close}
-                className="flex items-center justify-center gap-2 w-full h-12 rounded-xl text-sm font-bold text-white tracking-wide active:scale-[0.98] transition-transform duration-100 shadow-md shadow-[#8B1A2D]/20"
+                className="flex items-center justify-center gap-2 w-full h-12 rounded-xl text-sm font-bold text-white tracking-wide active:scale-[0.98] transition-transform duration-100 shadow-md shadow-[#fc0a7a]/20"
                 style={{
                   ...tapStyle,
-                  background:  "linear-gradient(135deg,#8B1A2D 0%,#a9293e 100%)",
+                  background:  "linear-gradient(135deg,#fc0a7a 0%,#a9293e 100%)",
                 }}
               >
                 Login / Sign Up

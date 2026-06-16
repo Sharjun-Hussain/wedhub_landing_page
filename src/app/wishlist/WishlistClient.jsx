@@ -18,7 +18,7 @@ export const WishlistClient = memo(function WishlistClient() {
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4 animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
         <div className="w-24 h-24 bg-rose-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-rose-100">
-          <Heart className="w-10 h-10 text-[#8B1A2D]" strokeWidth={1.5} />
+          <Heart className="w-10 h-10 text-[#fc0a7a]" strokeWidth={1.5} />
         </div>
         <h2 className="text-[24px] font-serif font-bold text-[#2C1A0E] mb-3 text-center">
           Your collection is empty

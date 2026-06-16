@@ -56,12 +56,12 @@ const HowItWorks = memo(function HowItWorks() {
         {/* ── Section Header ─────────────────────────────────────── */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
               Simple Process
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
               Your Perfect Wedding,<br />
-              <span className="italic text-[#8B1A2D]">4 Steps Away</span>
+              <span className="italic text-[#fc0a7a]">4 Steps Away</span>
             </h2>
             <div className="flex items-center gap-3 mt-4">
               <div className="h-px w-14 bg-[#d4a853]" />
@@ -73,9 +73,9 @@ const HowItWorks = memo(function HowItWorks() {
           {/* Auto-play toggle */}
           <button
             onClick={() => setPaused((p) => !p)}
-            className="inline-flex items-center gap-2 self-start md:self-auto text-[12px] font-bold text-[#4a3728] border border-[#ede2cc] hover:border-[#8B1A2D] hover:text-[#8B1A2D] px-4 py-2.5 rounded-xl transition-all"
+            className="inline-flex items-center gap-2 self-start md:self-auto text-[12px] font-bold text-[#4a3728] border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] px-4 py-2.5 rounded-xl transition-all"
           >
-            <Play className={`w-3 h-3 ${paused ? "text-[#8B1A2D]" : "fill-current"}`} />
+            <Play className={`w-3 h-3 ${paused ? "text-[#fc0a7a]" : "fill-current"}`} />
             {paused ? "Resume Auto-play" : "Auto-playing"}
           </button>
         </div>
@@ -157,7 +157,7 @@ const HowItWorks = memo(function HowItWorks() {
                 className={`group relative text-left overflow-hidden rounded-2xl transition-colors duration-300 border ${
                   active === i
                     ? "bg-[#2C1A0E] border-[#2C1A0E] shadow-xl shadow-[#2C1A0E]/20"
-                    : "bg-white border-[#ede2cc] hover:border-[#8B1A2D]/40 hover:bg-[#fffaf4]"
+                    : "bg-white border-[#ede2cc] hover:border-[#fc0a7a]/40 hover:bg-[#fffaf4]"
                 }`}
               >
                 {/* Thumbnail strip — only when active */}
@@ -176,7 +176,7 @@ const HowItWorks = memo(function HowItWorks() {
                       className={`w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-[13px] font-black transition-all duration-300 ${
                         active === i
                           ? "bg-[#d4a853] text-[#1a0a05]"
-                          : "bg-[#f5efe4] text-[#4a3728] group-hover:bg-[#8B1A2D]/10 group-hover:text-[#8B1A2D]"
+                          : "bg-[#f5efe4] text-[#4a3728] group-hover:bg-[#fc0a7a]/10 group-hover:text-[#fc0a7a]"
                       }`}
                     >
                       {s.num}
@@ -185,7 +185,7 @@ const HowItWorks = memo(function HowItWorks() {
                     <div className="flex-1 min-w-0">
                       <h4
                         className={`font-bold leading-snug transition-colors ${
-                          active === i ? "text-white text-[15px]" : "text-[#2C1A0E] text-[14px] group-hover:text-[#8B1A2D]"
+                          active === i ? "text-white text-[15px]" : "text-[#2C1A0E] text-[14px] group-hover:text-[#fc0a7a]"
                         }`}
                       >
                         {s.title}
@@ -208,7 +208,7 @@ const HowItWorks = memo(function HowItWorks() {
                     {/* Arrow */}
                     <ArrowUpRight
                       className={`w-4 h-4 flex-shrink-0 transition-all ${
-                        active === i ? "text-[#d4a853]" : "text-[#ccc] group-hover:text-[#8B1A2D] opacity-0 group-hover:opacity-100"
+                        active === i ? "text-[#d4a853]" : "text-[#ccc] group-hover:text-[#fc0a7a] opacity-0 group-hover:opacity-100"
                       }`}
                     />
                   </div>
@@ -225,7 +225,7 @@ const HowItWorks = memo(function HowItWorks() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-[#8B1A2D]/90 to-[#4a0e1a]/95" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#fc0a7a]/90 to-[#b30054]/95" />
               <div className="relative p-6 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-[#d4a853] mb-1">For Vendors</p>

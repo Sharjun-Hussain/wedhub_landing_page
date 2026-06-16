@@ -19,7 +19,7 @@ const MagazinesSection = memo(function MagazinesSection() {
         .mag-img { transition: transform 0.5s ease; will-change: transform; }
         .mag-card:hover .mag-img { transform: scale(1.04); }
         .mag-title { transition: color 0.2s ease; }
-        .mag-card:hover .mag-title { color: #8B1A2D; }
+        .mag-card:hover .mag-title { color: #fc0a7a; }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,11 +27,11 @@ const MagazinesSection = memo(function MagazinesSection() {
         {/* ── Header ─────────────────────────────────────────────── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
               Digital Newsstand
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
-              Editorial <em className="text-[#8B1A2D] italic not-italic">Lookbook</em>
+              Editorial <em className="text-[#fc0a7a] italic not-italic">Lookbook</em>
             </h2>
             <div className="flex items-center gap-3 mt-3">
               <div className="h-px w-14 bg-[#d4a853]" />
@@ -45,10 +45,10 @@ const MagazinesSection = memo(function MagazinesSection() {
           
           <Link
             href="/magazines"
-            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] hover:text-[#6d1422] transition-colors group shrink-0"
+            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group shrink-0"
           >
             View All Publications
-            <span className="w-8 h-8 rounded-full border-2 border-[#8B1A2D] flex items-center justify-center group-hover:bg-[#8B1A2D] group-hover:text-white transition-colors duration-200">
+            <span className="w-8 h-8 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-colors duration-200">
               <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </Link>
@@ -99,7 +99,7 @@ const MagazinesSection = memo(function MagazinesSection() {
                   <div className="text-[12px] font-semibold text-[#6d513e]">
                     {mag.pages} Pages
                   </div>
-                  <div className="h-9 px-5 rounded-xl bg-[#8B1A2D] text-white text-[12px] font-bold flex items-center transition-colors">
+                  <div className="h-9 px-5 rounded-xl bg-[#fc0a7a] text-white text-[12px] font-bold flex items-center transition-colors">
                     Read Issue
                   </div>
                 </div>

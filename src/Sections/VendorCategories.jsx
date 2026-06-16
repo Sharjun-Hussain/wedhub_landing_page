@@ -87,7 +87,7 @@ const CategoryCard = memo(function CategoryCard({ item, priority = false }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/85" />
 
       {/* Gold shimmer on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#d4a853]/0 via-transparent to-[#8B1A2D]/0 group-hover:from-[#d4a853]/10 group-hover:to-[#8B1A2D]/15 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#d4a853]/0 via-transparent to-[#fc0a7a]/0 group-hover:from-[#d4a853]/10 group-hover:to-[#fc0a7a]/15 transition-opacity duration-500" />
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6">
@@ -129,7 +129,7 @@ const VendorCategories = memo(function VendorCategories() {
         {/* ── Section Header ───────────────────────────────────────── */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
           <div>
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 px-4 py-1.5 rounded-full mb-4">
               What We Offer
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
@@ -143,10 +143,10 @@ const VendorCategories = memo(function VendorCategories() {
           </div>
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] hover:text-[#6d1422] transition-colors group shrink-0"
+            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group shrink-0"
           >
             View All Categories
-            <span className="w-8 h-8 rounded-full border-2 border-[#8B1A2D] flex items-center justify-center group-hover:bg-[#8B1A2D] group-hover:text-white transition-all duration-200">
+            <span className="w-8 h-8 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-all duration-200">
               <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </Link>

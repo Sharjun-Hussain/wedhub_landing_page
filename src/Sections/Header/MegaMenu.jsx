@@ -42,11 +42,11 @@ function CategoriesMegaMenu({ cmsData, onClose }) {
             className="group flex items-start gap-4 p-5 bg-white/50 hover:bg-[#fdf7ef] transition-all duration-300 animate-fade-in-up"
             style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
           >
-            <span className="mt-0.5 w-10 h-10 rounded-xl bg-[#fdf8f0] shadow-sm flex items-center justify-center flex-shrink-0 group-hover:bg-[#8B1A2D]/10 group-hover:scale-110 transition-all duration-300 text-[#8B1A2D]">
+            <span className="mt-0.5 w-10 h-10 rounded-xl bg-[#fdf8f0] shadow-sm flex items-center justify-center flex-shrink-0 group-hover:bg-[#fc0a7a]/10 group-hover:scale-110 transition-all duration-300 text-[#fc0a7a]">
               {getIcon(cat.icon)}
             </span>
             <div className="min-w-0 transform group-hover:translate-x-1 transition-transform duration-300">
-              <p className="text-[14px] font-bold text-[#2C1A0E] group-hover:text-[#8B1A2D] transition-colors leading-tight">
+              <p className="text-[14px] font-bold text-[#2C1A0E] group-hover:text-[#fc0a7a] transition-colors leading-tight">
                 {cat.label}
               </p>
               {cat.sub && (
@@ -81,10 +81,10 @@ function CategoriesMegaMenu({ cmsData, onClose }) {
           <Link
             href="/categories"
             onClick={onClose}
-            className="group flex items-center gap-2 text-[14px] font-bold text-[#8B1A2D] hover:text-[#6c1422] transition-colors animate-fade-in-up"
+            className="group flex items-center gap-2 text-[14px] font-bold text-[#fc0a7a] hover:text-[#6c1422] transition-colors animate-fade-in-up"
             style={{ animationDelay: "300ms", animationFillMode: "both" }}
           >
-            <span className="underline underline-offset-4 decoration-[#8B1A2D]/30 group-hover:decoration-[#8B1A2D]">View All Categories</span>
+            <span className="underline underline-offset-4 decoration-[#fc0a7a]/30 group-hover:decoration-[#fc0a7a]">View All Categories</span>
             <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
@@ -111,11 +111,11 @@ function VendorsMegaMenu({ cmsData, onClose }) {
               key={link.label}
               href={link.href}
               onClick={onClose}
-              className="flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-[#fdf8f0] hover:text-[#8B1A2D] hover:shadow-sm transition-all duration-300 group animate-fade-in-up border border-transparent hover:border-[#e8d9c0]/50"
+              className="flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-[#fdf8f0] hover:text-[#fc0a7a] hover:shadow-sm transition-all duration-300 group animate-fade-in-up border border-transparent hover:border-[#e8d9c0]/50"
               style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
             >
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
-              <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#8B1A2D]" />
+              <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#fc0a7a]" />
             </Link>
           ))}
         </div>
@@ -123,9 +123,9 @@ function VendorsMegaMenu({ cmsData, onClose }) {
           <Link
             href="/vendors"
             onClick={onClose}
-            className="group flex items-center gap-2 text-[13px] font-bold text-[#8B1A2D] hover:text-[#6c1422] transition-colors"
+            className="group flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#6c1422] transition-colors"
           >
-            <span className="underline underline-offset-4 decoration-[#8B1A2D]/30 group-hover:decoration-[#8B1A2D]">View All Vendors</span> 
+            <span className="underline underline-offset-4 decoration-[#fc0a7a]/30 group-hover:decoration-[#fc0a7a]">View All Vendors</span> 
             <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
@@ -142,10 +142,10 @@ function VendorsMegaMenu({ cmsData, onClose }) {
               key={cat.label}
               href={cat.href}
               onClick={onClose}
-              className="flex items-center gap-4 px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-white hover:text-[#8B1A2D] hover:shadow-sm border border-transparent hover:border-[#e8d9c0]/50 transition-all duration-300 group animate-fade-in-up"
+              className="flex items-center gap-4 px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-white hover:text-[#fc0a7a] hover:shadow-sm border border-transparent hover:border-[#e8d9c0]/50 transition-all duration-300 group animate-fade-in-up"
               style={{ animationDelay: `${150 + i * 40}ms`, animationFillMode: "both" }}
             >
-              <span className="text-[#8B1A2D] bg-[#f9f1e4] p-1.5 rounded-md group-hover:bg-[#8B1A2D]/10 transition-colors">{getIcon(cat.icon)}</span>
+              <span className="text-[#fc0a7a] bg-[#f9f1e4] p-1.5 rounded-md group-hover:bg-[#fc0a7a]/10 transition-colors">{getIcon(cat.icon)}</span>
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">{cat.label}</span>
             </Link>
           ))}
@@ -210,11 +210,11 @@ function VenuesMegaMenu({ cmsData, onClose }) {
               key={style.label}
               href={style.href}
               onClick={onClose}
-              className="flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-[#fdf8f0] hover:text-[#8B1A2D] hover:shadow-sm transition-all duration-300 group animate-fade-in-up border border-transparent hover:border-[#e8d9c0]/50"
+              className="flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-[#fdf8f0] hover:text-[#fc0a7a] hover:shadow-sm transition-all duration-300 group animate-fade-in-up border border-transparent hover:border-[#e8d9c0]/50"
               style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
             >
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">{style.label}</span>
-              <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#8B1A2D]" />
+              <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#fc0a7a]" />
             </Link>
           ))}
         </div>
@@ -231,14 +231,14 @@ function VenuesMegaMenu({ cmsData, onClose }) {
               key={loc.label}
               href={loc.href}
               onClick={onClose}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-white hover:text-[#8B1A2D] hover:shadow-sm border border-transparent hover:border-[#e8d9c0]/50 transition-all duration-300 group animate-fade-in-up"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-semibold text-[#2C1A0E] hover:bg-white hover:text-[#fc0a7a] hover:shadow-sm border border-transparent hover:border-[#e8d9c0]/50 transition-all duration-300 group animate-fade-in-up"
               style={{ animationDelay: `${150 + i * 40}ms`, animationFillMode: "both" }}
             >
-              <span className="bg-[#f9f1e4] p-1.5 rounded-md group-hover:bg-[#8B1A2D]/10 transition-colors">
-                <MapPin className="w-4 h-4 text-[#8B1A2D] flex-shrink-0" />
+              <span className="bg-[#f9f1e4] p-1.5 rounded-md group-hover:bg-[#fc0a7a]/10 transition-colors">
+                <MapPin className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" />
               </span>
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">{loc.label}</span>
-              <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#8B1A2D]" />
+              <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 text-[#fc0a7a]" />
             </Link>
           ))}
         </div>

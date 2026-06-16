@@ -35,7 +35,7 @@ export default async function MagazinesPage() {
         .mag-img { transition: transform 0.5s ease; will-change: transform; }
         .mag-card:hover .mag-img { transform: scale(1.04); }
         .mag-title { transition: color 0.2s ease; }
-        .mag-card:hover .mag-title { color: #8B1A2D; }
+        .mag-card:hover .mag-title { color: #fc0a7a; }
       `}</style>
 
       <main className="pt-[100px] md:pt-[130px] pb-24">
@@ -43,7 +43,7 @@ export default async function MagazinesPage() {
           
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
               Digital Newsstand
             </span>
             <h1 className="text-[2.6rem] md:text-[3.5rem] font-serif font-bold text-[#2C1A0E] leading-tight mb-4">
@@ -99,7 +99,7 @@ export default async function MagazinesPage() {
                     <div className="text-[11px] font-semibold text-[#6d513e]">
                       {mag.pages} Pages
                     </div>
-                    <div className="h-8 px-4 rounded-xl bg-[#8B1A2D] hover:bg-[#6d1422] text-white text-[11px] font-bold flex items-center transition-colors">
+                    <div className="h-8 px-4 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[11px] font-bold flex items-center transition-colors">
                       Read Issue
                     </div>
                   </div>
