@@ -5,7 +5,7 @@ import {
   fetchBrands,
   fetchShopCMS,
 } from "@/lib/api";
-import { ShopContent } from "@/app/shop/components/ShopContent";
+import { OffersContent } from "./components/OffersContent";
 import { ShopSkeleton } from "@/app/shop/components/ShopSkeleton";
 import Header from "@/Sections/Header/Header";
 import Footer from "@/Sections/Footer/Footer";
@@ -105,12 +105,9 @@ export default async function OffersPage({ searchParams }) {
     <div className="min-h-screen bg-[#faf9f6] dark:bg-[#130f0d] transition-colors duration-300">
       <Header />
       <Suspense fallback={<ShopSkeleton viewMode={viewMode} />}>
-        <ShopContent
+        <OffersContent
           initialProducts={productsData}
-          initialCategories={categoriesData}
-          initialBrands={brandsData}
           initialCmsData={customCmsData}
-          isOffersPage={true}
         />
       </Suspense>
       <div className="hidden md:block">
