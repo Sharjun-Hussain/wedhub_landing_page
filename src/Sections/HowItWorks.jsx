@@ -233,6 +233,7 @@ const HowItWorks = memo(function HowItWorks() {
                 </div>
                 <Link
                   href="/vendor-signup"
+                  aria-label="Sign up as a vendor"
                   className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d4a853] hover:bg-[#c09240] flex items-center justify-center transition-colors"
                 >
                   <ArrowRight className="w-4 h-4 text-[#1a0a05]" />

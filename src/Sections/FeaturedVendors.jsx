@@ -166,8 +166,9 @@ const VendorCard = memo(function VendorCard({ vendor }) {
             <Link
               href={`/vendors/${vendor.id}#contact`}
               onClick={(e) => e.stopPropagation()}
-              className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-all"
+              className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#8B1A2D] hover:text-[#8B1A2D] transition-colors"
               title="Enquire"
+              aria-label="Enquire with vendor"
             >
               <MessageCircle className="w-3.5 h-3.5" />
             </Link>

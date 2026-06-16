@@ -208,6 +208,7 @@ export function MobileNav({
             />
             <button
               type="submit"
+              aria-label="Search"
               className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-[#8B1A2D] text-white flex items-center justify-center active:scale-95 transition-transform duration-150"
               style={tapStyle}
             >
