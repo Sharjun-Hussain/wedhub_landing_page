@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useCallback, memo } from "react";
+import React, { useState, useCallback, memo, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Search, MapPin, ChevronDown, Star, BadgeCheck } from "lucide-react";
+import { Search, MapPin, ChevronDown, Star, BadgeCheck, X } from "lucide-react";
 
 const SRI_LANKA_DISTRICTS = [
   "Colombo", "Kandy", "Galle", "Negombo", "Nuwara Eliya",
@@ -29,20 +29,38 @@ const WeddingHero = memo(function WeddingHero() {
   const [category, setCategory] = useState("");
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
+
   const [catOpen, setCatOpen] = useState(false);
   const [distOpen, setDistOpen] = useState(false);
 
-  const toggleCat  = useCallback(() => { setCatOpen((p) => !p); setDistOpen(false); }, []);
-  const toggleDist = useCallback(() => { setDistOpen((p) => !p); setCatOpen(false); }, []);
-  const pickCat    = useCallback((c) => { setCategory(c); setCatOpen(false); }, []);
-  const pickDist   = useCallback((d) => { setDistrict(d); setDistOpen(false); }, []);
+  const [catQuery, setCatQuery] = useState("");
+  const [distQuery, setDistQuery] = useState("");
+
+  const catRef = useRef(null);
+  const distRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (catRef.current && !catRef.current.contains(event.target)) {
+        setCatOpen(false);
+      }
+      if (distRef.current && !distRef.current.contains(event.target)) {
+        setDistOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const pickCat = useCallback((c) => { setCategory(c); setCatOpen(false); setCatQuery(""); }, []);
+  const pickDist = useCallback((d) => { setDistrict(d); setDistOpen(false); setDistQuery(""); }, []);
   const handleCity = useCallback((e) => setCity(e.target.value), []);
 
 
   return (
-    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-[120px]">
+    <section className="relative w-full min-h-[92vh] flex items-center justify-center pt-[120px] z-20">
       {/* ── BACKGROUND IMAGE ─────────────────────────────────────────────── */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <picture>
           <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=800&auto=format&fit=crop" />
           <img
@@ -85,69 +103,113 @@ const WeddingHero = memo(function WeddingHero() {
         </div>
 
         {/* ── SEARCH BAR ─────────────────────────────────────────────────── */}
-        <div className="w-full max-w-[820px] bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl flex flex-col sm:flex-row items-stretch overflow-hidden border border-[#e8d9c0]">
+        <div className="w-full max-w-[820px] bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl flex flex-col sm:flex-row items-stretch border border-[#e8d9c0] relative">
 
           {/* Category Dropdown */}
-          <div className="relative flex-1 border-b sm:border-b-0 sm:border-r border-[#e8d9c0]">
-            <button
-              onClick={toggleCat}
-              className="w-full flex items-center gap-2.5 px-4 py-4 text-left hover:bg-[#fdf7ef] transition-colors group"
-            >
+          <div ref={catRef} className="relative flex-1 border-b sm:border-b-0 sm:border-r border-[#e8d9c0] rounded-t-xl sm:rounded-t-none sm:rounded-l-xl">
+            <div className="flex items-center gap-2.5 px-4 py-4 w-full bg-white/50 hover:bg-[#fdf7ef] transition-colors rounded-t-xl sm:rounded-t-none sm:rounded-l-xl cursor-text" onClick={() => { setCatOpen(true); setDistOpen(false); }}>
               <svg className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h10" />
               </svg>
-              <span className={`flex-1 text-[14px] font-medium ${category ? "text-[#2C1A0E]" : "text-[#9a8070]"}`}>
-                {category || "Select Category"}
-              </span>
-              <ChevronDown className={`w-4 h-4 text-[#8a7060] transition-transform ${catOpen ? "rotate-180" : ""}`} />
-            </button>
+              <input
+                type="text"
+                placeholder="Select Category"
+                value={catOpen ? catQuery : (category || "")}
+                onChange={(e) => {
+                  setCatQuery(e.target.value);
+                  if (!catOpen) setCatOpen(true);
+                  if (distOpen) setDistOpen(false);
+                  if (category && e.target.value !== category) setCategory("");
+                }}
+                onFocus={() => {
+                  setCatOpen(true);
+                  setDistOpen(false);
+                }}
+                className="flex-1 w-full text-[14px] font-medium text-[#2C1A0E] placeholder-[#9a8070] bg-transparent border-none focus:outline-none"
+              />
+              {category && !catOpen ? (
+                <button onClick={(e) => { e.stopPropagation(); setCategory(""); setCatQuery(""); }} className="p-0.5 hover:bg-black/5 rounded-full transition-colors">
+                  <X className="w-3.5 h-3.5 text-[#8a7060]" />
+                </button>
+              ) : (
+                <ChevronDown className={`w-4 h-4 text-[#8a7060] transition-transform ${catOpen ? "rotate-180" : ""}`} />
+              )}
+            </div>
             {catOpen && (
-              <div className="absolute top-full left-0 right-0 z-50 bg-white border border-[#e8d9c0] rounded-b-xl shadow-xl max-h-56 overflow-y-auto">
-                {CATEGORIES.map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => pickCat(c)}
-                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a] transition-colors"
-                  >
-                    {c}
-                  </button>
-                ))}
+              <div className="absolute top-[calc(100%+4px)] left-0 w-full sm:w-[320px] z-50 bg-white border border-[#e8d9c0] rounded-xl shadow-2xl max-h-64 overflow-y-auto p-1.5 animate-in fade-in slide-in-from-top-2 duration-200 no-scrollbar">
+                {CATEGORIES.filter(c => c.toLowerCase().includes(catQuery.toLowerCase())).length > 0 ? (
+                  CATEGORIES.filter(c => c.toLowerCase().includes(catQuery.toLowerCase())).map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => pickCat(c)}
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 text-[14px] font-medium rounded-lg transition-colors ${category === c ? 'bg-[#fc0a7a]/10 text-[#fc0a7a]' : 'text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a]'}`}
+                    >
+                      <svg className={`w-4 h-4 flex-shrink-0 ${category === c ? 'text-[#fc0a7a]' : 'text-[#fc0a7a]/60'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h10" />
+                      </svg>
+                      {c}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-3.5 py-6 text-center text-[13px] text-[#9a8070]">No categories found</div>
+                )}
               </div>
             )}
           </div>
 
           {/* District Dropdown */}
-          <div className="relative flex-1 border-b sm:border-b-0 sm:border-r border-[#e8d9c0]">
-            <button
-              onClick={toggleDist}
-              className="w-full flex items-center gap-2.5 px-4 py-4 text-left hover:bg-[#fdf7ef] transition-colors"
-            >
+          <div ref={distRef} className="relative flex-1 border-b sm:border-b-0 sm:border-r border-[#e8d9c0]">
+            <div className="flex items-center gap-2.5 px-4 py-4 w-full bg-white/50 hover:bg-[#fdf7ef] transition-colors cursor-text" onClick={() => { setDistOpen(true); setCatOpen(false); }}>
               <svg className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className={`flex-1 text-[14px] font-medium ${district ? "text-[#2C1A0E]" : "text-[#9a8070]"}`}>
-                {district || "District"}
-              </span>
-              <ChevronDown className={`w-4 h-4 text-[#8a7060] transition-transform ${distOpen ? "rotate-180" : ""}`} />
-            </button>
+              <input
+                type="text"
+                placeholder="Select District"
+                value={distOpen ? distQuery : (district || "")}
+                onChange={(e) => {
+                  setDistQuery(e.target.value);
+                  if (!distOpen) setDistOpen(true);
+                  if (catOpen) setCatOpen(false);
+                  if (district && e.target.value !== district) setDistrict("");
+                }}
+                onFocus={() => {
+                  setDistOpen(true);
+                  setCatOpen(false);
+                }}
+                className="flex-1 w-full text-[14px] font-medium text-[#2C1A0E] placeholder-[#9a8070] bg-transparent border-none focus:outline-none"
+              />
+              {district && !distOpen ? (
+                <button onClick={(e) => { e.stopPropagation(); setDistrict(""); setDistQuery(""); }} className="p-0.5 hover:bg-black/5 rounded-full transition-colors">
+                  <X className="w-3.5 h-3.5 text-[#8a7060]" />
+                </button>
+              ) : (
+                <ChevronDown className={`w-4 h-4 text-[#8a7060] transition-transform ${distOpen ? "rotate-180" : ""}`} />
+              )}
+            </div>
             {distOpen && (
-              <div className="absolute top-full left-0 right-0 z-50 bg-white border border-[#e8d9c0] rounded-b-xl shadow-xl max-h-56 overflow-y-auto">
-                {SRI_LANKA_DISTRICTS.map((d) => (
-                  <button
-                    key={d}
-                    onClick={() => pickDist(d)}
-                    className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a] transition-colors"
-                  >
-                    {d}
-                  </button>
-                ))}
+              <div className="absolute top-[calc(100%+4px)] left-0 w-full sm:w-[320px] z-50 bg-white border border-[#e8d9c0] rounded-xl shadow-2xl max-h-64 overflow-y-auto p-1.5 animate-in fade-in slide-in-from-top-2 duration-200 no-scrollbar">
+                {SRI_LANKA_DISTRICTS.filter(d => d.toLowerCase().includes(distQuery.toLowerCase())).length > 0 ? (
+                  SRI_LANKA_DISTRICTS.filter(d => d.toLowerCase().includes(distQuery.toLowerCase())).map((d) => (
+                    <button
+                      key={d}
+                      onClick={() => pickDist(d)}
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 text-[14px] font-medium rounded-lg transition-colors ${district === d ? 'bg-[#fc0a7a]/10 text-[#fc0a7a]' : 'text-[#2C1A0E] hover:bg-[#fdf7ef] hover:text-[#fc0a7a]'}`}
+                    >
+                      <MapPin className={`w-4 h-4 flex-shrink-0 ${district === d ? 'text-[#fc0a7a]' : 'text-[#fc0a7a]/60'}`} />
+                      {d}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-3.5 py-6 text-center text-[13px] text-[#9a8070]">No districts found</div>
+                )}
               </div>
             )}
           </div>
 
           {/* City input */}
-          <div className="flex-1 flex items-center gap-2.5 px-4 py-4 border-b sm:border-b-0 sm:border-r border-[#e8d9c0]">
+          <div className="flex-1 flex items-center gap-2.5 px-4 py-4 border-b sm:border-b-0 sm:border-r border-[#e8d9c0] bg-white/50 hover:bg-[#fdf7ef] transition-colors">
             <MapPin className="w-4 h-4 text-[#fc0a7a] flex-shrink-0" />
             <input
               type="text"
@@ -159,7 +221,16 @@ const WeddingHero = memo(function WeddingHero() {
           </div>
 
           {/* Search Button */}
-          <button className="flex items-center justify-center gap-2 bg-[#fc0a7a] hover:bg-[#d90066] text-white font-bold text-[14px] uppercase tracking-wider px-8 py-4 transition-colors duration-200 min-w-[130px]">
+          <button
+            onClick={() => {
+              const params = new URLSearchParams();
+              if (category) params.append("category", category);
+              if (district) params.append("district", district);
+              if (city) params.append("city", city);
+              window.location.href = `/vendors?${params.toString()}`;
+            }}
+            className="flex items-center justify-center gap-2 bg-[#fc0a7a] hover:bg-[#d90066] text-white font-bold text-[14px] uppercase tracking-wider px-8 py-4 transition-colors duration-200 min-w-[130px] rounded-b-xl sm:rounded-b-none sm:rounded-r-xl"
+          >
             <Search className="w-4 h-4" />
             Search
           </button>

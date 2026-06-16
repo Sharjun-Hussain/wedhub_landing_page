@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
   Search, MapPin, MessageCircle, ChevronDown,
@@ -92,8 +92,19 @@ const VENDORS = [
   },
 ];
 
-const CATEGORIES = ["Wedding Halls", "Photographers", "Bridal Wear", "Florists"];
-const DISTRICTS  = ["All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Jaffna"];
+const CATEGORIES = [
+  "Wedding Halls", "Photographers", "Makeup Artists", "Decorators",
+  "Caterers", "Wedding Cars", "Jewelry", "Honeymoon Services",
+  "Wedding Cakes", "Videographers", "DJs & Bands", "Invitation Cards",
+  "Bridal Wear", "Florists"
+];
+const DISTRICTS  = [
+  "All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Nuwara Eliya",
+  "Jaffna", "Trincomalee", "Matara", "Kurunegala", "Anuradhapura",
+  "Ratnapura", "Badulla", "Batticaloa", "Ampara", "Hambantota",
+  "Kalutara", "Gampaha", "Kegalle", "Polonnaruwa", "Monaragala",
+  "Vavuniya", "Mannar", "Mullaitivu", "Kilinochchi", "Puttalam",
+];
 const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Price: Low to High", "Price: High to Low", "Newest"];
 
 // ── Vendor Card ───────────────────────────────────────────────────────────────
@@ -170,6 +181,24 @@ export default function VendorsClient() {
   const [applied,   setApplied]   = useState({ cats: [], district: "All Districts", city: "" });
 
   const PER_PAGE = 6;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get("category");
+      const dist = params.get("district");
+      const c = params.get("city");
+      
+      const newCats = cat ? [cat] : [];
+      const newDist = dist || "All Districts";
+      const newCity = c || "";
+
+      setCats(newCats);
+      setDistrict(newDist);
+      setCity(newCity);
+      setApplied({ cats: newCats, district: newDist, city: newCity });
+    }
+  }, []);
 
   // Toggle a category checkbox
   const toggleCat = (c) =>
