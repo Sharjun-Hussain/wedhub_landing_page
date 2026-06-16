@@ -43,13 +43,16 @@ const WeddingHero = memo(function WeddingHero() {
     <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-[120px]">
       {/* ── BACKGROUND IMAGE ─────────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2187&auto=format&fit=crop"
-          alt="Wedding Hero Background"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=800&auto=format&fit=crop" />
+          <img
+            src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2187&auto=format&fit=crop"
+            alt="Wedding Hero Background"
+            className="w-full h-full object-cover object-center"
+            fetchPriority="high"
+            decoding="sync"
+          />
+        </picture>
         {/* Multi-layered overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a04]/30 via-transparent to-[#1a0a04]/20" />
