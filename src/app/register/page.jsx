@@ -8,13 +8,13 @@ import { RegisterForm } from "./RegisterForm";
 export const metadata = {
   title: "Register - WedHub | Premium Vendor Marketplace",
   description:
-    "Create your WedHub account today to access the island's most exclusive network of wedding artisans and venues.",
+    "Create your WedHub account today to access Sri Lanka's most exclusive network of wedding artisans and venues.",
   keywords: [
-    "create account ceylon weddings",
-    "register ceylon weddings",
-    "sri lanka wedding vendors",
-    "wedding planning colombo",
-    "premium wedding venues",
+    "create account WedHub",
+    "register WedHub",
+    "Sri Lanka wedding vendors",
+    "wedding planning Colombo",
+    "premium wedding venues Sri Lanka",
   ],
 };
 

@@ -4,8 +4,8 @@ import Footer from "@/Sections/Footer/Footer";
 import VendorsClient from "./VendorsClient";
 
 export const metadata = {
-  title: "Luxury Wedding Vendors | WedHub",
-  description: "Discover Sri Lanka's finest wedding venues, photographers, bridal wear, and more.",
+  title: "Wedding Vendors in Sri Lanka | Venues, Photographers, Decorators | WedHub",
+  description: "Browse Sri Lanka's finest wedding professionals. Find and book luxury banquet halls, expert bridal makeup artists, wedding car rentals, and catering services.",
 };
 
 export default function VendorsPage() {

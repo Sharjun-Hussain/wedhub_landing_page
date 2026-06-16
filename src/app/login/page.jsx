@@ -8,13 +8,13 @@ import { LoginForm } from "./LoginForm";
 export const metadata = {
   title: "Login - WedHub | Premium Vendor Marketplace",
   description:
-    "Log in to your WedHub account to access the island's most exclusive network of wedding artisans and venues.",
+    "Log in to your WedHub account to access the island's most exclusive network of Sri Lankan wedding artisans and venues.",
   keywords: [
-    "ceylon weddings login",
-    "sri lanka wedding vendors",
-    "wedding planning colombo",
-    "premium wedding venues",
-    "wedding artisans",
+    "WedHub login",
+    "Sri Lanka wedding vendors",
+    "wedding planning Colombo",
+    "premium wedding venues Sri Lanka",
+    "Sri Lankan wedding planner",
   ],
 };
 

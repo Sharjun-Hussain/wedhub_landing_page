@@ -24,9 +24,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Foreign Emporium | Premium Imported Goods",
+  title: {
+    template: "%s | WedHub - Sri Lanka's Premier Luxury Wedding Marketplace",
+    default: "WedHub | Find Wedding Vendors & Venues in Sri Lanka",
+  },
   description:
-    "Your elite boutique storefront for imported Belgian chocolates, perfumes, baby care products, and gourmet pantry goods.",
+    "Plan your perfect Sri Lankan wedding with WedHub. Discover top-rated local wedding vendors, luxury venues, bridal dressing, photographers, and comprehensive planning tools.",
+  keywords: [
+    "Sri Lanka weddings",
+    "wedding vendors Sri Lanka",
+    "Colombo wedding venues",
+    "bridal dressing Sri Lanka",
+    "wedding planner Sri Lanka",
+    "Kandyan weddings",
+    "poruwa ceremony",
+    "WedHub",
+    "luxury weddings Sri Lanka",
+  ],
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",

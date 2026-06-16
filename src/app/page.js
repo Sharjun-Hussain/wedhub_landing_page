@@ -76,18 +76,18 @@ const page = async () => {
 export default page;
 
 export const metadata = {
-  title: "Wedding Planner | Find Local Vendors & Venues",
+  title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
   description:
-    "Plan your perfect wedding with our free planning tools. Search for local wedding vendors, venues, photographers, and more.",
+    "Your ultimate destination for wedding planning in Sri Lanka. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
   alternates: {
-    canonical: "https://weddingplanner.com",
+    canonical: "https://wedhub.lk",
   },
   openGraph: {
-    title: "Wedding Planner | Find Local Vendors & Venues",
+    title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
     description:
-      "Plan your perfect wedding with our free planning tools. Search for local wedding vendors, venues, photographers, and more.",
-    url: "https://weddingplanner.com",
-    siteName: "Wedding Planner",
+      "Your ultimate destination for wedding planning in Sri Lanka. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
+    url: "https://wedhub.lk",
+    siteName: "WedHub",
     images: [
       {
         url: "/logo.png",
@@ -95,13 +95,13 @@ export const metadata = {
         height: 600,
       },
     ],
-    locale: "en_US",
+    locale: "en_LK",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wedding Planner",
-    description: "Your ultimate wedding planning destination.",
+    title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
+    description: "Your ultimate destination for wedding planning in Sri Lanka.",
     images: ["/logo.png"],
   },
 };

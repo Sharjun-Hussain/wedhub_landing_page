@@ -15,34 +15,34 @@ import Footer from "@/Sections/Footer/Footer";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Shop Premium Imports | Foreign Emporium",
+  title: "Exclusive Wedding Vendor Offers in Sri Lanka | WedHub",
   description:
-    "Shop our curated collection of premium Saudi and Dubai imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, roasted nuts, and Middle Eastern delicacies at Foreign Emporium.",
+    "Explore exclusive deals, discounts, and custom packages from Sri Lanka's finest wedding vendors, venues, and bridal services. Plan your perfect wedding with WedHub.",
   alternates: {
-    canonical: "https://foreignemporium.lk/shop",
+    canonical: "https://wedhub.lk/shop",
   },
   openGraph: {
-    title: "Shop Premium Imports | Foreign Emporium",
+    title: "Exclusive Wedding Vendor Offers in Sri Lanka | WedHub",
     description:
-      "Shop our curated collection of premium Saudi and Dubai imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, roasted nuts, and Middle Eastern delicacies.",
+      "Explore exclusive deals, discounts, and custom packages from Sri Lanka's finest wedding vendors, venues, and bridal services.",
     type: "website",
-    url: "https://foreignemporium.lk/shop",
-    siteName: "Foreign Emporium",
+    url: "https://wedhub.lk/vendors",
+    siteName: "WedHub",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "Foreign Emporium Shop",
+        alt: "WedHub Offers",
       },
     ],
-    locale: "en_US",
+    locale: "en_LK",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shop Premium Imports | Foreign Emporium",
+    title: "Exclusive Wedding Vendor Offers in Sri Lanka | WedHub",
     description:
-      "Shop our curated collection of premium Saudi and Dubai imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, and more.",
+      "Explore exclusive deals, discounts, and custom packages from Sri Lanka's finest wedding vendors.",
     images: ["/logo.png"],
   },
 };
