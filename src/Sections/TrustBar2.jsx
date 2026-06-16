@@ -201,8 +201,8 @@ const TrustBar2 = memo(function TrustBar2() {
 
             {/* ── PREMIUM ELEMENT 2: Rating + Avatar Stack Card ───── */}
             {/* Replaces the old "Booking Confirmed" text chip */}
-            <div className="absolute top-[50%] left-[-2%] z-20 bg-white rounded-2xl shadow-2xl p-4 w-[175px]">
-              {/* Star rating row */}
+            {/* <div className="absolute top-[50%] left-[-2%] z-20 bg-white rounded-2xl shadow-2xl p-4 w-[175px]">
+          
               <div className="flex items-center gap-0.5 mb-3">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <svg key={s} viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-[#d4a853]">
@@ -212,7 +212,7 @@ const TrustBar2 = memo(function TrustBar2() {
                 <span className="ml-1.5 text-[11px] font-bold text-[#2C1A0E]">4.9</span>
               </div>
 
-              {/* Avatar stack */}
+            
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2.5">
                   {[
@@ -229,7 +229,7 @@ const TrustBar2 = memo(function TrustBar2() {
                       className="rounded-full object-cover border-2 border-white"
                     />
                   ))}
-                  {/* +count bubble */}
+                 
                   <div className="w-7 h-7 rounded-full bg-[#8B1A2D] border-2 border-white flex items-center justify-center">
                     <span className="text-[8px] font-black text-white">+2k</span>
                   </div>
@@ -240,7 +240,7 @@ const TrustBar2 = memo(function TrustBar2() {
                 </div>
               </div>
 
-              {/* Mini bar chart — visual only */}
+            
               <div className="mt-3 flex items-end gap-1 h-6">
                 {[40, 65, 50, 80, 60, 95, 75].map((h, i) => (
                   <div
@@ -255,7 +255,7 @@ const TrustBar2 = memo(function TrustBar2() {
                   />
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* ── PREMIUM ELEMENT 3: Floating Gold Diamond Sparkles ── */}
             {/* Top-right corner decorative sparkles */}
@@ -270,22 +270,7 @@ const TrustBar2 = memo(function TrustBar2() {
               </svg>
             </div>
 
-            {/* ── PREMIUM ELEMENT 4: Decorative Ring Ornament ─────── */}
-            {/* Between images — bottom center area */}
-            <div className="absolute bottom-[8%] right-[38%] z-10">
-              <div className="relative w-[52px] h-[52px]">
-                {/* Outer dashed ring */}
-                <svg viewBox="0 0 52 52" className="absolute inset-0 w-full h-full animate-spin-very-slow">
-                  <circle cx="26" cy="26" r="24" fill="none" stroke="#d4a853" strokeWidth="1.5" strokeDasharray="4 4" />
-                </svg>
-                {/* Inner solid ring */}
-                <div className="absolute inset-[10px] rounded-full border-2 border-[#d4a853]/60 bg-[#d4a853]/10 flex items-center justify-center">
-                  <svg viewBox="0 0 14 14" className="w-4 h-4 fill-[#d4a853]">
-                    <path d="M7 0L8.5 5.5L14 7L8.5 8.5L7 14L5.5 8.5L0 7L5.5 5.5Z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+
 
           </div>
         </div>
