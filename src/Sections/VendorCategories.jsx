@@ -2,6 +2,7 @@
 
 import React, { memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const CATEGORIES = [
@@ -73,12 +74,13 @@ const CategoryCard = memo(function CategoryCard({ item, priority = false }) {
       className={`group relative overflow-hidden rounded-2xl ${item.span} cursor-pointer block h-full min-h-[200px]`}
     >
       {/* Background image */}
-      <img
+      <Image
         src={item.image}
         alt={item.name}
-        loading="eager"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 transform-gpu will-change-transform"
+        fill
+        priority={priority}
+        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 transform-gpu will-change-transform"
       />
 
       {/* Gradient overlay — stronger at bottom */}
@@ -166,12 +168,13 @@ const VendorCategories = memo(function VendorCategories() {
               href={cat.href}
               className="group relative overflow-hidden rounded-2xl aspect-square block"
             >
-              <img
+              <Image
                 src={cat.image}
                 alt={cat.name}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu will-change-transform"
+                fill
+                priority={i < 4}
+                sizes="50vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu will-change-transform"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-4">

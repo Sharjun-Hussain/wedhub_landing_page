@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState, memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Quote } from "lucide-react";
 
 // ── Animated Counter ──────────────────────────────────────────────────────────
@@ -46,17 +47,17 @@ const COLLAGE = [
   {
     src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop",
     alt: "Wedding Venue",
-    className: "absolute top-0 left-0 w-[62%] h-[52%] rounded-2xl object-cover shadow-2xl",
+    className: "absolute top-0 left-0 w-[62%] h-[52%] rounded-2xl shadow-2xl border border-transparent overflow-hidden",
   },
   {
     src: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop",
     alt: "Wedding Photography",
-    className: "absolute bottom-0 left-[8%] w-[48%] h-[46%] rounded-2xl object-cover shadow-2xl border-4 border-white",
+    className: "absolute bottom-0 left-[8%] w-[48%] h-[46%] rounded-2xl shadow-2xl border-4 border-white overflow-hidden",
   },
   {
     src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=2069&auto=format&fit=crop",
     alt: "Bridal Makeup",
-    className: "absolute top-[12%] right-0 w-[42%] h-[80%] rounded-2xl object-cover shadow-2xl border-4 border-white",
+    className: "absolute top-[12%] right-0 w-[42%] h-[80%] rounded-2xl shadow-2xl border-4 border-white overflow-hidden",
   },
 ];
 
@@ -165,14 +166,15 @@ const TrustBar2 = memo(function TrustBar2() {
           {/* ── RIGHT: PHOTO COLLAGE ─────────────────────────────── */}
           <div className="relative h-[500px] md:h-[580px] hidden lg:block">
             {COLLAGE.map((img) => (
-              <img
-                key={img.alt}
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                decoding="async"
-                className={img.className}
-              />
+              <div key={img.alt} className={img.className}>
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             ))}
 
             {/* ── PREMIUM ELEMENT 1: Gold Seal Medallion ─────────── */}
@@ -218,13 +220,13 @@ const TrustBar2 = memo(function TrustBar2() {
                     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
                     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
                   ].map((src, i) => (
-                    <img
+                    <Image
                       key={i}
                       src={src}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="w-7 h-7 rounded-full object-cover border-2 border-white"
+                      alt="Avatar"
+                      width={28}
+                      height={28}
+                      className="rounded-full object-cover border-2 border-white"
                     />
                   ))}
                   {/* +count bubble */}

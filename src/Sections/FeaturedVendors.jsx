@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useMemo, useCallback, memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin, ChevronLeft, ChevronRight, ArrowRight,
   BadgeCheck, Heart, MessageCircle
@@ -110,14 +111,12 @@ const VendorCard = memo(function VendorCard({ vendor }) {
   return (
     <div className="fv-card flex-shrink-0 w-[295px] sm:w-[315px] rounded-3xl overflow-hidden bg-white border border-[#ede2cc] cursor-pointer">
       <div className="relative h-[205px] overflow-hidden">
-        <img
+        <Image
           src={vendor.image}
           alt={vendor.name}
-          loading="lazy"
-          decoding="async"
-          width={315}
-          height={205}
-          className="fv-img w-full h-full object-cover"
+          fill
+          sizes="(max-width: 640px) 295px, 315px"
+          className="fv-img object-cover"
         />
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/45 to-transparent pointer-events-none" />
         <button

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
 
 const STEPS = [
@@ -86,13 +87,14 @@ const HowItWorks = memo(function HowItWorks() {
           <div className="lg:col-span-3 relative overflow-hidden rounded-3xl min-h-[440px] lg:min-h-[520px]">
             {/* Background image with crossfade */}
             {STEPS.map((s, i) => (
-              <img
+              <Image
                 key={s.num}
                 src={s.image}
                 alt={s.title}
-                loading={i === 0 ? "eager" : "lazy"}
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 will-change-opacity"
+                fill
+                priority={i === 0}
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover transition-opacity duration-700 will-change-opacity"
                 style={{ opacity: active === i ? 1 : 0, zIndex: active === i ? 1 : 0 }}
               />
             ))}
@@ -161,7 +163,7 @@ const HowItWorks = memo(function HowItWorks() {
                 {/* Thumbnail strip — only when active */}
                 {active === i && (
                   <div className="absolute top-0 right-0 w-24 h-full opacity-30 overflow-hidden rounded-r-2xl">
-                    <img src={s.image} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                    <Image src={s.image} alt="" fill sizes="96px" className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2C1A0E] to-transparent" />
                   </div>
                 )}
@@ -189,12 +191,18 @@ const HowItWorks = memo(function HowItWorks() {
                         {s.title}
                       </h4>
 
-                      {/* Expand description when active */}
-                      {active === i && (
-                        <p className="text-[12px] text-white/55 mt-1.5 leading-relaxed line-clamp-2">
-                          {s.desc}
-                        </p>
-                      )}
+                      {/* Smooth expanding description */}
+                      <div
+                        className={`grid transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                          active === i ? "grid-rows-[1fr] opacity-100 mt-1.5" : "grid-rows-[0fr] opacity-0 mt-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="text-[12px] text-white/55 leading-relaxed line-clamp-2">
+                            {s.desc}
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Arrow */}
@@ -209,10 +217,13 @@ const HowItWorks = memo(function HowItWorks() {
             ))}
 
             {/* Bottom CTA card */}
-            <div className="relative overflow-hidden rounded-2xl mt-1">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop')" }}
+            <div className="relative overflow-hidden rounded-2xl mt-1 min-h-[90px]">
+              <Image
+                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop"
+                alt="For Vendors"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#8B1A2D]/90 to-[#4a0e1a]/95" />
               <div className="relative p-6 flex items-center justify-between gap-4">

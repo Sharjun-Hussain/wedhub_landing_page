@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
 import { CheckSquare, Users, Wallet, CalendarDays, Laptop } from 'lucide-react';
 
@@ -78,11 +79,12 @@ const PlanningTools = memo(function PlanningTools() {
           
           <FadeIn delay={200} className="hidden lg:block relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1597157639073-69284dc0f6ea?q=80&w=2074&auto=format&fit=crop" 
                 alt="Wedding Planning" 
-                loading="lazy"
-                decoding="async"
+                width={1037}
+                height={691}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
