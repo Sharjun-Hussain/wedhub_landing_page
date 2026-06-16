@@ -54,7 +54,7 @@ const VENDORS = [
   },
   {
     id: 4,
-    name: "Ceylon Bloom Decorators",
+    name: "WedHub Bloom Decorators",
     category: "Decorator",
     categoryColor: "#1a6b4a",
     location: "Negombo",

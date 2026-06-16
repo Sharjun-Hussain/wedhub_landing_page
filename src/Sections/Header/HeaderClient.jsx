@@ -95,8 +95,8 @@ export function HeaderClient({
             <div className="flex items-center gap-8">
               <Link href="/" className="shrink-0 flex items-center">
                 <span className="font-serif text-[22px] sm:text-[26px] font-bold tracking-tight leading-none">
-                  <span className="text-[#8B1A2D] italic">Ceylon</span>
-                  <span className="text-[#2C1A0E]"> Weddings</span>
+                  <span className="text-[#8B1A2D] italic">Wed</span>
+                  <span className="text-[#2C1A0E]">Hub</span>
                 </span>
               </Link>
 

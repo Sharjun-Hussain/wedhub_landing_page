@@ -17,7 +17,7 @@ async function fetchCmsData() {
 }
 
 export const metadata = {
-  title: "Digital Magazines | Ceylon Weddings",
+  title: "Digital Magazines | WedHub",
   description: "Browse our collection of digital wedding magazines, featuring the latest trends, real weddings, and expert advice.",
 };
 

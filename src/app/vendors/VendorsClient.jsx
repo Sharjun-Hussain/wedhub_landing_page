@@ -71,7 +71,7 @@ const VENDORS = [
     verified: false,
   },
   {
-    id: 7, name: "Ceylon Bloom Florists", initials: "CB",
+    id: 7, name: "WedHub Bloom Florists", initials: "CB",
     category: "Florists",
     district: "Colombo", city: "Colombo 05",
     rating: 4.9, price: "LKR 35,000",

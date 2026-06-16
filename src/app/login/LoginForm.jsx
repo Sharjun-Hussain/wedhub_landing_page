@@ -42,7 +42,7 @@ export const LoginForm = memo(function LoginForm() {
         });
       } else if (result?.ok) {
         toast.success("Login successful!", {
-          description: "Welcome back to Ceylon Weddings.",
+          description: "Welcome back to WedHub.",
         });
         const redirectTo = searchParams.get("redirect") || "/";
         router.push(redirectTo);
@@ -79,7 +79,7 @@ export const LoginForm = memo(function LoginForm() {
         {/* Header Texts */}
         <div className="mb-10 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           <h1 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
-            Ceylon Weddings
+            WedHub
           </h1>
           <p className="text-white/60 text-[14px] font-light">
             Sign in to continue your journey

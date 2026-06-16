@@ -62,7 +62,7 @@ const COLLAGE = [
 ];
 
 const TESTIMONIAL = {
-  quote: "Ceylon Weddings made finding our dream vendors effortless. From our Kandy venue to our Colombo photographer — all through one platform.",
+  quote: "WedHub made finding our dream vendors effortless. From our Kandy venue to our Colombo photographer — all through one platform.",
   author: "Nimesha & Kavindu",
   location: "Kandy · March 2024",
   avatar: "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?q=80&w=2076&auto=format&fit=crop",

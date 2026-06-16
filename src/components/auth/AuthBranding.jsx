@@ -18,7 +18,7 @@ export function AuthBranding() {
         {/* Top Logo */}
         <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
           <span className="font-serif text-[28px] font-bold tracking-tight text-white leading-none">
-            Ceylon Weddings
+            WedHub
           </span>
         </Link>
 

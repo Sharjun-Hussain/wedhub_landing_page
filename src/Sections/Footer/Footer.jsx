@@ -131,8 +131,8 @@ export default async function Footer({ initialCmsData }) {
             {/* Logo */}
             <Link href="/" className="inline-block">
               <span className="font-serif text-[28px] font-bold tracking-tight leading-none">
-                <span className="text-[#d4a853] italic">Ceylon</span>
-                <span className="text-white"> Weddings</span>
+                <span className="text-[#d4a853] italic">Wed</span>
+                <span className="text-white">Hub</span>
               </span>
             </Link>
 
@@ -158,7 +158,7 @@ export default async function Footer({ initialCmsData }) {
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/60">hello@ceylonweddings.lk</span>
+                <span className="text-[13px] text-white/60">hello@wedhub.lk</span>
               </div>
             </div>
 
@@ -242,7 +242,7 @@ export default async function Footer({ initialCmsData }) {
       <div className="relative border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-[12px] text-white/35 text-center md:text-left">
-            © {year} Ceylon Weddings · Sri Lanka's Premier Luxury Wedding Marketplace.
+            © {year} WedHub · Sri Lanka's Premier Luxury Wedding Marketplace.
             <span className="mx-2 text-white/20">·</span>
             Crafted with <Heart className="inline w-3 h-3 fill-[#8B1A2D] text-[#8B1A2D] mx-0.5" /> by{" "}
             <Link href="https://inzeedo.lk" target="_blank" className="text-white/50 hover:text-[#d4a853] transition-colors font-semibold">

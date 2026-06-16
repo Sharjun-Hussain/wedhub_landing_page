@@ -1,7 +1,7 @@
 export const mockMagazines = [
   {
     id: "vogue-ceylon-spring-2026",
-    title: "Vogue Ceylon Weddings",
+    title: "Vogue WedHub",
     issue: "Spring 2026",
     date: "March 15, 2026",
     coverImage: "/homebanner1.png",
@@ -12,7 +12,7 @@ export const mockMagazines = [
   },
   {
     id: "ceylon-bride-winter-2025",
-    title: "Ceylon Bride",
+    title: "WedHub Bride",
     issue: "Winter 2025",
     date: "December 01, 2025",
     coverImage: "https://images.unsplash.com/photo-1546525848-3ce03ca516f6?q=80&w=800&auto=format&fit=crop",

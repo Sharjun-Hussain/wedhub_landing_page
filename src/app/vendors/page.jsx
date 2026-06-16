@@ -4,7 +4,7 @@ import Footer from "@/Sections/Footer/Footer";
 import VendorsClient from "./VendorsClient";
 
 export const metadata = {
-  title: "Luxury Wedding Vendors | Ceylon Weddings",
+  title: "Luxury Wedding Vendors | WedHub",
   description: "Discover Sri Lanka's finest wedding venues, photographers, bridal wear, and more.",
 };
 

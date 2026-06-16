@@ -125,7 +125,7 @@ export default function TrustBar() {
                     backgroundClip: "text",
                   }}
                 >
-                  Ceylon Weddings
+                  WedHub
                 </span>
               </h2>
 

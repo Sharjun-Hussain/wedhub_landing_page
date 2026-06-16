@@ -19,7 +19,7 @@ const SUBJECTS = [
 // ── FAQ Data ────────────────────────────────────────────────────────────────
 const FAQS = [
   {
-    q: "How do I list my wedding business on Ceylon Weddings?",
+    q: "How do I list my wedding business on WedHub?",
     a: "Simply fill out the contact form selecting 'List My Business' or visit our vendor signup page. Our team will review your portfolio and get back to you within 24 hours.",
   },
   {

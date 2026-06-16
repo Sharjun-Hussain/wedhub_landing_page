@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
 
     if (!vendor) {
       return {
-        title: "Vendor Not Found | Ceylon Weddings",
+        title: "Vendor Not Found | WedHub",
         description: "The requested vendor could not be found.",
       };
     }
@@ -29,23 +29,23 @@ export async function generateMetadata({ params }) {
 
     if (!productData) {
       return {
-        title: "Vendor Not Found | Ceylon Weddings",
+        title: "Vendor Not Found | WedHub",
       };
     }
 
     return {
-      title: `${productData.name} | Ceylon Weddings`,
+      title: `${productData.name} | WedHub`,
       description:
         productData.short_description ||
         productData.description ||
-        `Book ${productData.name} on Ceylon Weddings - Premium Marketplace`,
+        `Book ${productData.name} on WedHub - Premium Marketplace`,
       alternates: {
         canonical: `https://foreign-emporium-frontend.vercel.app/vendors/${slug}`,
       },
       openGraph: {
-        title: `${productData.name} | Ceylon Weddings`,
+        title: `${productData.name} | WedHub`,
         description:
-          productData.short_description || `Book ${productData.name} on Ceylon Weddings`,
+          productData.short_description || `Book ${productData.name} on WedHub`,
         images:
           productData.images.length > 0 ? [{ url: productData.images[0] }] : [],
         url: `https://foreign-emporium-frontend.vercel.app/vendors/${slug}`,
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     console.error("Error generating metadata:", error);
     return {
-      title: "Ceylon Weddings - Premium Marketplace",
+      title: "WedHub - Premium Marketplace",
     };
   }
 }

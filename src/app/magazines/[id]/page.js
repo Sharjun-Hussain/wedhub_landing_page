@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
   if (!magazine) return { title: "Not Found" };
   
   return {
-    title: `${magazine.title} - ${magazine.issue} | Ceylon Weddings`,
+    title: `${magazine.title} - ${magazine.issue} | WedHub`,
     description: magazine.description,
   };
 }

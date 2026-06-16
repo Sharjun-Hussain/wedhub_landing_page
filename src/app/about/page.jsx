@@ -5,7 +5,7 @@ import Footer from "@/Sections/Footer/Footer";
 import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles, Star } from "lucide-react";
 
 export const metadata = {
-  title: "About Us | Ceylon Weddings",
+  title: "About Us | WedHub",
   description: "Sri Lanka's premier luxury wedding marketplace connecting couples with top-tier verified vendors across all 25 districts.",
 };
 
@@ -38,7 +38,7 @@ export default function AboutPage() {
               Redefining <span className="italic text-[#d4a853] font-light">Romance</span><br className="hidden md:block" /> in Sri Lanka
             </h1>
             <p className="text-[16px] md:text-[18px] text-white/80 leading-relaxed max-w-2xl mx-auto font-light">
-              Ceylon Weddings is the island's premier luxury marketplace, seamlessly connecting couples with the most extraordinary wedding professionals to craft unforgettable celebrations.
+              WedHub is the island's premier luxury marketplace, seamlessly connecting couples with the most extraordinary wedding professionals to craft unforgettable celebrations.
             </p>
           </div>
         </section>
@@ -80,7 +80,7 @@ export default function AboutPage() {
               
               <div className="space-y-6 text-[#4a3728]/80 text-[16px] leading-relaxed mb-10 border-l-2 border-[#d4a853] pl-6">
                 <p>
-                  Historically, planning a wedding in Sri Lanka meant endless phone calls, disorganized spreadsheets, and relying purely on word-of-mouth. We built Ceylon Weddings to change that narrative entirely.
+                  Historically, planning a wedding in Sri Lanka meant endless phone calls, disorganized spreadsheets, and relying purely on word-of-mouth. We built WedHub to change that narrative entirely.
                 </p>
                 <p>
                   Our platform brings the island's finest venues, photographers, decorators, and artists into one curated, highly visual space. We rigorously verify our vendors so you can book with absolute confidence and enjoy the journey to the altar.
@@ -104,7 +104,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="inline-block text-[12px] font-bold uppercase tracking-widest text-[#8B1A2D] bg-[#8B1A2D]/5 px-4 py-2 rounded-full mb-4">
-                The Ceylon Standard
+                The WedHub Standard
               </span>
               <h2 className="text-[2.5rem] md:text-[3.5rem] font-serif font-bold text-[#2C1A0E]">
                 Why choose us

@@ -6,9 +6,9 @@ import { AuthBranding } from "@/components/auth/AuthBranding";
 import { RegisterForm } from "./RegisterForm";
 
 export const metadata = {
-  title: "Register - Ceylon Weddings | Premium Vendor Marketplace",
+  title: "Register - WedHub | Premium Vendor Marketplace",
   description:
-    "Create your Ceylon Weddings account today to access the island's most exclusive network of wedding artisans and venues.",
+    "Create your WedHub account today to access the island's most exclusive network of wedding artisans and venues.",
   keywords: [
     "create account ceylon weddings",
     "register ceylon weddings",

@@ -112,7 +112,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
         {/* Header Text */}
         <div className="mb-8 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
-            Ceylon Weddings
+            WedHub
           </h2>
           <p className="text-white/60 text-[14px] font-light">
             Create your account
@@ -252,7 +252,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
           {/* Terms Text */}
           <div className="pt-2 animate-fade-in-up" style={{ animationDelay: "400ms", animationFillMode: "both" }}>
             <p className="text-[12px] text-white/50 leading-relaxed">
-              By clicking 'Sign up', I agree to Ceylon Weddings{" "}
+              By clicking 'Sign up', I agree to WedHub{" "}
               <Link href="/privacy" className="font-semibold text-white/80 hover:text-white transition-colors">Privacy Policy</Link>
               {" "}and{" "}
               <Link href="/terms" className="font-semibold text-white/80 hover:text-white transition-colors">Terms of use</Link>
