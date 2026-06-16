@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 // Above-fold — always eager
 import WeddingHero from "@/Sections/WeddingHero";
 import TrustBar2 from "@/Sections/TrustBar2";
+import TrustMarquee from "@/Sections/TrustMarquee";
 
 // Below-fold — lazy loaded so they don't block first paint
 const VendorCategories = dynamic(() => import("@/Sections/VendorCategories"), { ssr: true });
@@ -46,6 +47,7 @@ const page = async () => {
         <ScrollToTop />
 
         <WeddingHero />
+        <TrustMarquee />
         <FeaturedVendors />
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}
         <TrustBar2 />      {/* Design v2 — editorial magazine */}
