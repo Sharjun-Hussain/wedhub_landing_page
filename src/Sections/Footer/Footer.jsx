@@ -20,18 +20,18 @@ const NAV_COLUMNS = [
       { label: "Honeymoon Packages", href: "/vendors?category=honeymoon" },
     ],
   },
-  {
-    title: "Planning Tools",
-    links: [
-      { label: "Wedding Checklist", href: "/tools/checklist" },
-      { label: "Budget Calculator", href: "/tools/budget" },
-      { label: "Guest List Manager", href: "/tools/guests" },
-      { label: "Seating Planner", href: "/tools/seating" },
-      { label: "Ideas & Inspiration", href: "/ideas" },
-      { label: "Blog & Articles", href: "/blog" },
-      { label: "Real Weddings", href: "/real-weddings" },
-    ],
-  },
+  // {
+  //   title: "Planning Tools",
+  //   links: [
+  //     { label: "Wedding Checklist", href: "/tools/checklist" },
+  //     { label: "Budget Calculator", href: "/tools/budget" },
+  //     { label: "Guest List Manager", href: "/tools/guests" },
+  //     { label: "Seating Planner", href: "/tools/seating" },
+  //     { label: "Ideas & Inspiration", href: "/ideas" },
+  //     { label: "Blog & Articles", href: "/blog" },
+  //     { label: "Real Weddings", href: "/real-weddings" },
+  //   ],
+  // },
   {
     title: "For Vendors",
     links: [
@@ -50,7 +50,7 @@ const NAV_COLUMNS = [
       { label: "Contact Support", href: "/contact" },
       { label: "Careers", href: "/careers" },
       { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "Terms of Service", href: "/terms-and-conditions" },
       { label: "Sitemap", href: "/sitemap.xml" },
     ],
   },
@@ -91,7 +91,7 @@ export default async function Footer({ initialCmsData }) {
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#d4a853] to-transparent" />
 
       {/* ── NEWSLETTER BAND ──────────────────────────────────────────── */}
-      <div className="relative border-b border-white/10">
+      {/* <div className="relative border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
@@ -120,7 +120,7 @@ export default async function Footer({ initialCmsData }) {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* ── MAIN FOOTER BODY ─────────────────────────────────────────── */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14">
@@ -130,10 +130,7 @@ export default async function Footer({ initialCmsData }) {
           <div className="lg:col-span-3 flex flex-col gap-6">
             {/* Logo */}
             <Link href="/" className="inline-block">
-              <span className="font-serif text-[28px] font-bold tracking-tight leading-none">
-                <span className="text-[#d4a853] italic">Wed</span>
-                <span className="text-white">Hub</span>
-              </span>
+              <img src="/logo.png" alt="WedHub Logo" className="h-10 sm:h-40 w-auto brightness-0 invert" />
             </Link>
 
             <p className="text-[13px] text-white/55 leading-relaxed">
@@ -179,7 +176,7 @@ export default async function Footer({ initialCmsData }) {
 
           {/* ── COLS 2-5: NAV LINK COLUMNS ────────────────────────────── */}
           {NAV_COLUMNS.map((col) => (
-            <div key={col.title} className="lg:col-span-2">
+            <div key={col.title} className="lg:col-span-3">
               <h4 className="text-[11px] font-black uppercase tracking-widest text-[#d4a853] mb-5">
                 {col.title}
               </h4>
@@ -244,7 +241,7 @@ export default async function Footer({ initialCmsData }) {
           <p className="text-[12px] text-white/35 text-center md:text-left">
             © {year} WedHub · Sri Lanka's Premier Luxury Wedding Marketplace.
             <span className="mx-2 text-white/20">·</span>
-            Crafted with <Heart className="inline w-3 h-3 fill-[#8B1A2D] text-[#8B1A2D] mx-0.5" /> by{" "}
+            Developed   by{" "}
             <Link href="https://inzeedo.lk" target="_blank" className="text-white/50 hover:text-[#d4a853] transition-colors font-semibold">
               Inzeedo
             </Link>
@@ -252,7 +249,7 @@ export default async function Footer({ initialCmsData }) {
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
             {[
               { label: "Privacy Policy", href: "/privacy-policy" },
-              { label: "Terms of Service", href: "/terms" },
+              { label: "Terms of Service", href: "/terms-and-conditions" },
               { label: "Cookie Policy", href: "/cookies" },
               { label: "Sitemap", href: "/sitemap.xml" },
             ].map((l) => (
