@@ -90,10 +90,10 @@ const HowItWorks = memo(function HowItWorks() {
                 key={s.num}
                 src={s.image}
                 alt={s.title}
-                loading="lazy"
+                loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-                style={{ opacity: active === i ? 1 : 0 }}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 will-change-opacity"
+                style={{ opacity: active === i ? 1 : 0, zIndex: active === i ? 1 : 0 }}
               />
             ))}
 
@@ -152,12 +152,11 @@ const HowItWorks = memo(function HowItWorks() {
               <button
                 key={s.num}
                 onClick={() => { setActive(i); setPaused(true); }}
-                className={`group relative text-left overflow-hidden rounded-2xl transition-all duration-300 border ${
+                className={`group relative text-left overflow-hidden rounded-2xl transition-colors duration-300 border ${
                   active === i
                     ? "bg-[#2C1A0E] border-[#2C1A0E] shadow-xl shadow-[#2C1A0E]/20"
                     : "bg-white border-[#ede2cc] hover:border-[#8B1A2D]/40 hover:bg-[#fffaf4]"
                 }`}
-                style={{ flex: active === i ? "2" : "1" }}
               >
                 {/* Thumbnail strip — only when active */}
                 {active === i && (
