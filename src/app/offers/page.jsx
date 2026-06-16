@@ -15,34 +15,34 @@ import Footer from "@/Sections/Footer/Footer";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Exclusive Offers & Deals | Foreign Emporium",
+  title: "Exclusive Offers & Deals | WedHub",
   description:
     "Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, roasted nuts, and Middle Eastern delicacies at unbeatable prices.",
   alternates: {
-    canonical: "https://foreignemporium.lk/offers",
+    canonical: "https://wedhub.lk/offers",
   },
   openGraph: {
-    title: "Exclusive Offers & Deals | Foreign Emporium",
+    title: "Exclusive Offers & Deals | WedHub",
     description:
       "Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, and more at unbeatable prices.",
     type: "website",
-    url: "https://foreignemporium.lk/offers",
-    siteName: "Foreign Emporium",
+    url: "https://wedhub.lk/offers",
+    siteName: "WedHub",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "Foreign Emporium Offers",
+        alt: "WedHub Offers",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Exclusive Offers & Deals | Foreign Emporium",
+    title: "Exclusive Offers & Deals | WedHub",
     description:
-      "Shop our exclusive offers and discounted premium imports at Foreign Emporium.",
+      "Shop our exclusive offers and discounted premium imports at WedHub.",
     images: ["/logo.png"],
   },
 };

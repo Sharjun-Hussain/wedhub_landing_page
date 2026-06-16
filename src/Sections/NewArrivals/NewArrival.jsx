@@ -21,7 +21,7 @@ function _cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-// --- Luxury Categories for Foreign Emporium ---
+// --- Luxury Categories for WedHub ---
 const DEFAULT_CATEGORIES = [
   { id: "all", label: "View All", icon: Grid },
   { id: "chocolates", label: "Chocolates", icon: Cookie },

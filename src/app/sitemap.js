@@ -3,19 +3,15 @@ import { fetchProducts, fetchCategories } from "@/lib/api";
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://foreignemporium.lk";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wedhub.lk";
 
   // 1. Static routes
   const staticRoutes = [
     "",
-    "/shop",
-    "/new",
-    "/deals",
-    "/bundles",
-    "/blog",
-    "/warranty",
-    "/returns",
-    "/faq",
+    "/vendors",
+
+    "/megazines",
+
     "/contact",
     "/login",
     "/register",

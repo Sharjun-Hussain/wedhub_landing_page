@@ -5,7 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { fetchCheckoutSession, fetchMe } from "@/lib/api";
 import { redirect } from "next/navigation";
 export const metadata = {
-  title: "Checkout | Foreign Emporium",
+  title: "Checkout | WedHub",
   description: "Secure checkout for your order.",
 };
 

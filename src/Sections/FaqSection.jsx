@@ -80,7 +80,7 @@ export default function FAQSection({ initialCmsData }) {
         {
           question: "Are your ouds and perfumes 100% original?",
           answer:
-            "Absolutely. At Foreign Emporium, authenticity is our primary signature. All ouds, incense, premium perfumes, and boutique gourmet items are sourced directly from authorized royal houses and official distributors in Saudi Arabia and Dubai.",
+            "Absolutely. At WedHub, authenticity is our primary signature. All ouds, incense, premium perfumes, and boutique gourmet items are sourced directly from authorized royal houses and official distributors in Saudi Arabia and Dubai.",
         },
         {
           question: "What temperature controls do you have for chocolates?",

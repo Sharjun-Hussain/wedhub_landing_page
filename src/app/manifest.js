@@ -1,6 +1,6 @@
 export default function manifest() {
   return {
-    name: "Foreign Emporium",
+    name: "WedHub",
     short_name: "Emporium",
     description: "Your elite boutique storefront for premium Saudi and Dubai luxury imports, authentic Arabian ouds, dates, and Middle Eastern delicacies.",
     start_url: "/",

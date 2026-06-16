@@ -5,12 +5,12 @@ export default function VerifyEmail() {
 }
 
 export const metadata = {
-  title: "Verify Email - Foreign Emporium | Secure Registration",
+  title: "Verify Email - WedHub | Secure Registration",
   description:
-    "Verify your email address to complete registration at Foreign Emporium and enjoy premium imported chocolates, perfumes, and groceries delivery in Sri Lanka.",
+    "Verify your email address to complete registration at WedHub and enjoy premium imported chocolates, perfumes, and groceries delivery in Sri Lanka.",
   keywords: [
-    "verify email foreign emporium",
-    "email activation foreign emporium",
+    "verify email WedHub",
+    "email activation WedHub",
     "imported products sri lanka",
   ],
 };

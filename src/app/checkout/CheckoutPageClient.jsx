@@ -531,7 +531,7 @@ export default function CheckoutPageClient({
             <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
               <img
                 src="/logo.png"
-                alt="Foreign Emporium"
+                alt="WedHub"
                 className="h-8 w-auto object-contain dark:brightness-110"
               />
               <span className="font-serif font-black tracking-tight text-base text-[#2c2520] dark:text-white uppercase">

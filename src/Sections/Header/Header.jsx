@@ -60,7 +60,7 @@ export async function Header({ initialCmsData }) {
   const displayCategories = apiCategories.slice(0, 4);
   const hasMoreCategories = apiCategories.length > 4;
 
-  // 5. Process CMS Data (defaults + mapping for Foreign Emporium)
+  // 5. Process CMS Data (defaults + mapping for WedHub)
   const defaults = {
     navLinks: [
       { label: "HOME", href: "/" },

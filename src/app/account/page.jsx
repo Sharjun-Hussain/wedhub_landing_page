@@ -14,9 +14,9 @@ import { OrdersTab } from "./components/OrdersTab";
 import { AddressTab } from "./components/AddressTab";
 
 export const metadata = {
-  title: "My Account | Foreign Emporium",
+  title: "My Account | WedHub",
   description:
-    "Manage your profile, track orders, and update your delivery addresses at Foreign Emporium.",
+    "Manage your profile, track orders, and update your delivery addresses at WedHub.",
 };
 
 export default async function AccountPage({ searchParams }) {

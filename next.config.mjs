@@ -10,11 +10,11 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.foreignemporium.lk",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.wedhub.lk",
               "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
               "font-src 'self' fonts.gstatic.com data:",
-              "img-src 'self' data: blob: http://localhost:5000 https://fe.inzeedo.lk https://api.foreignemporium.lk https://images.unsplash.com https://images.pexels.com https://via.placeholder.com https://cdn.simpleicons.org https://www.gstatic.com",
-              "connect-src 'self' http://localhost:5000 https://fe.inzeedo.lk https://api.foreignemporium.lk",
+              "img-src 'self' data: blob: http://localhost:5000 https://fe.inzeedo.lk https://api.wedhub.lk https://images.unsplash.com https://images.pexels.com https://via.placeholder.com https://cdn.simpleicons.org https://www.gstatic.com",
+              "connect-src 'self' http://localhost:5000 https://fe.inzeedo.lk https://api.wedhub.lk",
               "frame-src 'self' https://maps.google.com https://www.google.com",
               "frame-ancestors 'self'",
               "object-src 'self'",
@@ -69,7 +69,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.foreignemporium.lk",
+        hostname: "api.wedhub.lk",
         port: "",
         pathname: "/**",
       },

@@ -99,7 +99,7 @@ export function PaymentStep({
                 <strong>Bank:</strong> Commercial Bank
               </p>
               <p>
-                <strong>Account Name:</strong> Foreign Emporium
+                <strong>Account Name:</strong> WedHub
               </p>
               <p>
                 <strong>Account No:</strong> 1000 0000 0000

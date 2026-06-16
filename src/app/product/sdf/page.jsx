@@ -599,7 +599,7 @@ export default function ProductPage() {
                     <p className="text-slate-700 leading-relaxed">
                       "The battery life is amazing compared to my Series 6. The
                       double tap feature works perfectly when I'm driving.
-                      Foreign Emporium delivered it the next day!"
+                      WedHub delivered it the next day!"
                     </p>
                   </div>
                 </div>

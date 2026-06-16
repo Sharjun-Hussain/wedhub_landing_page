@@ -29,7 +29,7 @@ export function AuthHeader() {
         >
           <img
             src="/logo.png"
-            alt="Foreign Emporium Logo"
+            alt="WedHub Logo"
             className="h-24 sm:h-28 w-auto object-contain rounded-lg"
           />
         </Link>

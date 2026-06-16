@@ -38,7 +38,7 @@ export default function MobileBentoGrid({ initialCmsData }) {
       titleStart: "Happy",
       titleEnd: "Customers.",
       description:
-        "Join thousands of satisfied customers who have experienced the premium collections of Foreign Emporium. Real people, real stories.",
+        "Join thousands of satisfied customers who have experienced the premium collections of WedHub. Real people, real stories.",
     };
 
     const hSec = cms["collections_header"];

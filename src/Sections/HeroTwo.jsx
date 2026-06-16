@@ -6,17 +6,17 @@ const slides = [
     {
         id: 1,
         image: "/banner-1.png",
-        alt: "Foreign Emporium Banner 1",
+        alt: "WedHub Banner 1",
     },
     {
         id: 2,
         image: "/banner-2.png",
-        alt: "Foreign Emporium Banner 2",
+        alt: "WedHub Banner 2",
     },
     {
         id: 3,
         image: "/banner-3.png",
-        alt: "Foreign Emporium Banner 3",
+        alt: "WedHub Banner 3",
     }
 ];
 

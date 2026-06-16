@@ -10,7 +10,7 @@ export function LoginBranding() {
         >
           <img
             src="/logo.png"
-            alt="Foreign Emporium Logo"
+            alt="WedHub Logo"
             className="h-16 sm:h-20 w-auto object-contain"
           />
         </Link>
@@ -22,7 +22,7 @@ export function LoginBranding() {
           Welcome back to the world of fine taste.
         </h1>
         <p className="text-[#6d513e] dark:text-slate-400 text-lg leading-relaxed font-medium">
-          "Foreign Emporium has brought the finest Belgian chocolates and
+          "WedHub has brought the finest Belgian chocolates and
           authentic French perfumes straight to Colombo. Absolute perfection."
         </p>
         <div className="mt-8 flex items-center gap-4">
@@ -46,7 +46,7 @@ export function LoginBranding() {
 
       {/* Footer */}
       <div className="text-xs tracking-wider font-semibold text-slate-400 dark:text-zinc-500 uppercase stagger-in">
-        © 2026 Foreign Emporium. All rights reserved.
+        © 2026 WedHub. All rights reserved.
       </div>
     </div>
   );

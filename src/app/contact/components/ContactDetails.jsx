@@ -53,8 +53,8 @@ const ContactDetails = memo(() => {
       <InfoCard
         icon={Mail}
         title="Digital Inquiries"
-        details={["support@foreignemporium.lk", "sales@foreignemporium.lk"]}
-        link={{ text: "Send Email", url: "mailto:support@foreignemporium.lk" }}
+        details={["support@wedhub.lk", "sales@wedhub.lk"]}
+        link={{ text: "Send Email", url: "mailto:support@wedhub.lk" }}
       />
       <InfoCard
         icon={Clock}
