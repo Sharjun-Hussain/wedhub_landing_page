@@ -50,7 +50,7 @@ const HowItWorks = memo(function HowItWorks() {
   const step = STEPS[active];
 
   return (
-    <section className="py-16 md:py-24 bg-[#fdf8f0]">
+    <section className="pt-10 pb-16 md:pt-16 md:pb-24 bg-[#fdf8f0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Section Header ─────────────────────────────────────── */}
