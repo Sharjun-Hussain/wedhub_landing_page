@@ -1,0 +1,22 @@
+# WedHub
+
+> Sri Lanka's Premier Luxury Wedding Marketplace
+
+WedHub is a comprehensive marketplace connecting couples with top-tier verified wedding professionals and vendors across all 25 districts of Sri Lanka.
+
+## Key Features
+- **Curated Vendors:** Discover luxury venues, elite photographers, bridal makeup artists, decorators, and more.
+- **Direct Connection:** Couples can message and negotiate with vendors directly without any middlemen or hidden platform fees.
+- **Verified Excellence:** All vendors undergo a strict vetting process to ensure reliability and premium quality.
+- **Planning Tools:** Browse inspiration, real wedding stories, and essential tools to plan the perfect day.
+
+## Important Links
+- Home: https://wedhub.lk/
+- About Us: https://wedhub.lk/about
+- Browse Vendors: https://wedhub.lk/vendors
+- Contact Support: https://wedhub.lk/contact
+
+## Contact Information
+- Address: 252A Galle Rd, Colombo 00400, Sri Lanka
+- Email: info@wedhub.lk
+- Phone / WhatsApp: +94 77 289 0063

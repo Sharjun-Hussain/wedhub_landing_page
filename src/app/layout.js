@@ -24,6 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://wedhub.lk"),
   title: {
     template: "%s | WedHub - Sri Lanka's Premier Luxury Wedding Marketplace",
     default: "WedHub | Find Wedding Vendors & Venues in Sri Lanka",
@@ -45,6 +46,22 @@ export const metadata = {
     icon: "/logo.png",
     apple: "/logo.png",
   },
+  openGraph: {
+    title: "WedHub | Sri Lanka's Premier Luxury Wedding Marketplace",
+    description: "Connect with top-tier verified wedding vendors across Sri Lanka. Plan your dream wedding effortlessly.",
+    url: "https://wedhub.lk",
+    siteName: "WedHub",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "WedHub Logo",
+      },
+    ],
+    locale: "en_LK",
+    type: "website",
+  },
 };
 
 export default async function RootLayout({ children }) {
@@ -52,8 +69,54 @@ export default async function RootLayout({ children }) {
   // This eliminates the status: "loading" → "authenticated" transition
   // that caused extra re-renders on every page load across the whole app.
   const session = await getServerSession(authOptions);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "WedHub",
+    url: "https://wedhub.lk/",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://wedhub.lk/vendors?query={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+    description: "Sri Lanka's Premier Luxury Wedding Marketplace",
+  };
+
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "WedHub",
+    url: "https://wedhub.lk",
+    logo: "https://wedhub.lk/logo.png",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+94-77-289-0063",
+      contactType: "customer service",
+      email: "info@wedhub.lk",
+      availableLanguage: ["English", "Sinhala"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "252A Galle Rd",
+      addressLocality: "Colombo",
+      postalCode: "00400",
+      addressCountry: "LK",
+    },
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
