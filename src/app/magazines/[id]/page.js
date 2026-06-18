@@ -7,6 +7,7 @@ import Footer from "@/Sections/Footer/Footer";
 import { mockMagazines } from "@/data/mockMagazines";
 import { ArrowLeft, Calendar, FileText, Building2 } from "lucide-react";
 import { API_BASE_URL } from "@/lib/api";
+import FlipbookViewer from "@/components/FlipbookViewer";
 
 async function fetchCmsData() {
   try {
@@ -80,7 +81,7 @@ export default async function MagazineDetailPage({ params }) {
             
             {/* ── LEFT: 8 Columns for Viewer ──────────────────────── */}
             <div className="lg:col-span-8 flex flex-col gap-4">
-              <div className="w-full bg-white rounded-3xl overflow-hidden border border-[#ede2cc] shadow-xl shadow-[#2C1A0E]/5" style={{ height: "calc(100vh - 120px)", minHeight: "800px" }}>
+              <div className="w-full bg-[#ebe5da] rounded-3xl overflow-hidden border border-[#ede2cc] shadow-xl shadow-[#2C1A0E]/5" style={{ height: "calc(100vh - 120px)", minHeight: "800px" }}>
                 {magazine.pdfUrl ? (
                   isImage ? (
                     <div className="relative w-full h-full bg-[#f9f5ed]">
@@ -92,11 +93,7 @@ export default async function MagazineDetailPage({ params }) {
                       />
                     </div>
                   ) : (
-                    <iframe 
-                      src={`${magazine.pdfUrl}#toolbar=0&view=FitH`} 
-                      className="w-full h-full border-none"
-                      title={`${magazine.title} PDF viewer`}
-                    />
+                    <FlipbookViewer pdfUrl={magazine.pdfUrl} />
                   )
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-center p-10 bg-[#f9f5ed]">
