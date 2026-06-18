@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import DOMPurify from "isomorphic-dompurify";
 import {
   Mail, MapPin, Phone, Send, Clock,
   Instagram, Facebook, ArrowRight, CheckCircle,
@@ -110,8 +111,8 @@ function FaqItem({ q, a }) {
 // ── Security / Sanitization ─────────────────────────────────────────────────
 const sanitizeInput = (str) => {
   if (!str) return "";
-  // Strip < and > to prevent basic XSS or HTML injection via URL params
-  return str.replace(/[<>]/g, "");
+  // Use DOMPurify to safely strip out all HTML tags and prevent advanced XSS payloads
+  return DOMPurify.sanitize(str, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 };
 
 // ── Main Client Component ───────────────────────────────────────────────────
