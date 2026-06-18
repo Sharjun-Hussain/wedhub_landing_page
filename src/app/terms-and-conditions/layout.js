@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Terms & Conditions | WedHub",
+  title: "Terms & Conditions | WedHub - The Best Wedding Marketplace",
   description:
-    "Read the Terms and Conditions for using WedHub services and website.",
+    "Discover the best wedding marketplace in Sri Lanka. Read the Terms and Conditions for using WedHub services and website.",
 };
 
 export default function TermsAndConditionsLayout({ children }) {

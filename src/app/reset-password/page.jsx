@@ -6,8 +6,8 @@ import { AuthBranding } from "@/components/auth/AuthBranding";
 import { ResetPasswordForm } from "./ResetPasswordForm";
 
 export const metadata = {
-  title: "Reset Password - WedHub | Premium Vendor Marketplace",
-  description: "Create a new password for your WedHub account.",
+  title: "Reset Password - WedHub | Premium Vendor Marketplace | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Create a new password for your WedHub account.",
 };
 
 export default async function ResetPasswordPage() {

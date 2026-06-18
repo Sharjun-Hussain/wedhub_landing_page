@@ -15,16 +15,16 @@ import Footer from "@/Sections/Footer/Footer";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Exclusive Offers & Deals | WedHub",
+  title: "Exclusive Offers & Deals | WedHub - The Best Wedding Marketplace",
   description:
-    "Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, roasted nuts, and Middle Eastern delicacies at unbeatable prices.",
+    "Discover the best wedding marketplace in Sri Lanka. Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, roasted nuts, and Middle Eastern delicacies at unbeatable prices.",
   alternates: {
     canonical: "https://wedhub.lk/offers",
   },
   openGraph: {
-    title: "Exclusive Offers & Deals | WedHub",
+    title: "Exclusive Offers & Deals | WedHub - The Best Wedding Marketplace",
     description:
-      "Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, and more at unbeatable prices.",
+      "Discover the best wedding marketplace in Sri Lanka. Shop our exclusive offers and discounted premium imports. Discover luxury Arabian ouds, viral pistachio chocolates, premium Ajwa dates, and more at unbeatable prices.",
     type: "website",
     url: "https://wedhub.lk/offers",
     siteName: "WedHub",
@@ -40,9 +40,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Exclusive Offers & Deals | WedHub",
+    title: "Exclusive Offers & Deals | WedHub - The Best Wedding Marketplace",
     description:
-      "Shop our exclusive offers and discounted premium imports at WedHub.",
+      "Discover the best wedding marketplace in Sri Lanka. Shop our exclusive offers and discounted premium imports at WedHub.",
     images: ["/logo.png"],
   },
 };
@@ -96,8 +96,8 @@ export default async function OffersPage({ searchParams }) {
     ...shopCmsData,
     data: {
       ...shopCmsData.data,
-      shop_title: "Exclusive Offers",
-      shop_description: "Discover limited-time deals on our premium imported collections.",
+      shop_title: "Exclusive Offers | WedHub - The Best Wedding Marketplace",
+      shop_description: "Discover the best wedding marketplace in Sri Lanka. Discover limited-time deals on our premium imported collections.",
     }
   } : null;
 

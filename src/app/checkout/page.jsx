@@ -6,8 +6,8 @@ import { fetchMe } from "@/lib/api";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Checkout | WedHub",
-  description: "Secure checkout for your order.",
+  title: "Checkout | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Secure checkout for your order.",
 };
 
 export default async function CheckoutPage({ searchParams }) {

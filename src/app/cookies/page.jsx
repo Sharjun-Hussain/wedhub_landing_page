@@ -4,8 +4,8 @@ import Footer from "@/Sections/Footer/Footer";
 import { CookiePolicyClient } from "./CookiePolicyClient";
 
 export const metadata = {
-  title: "Cookie Policy | WedHub",
-  description: "Read the Cookie Policy for WedHub.",
+  title: "Cookie Policy | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Read the Cookie Policy for WedHub.",
 };
 
 export default async function CookiePolicyPage() {

@@ -6,9 +6,9 @@ import { AuthBranding } from "@/components/auth/AuthBranding";
 import { LoginForm } from "./LoginForm";
 
 export const metadata = {
-  title: "Login - WedHub | Premium Vendor Marketplace",
+  title: "Login - WedHub | Premium Vendor Marketplace | WedHub - The Best Wedding Marketplace",
   description:
-    "Log in to your WedHub account to access the island's most exclusive network of Sri Lankan wedding artisans and venues.",
+    "Discover the best wedding marketplace in Sri Lanka. Log in to your WedHub account to access the island's most exclusive network of Sri Lankan wedding artisans and venues.",
   keywords: [
     "WedHub login",
     "Sri Lanka wedding vendors",

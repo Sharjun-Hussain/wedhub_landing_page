@@ -4,8 +4,8 @@ import Footer from "@/Sections/Footer/Footer";
 import ContactClient from "./ContactClient";
 
 export const metadata = {
-  title: "Contact Us | WedHub",
-  description: "Get in touch with WedHub for inquiries about wedding planning or vendor listings.",
+  title: "Contact Us | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Get in touch with WedHub for inquiries about wedding planning or vendor listings.",
 };
 
 export default function ContactPage() {

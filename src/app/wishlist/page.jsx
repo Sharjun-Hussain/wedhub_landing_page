@@ -4,8 +4,8 @@ import Footer from "@/Sections/Footer/Footer";
 import { WishlistClient } from "./WishlistClient";
 
 export const metadata = {
-  title: "My Saved Inspirations | WedHub",
-  description: "View and manage your saved vendors and wedding inspirations on WedHub.",
+  title: "My Saved Inspirations | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. View and manage your saved vendors and wedding inspirations on WedHub.",
 };
 
 export default function WishlistPage() {

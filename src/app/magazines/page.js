@@ -17,8 +17,8 @@ async function fetchCmsData() {
 }
 
 export const metadata = {
-  title: "Sri Lankan Wedding Magazines & Inspiration | WedHub",
-  description: "Browse our collection of digital wedding magazines. Discover the latest Sri Lankan bridal trends, real weddings, poruwa ceremony ideas, and expert vendor advice.",
+  title: "Sri Lankan Wedding Magazines & Inspiration | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Browse our collection of digital wedding magazines. Discover the latest Sri Lankan bridal trends, real weddings, poruwa ceremony ideas, and expert vendor advice.",
 };
 
 export default async function MagazinesPage() {

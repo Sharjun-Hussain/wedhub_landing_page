@@ -14,9 +14,9 @@ import { OrdersTab } from "./components/OrdersTab";
 import { AddressTab } from "./components/AddressTab";
 
 export const metadata = {
-  title: "My Account | WedHub",
+  title: "My Account | WedHub - The Best Wedding Marketplace",
   description:
-    "Manage your profile, track orders, and update your delivery addresses at WedHub.",
+    "Discover the best wedding marketplace in Sri Lanka. Manage your profile, track orders, and update your delivery addresses at WedHub.",
 };
 
 export default async function AccountPage({ searchParams }) {

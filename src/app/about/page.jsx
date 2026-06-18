@@ -5,8 +5,8 @@ import Footer from "@/Sections/Footer/Footer";
 import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles, Star } from "lucide-react";
 
 export const metadata = {
-  title: "About WedHub | Revolutionizing Sri Lankan Weddings",
-  description: "Learn about WedHub, Sri Lanka's premier luxury wedding marketplace. We connect couples with top-tier verified wedding vendors across all 25 districts.",
+  title: "About WedHub | Revolutionizing Sri Lankan Weddings | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Learn about WedHub, Sri Lanka's premier luxury wedding marketplace. We connect couples with top-tier verified wedding vendors across all 25 districts.",
 };
 
 export default function AboutPage() {

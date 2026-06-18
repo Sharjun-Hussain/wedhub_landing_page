@@ -6,8 +6,8 @@ import { AuthBranding } from "@/components/auth/AuthBranding";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 
 export const metadata = {
-  title: "Forgot Password - WedHub | Premium Vendor Marketplace",
-  description: "Reset your WedHub password to regain access to your account.",
+  title: "Forgot Password - WedHub | Premium Vendor Marketplace | WedHub - The Best Wedding Marketplace",
+  description: "Discover the best wedding marketplace in Sri Lanka. Reset your WedHub password to regain access to your account.",
 };
 
 export default async function ForgotPasswordPage() {
