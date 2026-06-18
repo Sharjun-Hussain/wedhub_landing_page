@@ -77,7 +77,7 @@ export default async function Footer({ initialCmsData }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="main-footer" className="relative w-full bg-[#1a0a05] text-white overflow-hidden">
+    <footer id="main-footer" className="relative w-full bg-[#022e43] text-white overflow-hidden">
 
       {/* ── DECORATIVE BACKGROUND ─────────────────────────────────────── */}
       <div
@@ -133,7 +133,7 @@ export default async function Footer({ initialCmsData }) {
               <img src="/logo.png" alt="WedHub Logo" className="h-10 sm:h-40 w-auto brightness-0 invert" />
             </Link>
 
-            <p className="text-[13px] text-white/55 leading-relaxed">
+            <p className="text-[13px] text-white/90 leading-relaxed">
               Sri Lanka's Premier Luxury Wedding Marketplace. Curating the finest vendors for your unforgettable day.
             </p>
 
@@ -143,19 +143,19 @@ export default async function Footer({ initialCmsData }) {
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/60">Colombo 03, Sri Lanka</span>
+                <span className="text-[13px] text-white/90">Colombo 03, Sri Lanka</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/60">+94 11 234 5678</span>
+                <span className="text-[13px] text-white/90">+94 11 234 5678</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/60">hello@wedhub.lk</span>
+                <span className="text-[13px] text-white/90">hello@wedhub.lk</span>
               </div>
             </div>
 
@@ -166,7 +166,7 @@ export default async function Footer({ initialCmsData }) {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-[#d4a853] hover:border-[#d4a853] transition-all duration-200"
+                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/80 hover:text-[#d4a853] hover:border-[#d4a853] transition-all duration-200"
                 >
                   <Icon className="w-4 h-4" />
                 </Link>
@@ -185,7 +185,7 @@ export default async function Footer({ initialCmsData }) {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="group flex items-center gap-1.5 text-[13px] text-white/55 hover:text-white transition-colors duration-200"
+                      className="group flex items-center gap-1.5 text-[13px] text-white/80 hover:text-white transition-colors duration-200"
                     >
                       <ChevronRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[#d4a853] flex-shrink-0" />
                       {link.label}
@@ -238,11 +238,11 @@ export default async function Footer({ initialCmsData }) {
       {/* ── BOTTOM LEGAL BAR ─────────────────────────────────────────── */}
       <div className="relative border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-white/35 text-center md:text-left">
+          <p className="text-[12px] text-white/70 text-center md:text-left">
             © {year} WedHub · Sri Lanka's Premier Luxury Wedding Marketplace.
-            <span className="mx-2 text-white/20">·</span>
+            <span className="mx-2 text-white/50">·</span>
             Developed   by{" "}
-            <Link href="https://inzeedo.lk" target="_blank" className="text-white/50 hover:text-[#d4a853] transition-colors font-semibold">
+            <Link href="https://inzeedo.lk" target="_blank" className="text-white/80 hover:text-[#d4a853] transition-colors font-semibold">
               Inzeedo
             </Link>
           </p>
@@ -256,7 +256,7 @@ export default async function Footer({ initialCmsData }) {
               <Link
                 key={l.label}
                 href={l.href}
-                className="text-[11px] text-white/35 hover:text-white/70 transition-colors"
+                className="text-[11px] text-white/70 hover:text-white transition-colors"
               >
                 {l.label}
               </Link>

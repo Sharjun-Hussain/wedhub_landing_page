@@ -73,7 +73,7 @@ const HowItWorks = memo(function HowItWorks() {
           {/* Auto-play toggle */}
           <button
             onClick={() => setPaused((p) => !p)}
-            className="inline-flex items-center gap-2 self-start md:self-auto text-[12px] font-bold text-[#4a3728] border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] px-4 py-2.5 rounded-xl transition-all"
+            className="hidden md:inline-flex items-center gap-2 self-start md:self-auto text-[12px] font-bold text-[#4a3728] border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] px-4 py-2.5 rounded-xl transition-all"
           >
             <Play className={`w-3 h-3 ${paused ? "text-[#fc0a7a]" : "fill-current"}`} />
             {paused ? "Resume Auto-play" : "Auto-playing"}
