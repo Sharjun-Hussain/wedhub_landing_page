@@ -7,7 +7,7 @@ import { transformProduct } from "@/lib/api";
 import { QuickView } from "@/components/shop/QuickView";
 import { CountdownBanner } from "./CountdownBanner";
 import { FlashDealCard } from "./FlashDealCard";
-import { ProductCard } from "@/app/shop/components/ProductCard";
+import { ProductCard } from "@/components/eCommerce/ProductCard";
 
 export function OffersContent({ initialProducts, initialCmsData }) {
   const [quickViewProduct, setQuickViewProduct] = useState(null);

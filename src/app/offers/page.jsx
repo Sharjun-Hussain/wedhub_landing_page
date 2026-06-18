@@ -6,7 +6,7 @@ import {
   fetchShopCMS,
 } from "@/lib/api";
 import { OffersContent } from "./components/OffersContent";
-import { ShopSkeleton } from "@/app/shop/components/ShopSkeleton";
+import { ShopSkeleton } from "./components/ShopSkeleton";
 import Header from "@/Sections/Header/Header";
 import Footer from "@/Sections/Footer/Footer";
 
