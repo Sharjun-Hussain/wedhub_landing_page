@@ -142,26 +142,12 @@ const VendorCard = memo(function VendorCard({ vendor }) {
           {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0" />}
         </div>
 
-        <div className="flex items-center gap-1.5 text-[#9a8070] mb-3">
+        <div className="flex items-center gap-1.5 text-[#9a8070] mb-4">
           <MapPin className="w-3 h-3 flex-shrink-0" />
           <span className="text-[12px] truncate">{vendor.location} · {vendor.district}</span>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {vendor.tags.map((tag) => (
-            <span key={tag} className="px-2.5 py-1 rounded-full bg-[#f5efe4] text-[10px] font-bold text-[#4a3728] uppercase tracking-wide">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="h-px bg-[#f0e6d3] mb-4" />
-
-        <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <p className="text-[15px] font-black text-[#fc0a7a] leading-none">{vendor.price}</p>
-            <p className="text-[10px] text-[#9a8070] mt-0.5">{vendor.priceNote}</p>
-          </div>
+        <div className="flex items-center justify-end gap-3">
           <div className="flex items-center gap-2 flex-shrink-0">
             <Link
               href={`/vendors/${vendor.id}#contact`}
@@ -285,7 +271,7 @@ const FeaturedVendors = memo(function FeaturedVendors() {
           <Link
             href="/vendors"
             className="flex-shrink-0 w-[200px] rounded-3xl border-2 border-dashed border-[#d4a853]/50 hover:border-[#d4a853] bg-white hover:bg-[#fdf3e3] flex flex-col items-center justify-center gap-4 transition-all duration-300 group"
-            style={{ minHeight: "390px" }}
+            style={{ minHeight: "330px" }}
           >
             <div className="w-14 h-14 rounded-full border-2 border-[#d4a853] flex items-center justify-center group-hover:bg-[#d4a853] transition-colors">
               <ArrowRight className="w-5 h-5 text-[#d4a853] group-hover:text-white transition-colors" />
