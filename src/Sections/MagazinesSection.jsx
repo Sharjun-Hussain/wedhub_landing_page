@@ -45,7 +45,7 @@ const MagazinesSection = memo(function MagazinesSection() {
           
           <Link
             href="/magazines"
-            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group shrink-0"
+            className="hidden md:inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group shrink-0"
           >
             View All Publications
             <span className="w-8 h-8 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-colors duration-200">
@@ -106,6 +106,19 @@ const MagazinesSection = memo(function MagazinesSection() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* ── Mobile View All Link ──────────────────────────────────────── */}
+        <div className="mt-10 flex justify-center md:hidden">
+          <Link
+            href="/magazines"
+            className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group"
+          >
+            View All Publications
+            <span className="w-8 h-8 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-colors duration-200">
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </Link>
         </div>
 
       </div>
