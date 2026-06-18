@@ -64,9 +64,11 @@ export async function Header({ initialCmsData }) {
   const defaults = {
     navLinks: [
       { label: "HOME", href: "/" },
+      { label: "ABOUT US", href: "/about" },
       { label: "VENDORS", href: "/vendors" /*, hasMega: "vendors" */ },
       { label: "CATEGORIES", href: "/categories", hasMega: "categories" },
       { label: "VENUES", href: "/vendors?category=venues", hasMega: "venues" },
+      { label: "CONTACT", href: "/contact" },
     ],
     categories: [
       {
@@ -161,7 +163,14 @@ export async function Header({ initialCmsData }) {
       const link = cms[`header_nav_link_${i}`];
       if (link) links.push(link);
     }
-    if (links.length > 0) newData.navLinks = links;
+    if (links.length > 0) {
+      newData.navLinks = [
+        links[0],
+        { label: "ABOUT US", href: "/about" },
+        ...links.slice(1),
+        { label: "CONTACT", href: "/contact" }
+      ];
+    }
 
     const cats = [];
     for (let i = 1; i <= 4; i++) {
