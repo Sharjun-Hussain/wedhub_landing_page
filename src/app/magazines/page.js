@@ -28,16 +28,6 @@ export default async function MagazinesPage() {
     <div className="bg-[#fdf8f0] min-h-screen">
       <Header initialCmsData={cmsData} />
 
-      {/* Shared CSS for card hovers */}
-      <style>{`
-        .mag-card { box-shadow: 0 1px 4px rgba(44,26,14,0.08); transition: box-shadow 0.25s ease, transform 0.25s ease; will-change: transform; }
-        .mag-card:hover { box-shadow: 0 20px 48px rgba(44,26,14,0.16); transform: translateY(-6px); }
-        .mag-img { transition: transform 0.5s ease; will-change: transform; }
-        .mag-card:hover .mag-img { transform: scale(1.04); }
-        .mag-title { transition: color 0.2s ease; }
-        .mag-card:hover .mag-title { color: #fc0a7a; }
-      `}</style>
-
       <main className="pt-[100px] md:pt-[130px] pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -55,53 +45,34 @@ export default async function MagazinesPage() {
           </div>
 
           {/* Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14">
             {mockMagazines.map((mag) => (
               <Link 
                 key={mag.id} 
                 href={`/magazines/${mag.id}`}
-                className="mag-card flex flex-col rounded-3xl overflow-hidden bg-white border border-[#ede2cc] cursor-pointer"
+                className="group flex flex-col items-center cursor-pointer"
               >
-                {/* Image Container */}
-                <div className="relative w-full aspect-[1/1.1] overflow-hidden bg-[#f5efe4]">
+                {/* Image Container (Simulated Spread) */}
+                <div className="relative w-full aspect-[1.4/1] bg-white shadow-[0_15px_40px_-15px_rgba(0,0,0,0.3)] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.4)] mb-8">
                   <Image
                     src={mag.coverImage}
                     alt={mag.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="mag-img object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
-                  
-                  {/* Issue Badge */}
-                  <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full text-[10px] font-bold text-[#1a0a05] bg-[#d4a853] uppercase tracking-wider shadow-md">
-                    {mag.issue}
-                  </div>
+                  {/* Simulate open book spine */}
+                  <div className="absolute inset-y-0 left-1/2 w-[2px] bg-gradient-to-r from-black/20 to-transparent -translate-x-1/2" />
                 </div>
 
-                {/* Card Content */}
-                <div className="p-5 flex flex-col flex-1">
-                  <p className="text-[11px] font-bold uppercase tracking-widest text-[#9a8070] mb-1.5">
-                    {mag.date}
-                  </p>
-                  
-                  <h3 className="mag-title text-[1.2rem] font-serif font-bold text-[#2C1A0E] leading-snug mb-3">
+                {/* Card Content - Centered to match image style */}
+                <div className="flex flex-col items-center text-center px-2 w-full">
+                  <h3 className="text-[1.1rem] md:text-[1.2rem] font-serif font-bold text-[#4a3728] uppercase group-hover:text-[#fc0a7a] transition-colors mb-4">
                     {mag.title}
                   </h3>
-                  
-                  <p className="text-[13px] text-[#9a8070] line-clamp-2 leading-relaxed mb-5 flex-1">
-                    {mag.description}
-                  </p>
 
-                  <div className="h-px bg-[#f0e6d3] mb-4" />
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-[11px] font-semibold text-[#6d513e]">
-                      {mag.pages} Pages
-                    </div>
-                    <div className="h-8 px-4 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[11px] font-bold flex items-center transition-colors">
-                      Read Issue
-                    </div>
+                  <div className="h-9 px-6 rounded-full bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[11px] font-bold uppercase flex items-center transition-colors">
+                    Read Issue
                   </div>
                 </div>
               </Link>
