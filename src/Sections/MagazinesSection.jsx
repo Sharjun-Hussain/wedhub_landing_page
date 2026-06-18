@@ -25,33 +25,20 @@ const MagazinesSection = memo(function MagazinesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ── Header ─────────────────────────────────────────────── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
-              Inspiration & Ideas
-            </span>
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="flex flex-col items-center">
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
               Wedding <em className="text-[#fc0a7a] italic not-italic">Magazines</em>
             </h2>
-            <div className="flex items-center gap-3 mt-3">
+            <div className="flex items-center justify-center gap-3 mt-3">
               <div className="h-px w-14 bg-[#d4a853]" />
               <div className="w-1.5 h-1.5 rounded-full bg-[#d4a853]" />
               <div className="h-px w-14 bg-[#d4a853]" />
             </div>
-            <p className="mt-4 text-[14px] text-[#9a8070] max-w-lg">
+            <p className="mt-4 text-[14px] text-[#9a8070] max-w-lg mx-auto">
               Explore our exclusive digital magazines packed with the latest wedding trends, real ceremonies, and expert planning advice.
             </p>
           </div>
-          
-          <Link
-            href="/magazines"
-            className="hidden md:inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group shrink-0"
-          >
-            View All Publications
-            <span className="w-8 h-8 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-colors duration-200">
-              <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-          </Link>
         </div>
 
         {/* ── Magazine Grid ──────────────────────────────────────── */}
@@ -108,8 +95,8 @@ const MagazinesSection = memo(function MagazinesSection() {
           ))}
         </div>
 
-        {/* ── Mobile View All Link ──────────────────────────────────────── */}
-        <div className="mt-10 flex justify-center md:hidden">
+        {/* ── View All Link ──────────────────────────────────────── */}
+        <div className="mt-10 flex justify-center">
           <Link
             href="/magazines"
             className="inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group"
