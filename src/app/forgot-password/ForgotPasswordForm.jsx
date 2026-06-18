@@ -7,6 +7,7 @@ import { ArrowLeft, Mail, Loader2, CheckCircle2 } from "lucide-react";
 import { forgotPasswordSchema } from "@/lib/validations/auth";
 import { sanitizeObject } from "@/lib/security";
 import Link from "next/link";
+import Image from "next/image";
 
 export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -77,11 +78,11 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
 
         {!isSubmitted ? (
           <>
-            <div className="mb-10 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
+            <div className="mb-10 text-center animate-fade-in-up flex flex-col items-center" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
               <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
                 Forgot Password
               </h2>
-              <p className="text-white/60 text-[14px] font-light">
+              <p className="text-white/60 text-[14px] font-light mt-2">
                 Enter your email address and we'll send you a link to reset your password.
               </p>
             </div>
@@ -89,17 +90,17 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
             <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
               {/* Email */}
               <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
-                <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+                <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                   Email Address
                 </label>
                 <div className="relative group flex items-center">
-                  <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+                  <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
                   <input
                     type="email"
                     placeholder="Email address"
                     className={`w-full bg-transparent border-b ${
                       errors.email ? "border-red-400" : "border-white/20"
-                    } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                    } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                     {...register("email")}
                   />
                   {errors.email && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.email.message}</p>}
@@ -111,7 +112,7 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-[#d4b986] to-[#b89a61] hover:from-[#e6d0a7] hover:to-[#c4a66e] text-[#1a120e] font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(212,185,134,0.2)] hover:shadow-[0_0_30px_rgba(212,185,134,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
+                  className="w-full bg-gradient-to-r from-[#fc0a7a] to-[#d60866] hover:from-[#ff1f8b] hover:to-[#fc0a7a] text-white font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(252,10,122,0.2)] hover:shadow-[0_0_30px_rgba(252,10,122,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
                 >
                   {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Send Reset Link"}
                 </button>
@@ -121,7 +122,7 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
         ) : (
           <div className="text-center space-y-6 animate-fade-in-up">
             <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
-              <CheckCircle2 className="w-10 h-10 text-[#d4b986]" strokeWidth={1.5} />
+              <CheckCircle2 className="w-10 h-10 text-[#fc0a7a]" strokeWidth={1.5} />
             </div>
             <div className="animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
               <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
@@ -130,7 +131,7 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
               <p className="text-white/60 text-[14px] font-light mb-2">
                 We sent a password reset link to
               </p>
-              <p className="font-bold text-[#d4b986] text-lg">
+              <p className="font-bold text-[#fc0a7a] text-lg">
                 {submittedEmail}
               </p>
             </div>
@@ -138,7 +139,7 @@ export const ForgotPasswordForm = memo(function ForgotPasswordForm() {
               Didn't receive the email? Check your spam folder or{" "}
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="text-[#d4b986] font-semibold hover:text-white transition-colors"
+                className="text-[#fc0a7a] font-semibold hover:text-white transition-colors"
               >
                 try again
               </button>

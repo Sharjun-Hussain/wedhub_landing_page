@@ -10,6 +10,7 @@ import { sanitizeObject } from "@/lib/security";
 import { API_BASE_URL } from "@/lib/api";
 import { toast } from "sonner";
 import Link from "next/link";
+import Image from "next/image";
 
 const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -89,11 +90,11 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
 
         {!isSubmitted ? (
           <>
-            <div className="mb-10 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
+            <div className="mb-10 text-center animate-fade-in-up flex flex-col items-center" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
               <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
                 Set New Password
               </h2>
-              <p className="text-white/60 text-[14px] font-light">
+              <p className="text-white/60 text-[14px] font-light mt-2">
                 Your new password must be different from previously used passwords.
               </p>
             </div>
@@ -101,17 +102,17 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
             <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
               {/* New Password */}
               <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
-                <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+                <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                   Create new password
                 </label>
                 <div className="relative group flex items-center">
-                  <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+                  <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
                   <input
                     type="password"
                     placeholder="••••••••"
                     className={`w-full bg-transparent border-b ${
                       errors.password ? "border-red-400" : "border-white/20"
-                    } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                    } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                     {...register("password")}
                   />
                   {errors.password && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.password.message}</p>}
@@ -120,17 +121,17 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
 
               {/* Confirm Password */}
               <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "300ms", animationFillMode: "both" }}>
-                <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+                <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                   Repeat new password
                 </label>
                 <div className="relative group flex items-center">
-                  <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+                  <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
                   <input
                     type="password"
                     placeholder="••••••••"
                     className={`w-full bg-transparent border-b ${
                       errors.password_confirmation ? "border-red-400" : "border-white/20"
-                    } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                    } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                     {...register("password_confirmation")}
                   />
                   {errors.password_confirmation && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.password_confirmation.message}</p>}
@@ -142,7 +143,7 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-[#d4b986] to-[#b89a61] hover:from-[#e6d0a7] hover:to-[#c4a66e] text-[#1a120e] font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(212,185,134,0.2)] hover:shadow-[0_0_30px_rgba(212,185,134,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
+                  className="w-full bg-gradient-to-r from-[#fc0a7a] to-[#d60866] hover:from-[#ff1f8b] hover:to-[#fc0a7a] text-white font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(252,10,122,0.2)] hover:shadow-[0_0_30px_rgba(252,10,122,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
                 >
                   {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Reset Password"}
                 </button>
@@ -152,7 +153,7 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
         ) : (
           <div className="text-center space-y-6 animate-fade-in-up">
             <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
-              <CheckCircle2 className="w-10 h-10 text-[#d4b986]" strokeWidth={1.5} />
+              <CheckCircle2 className="w-10 h-10 text-[#fc0a7a]" strokeWidth={1.5} />
             </div>
             <div className="animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
               <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
@@ -165,7 +166,7 @@ const ResetPasswordFormInner = memo(function ResetPasswordFormInner() {
             <div className="pt-8 animate-fade-in-up" style={{ animationDelay: "300ms", animationFillMode: "both" }}>
               <Link
                 href="/login"
-                className="w-full bg-gradient-to-r from-[#d4b986] to-[#b89a61] hover:from-[#e6d0a7] hover:to-[#c4a66e] text-[#1a120e] font-bold h-[52px] rounded-xl flex items-center justify-center transition-all shadow-[0_0_20px_rgba(212,185,134,0.2)] hover:shadow-[0_0_30px_rgba(212,185,134,0.4)] uppercase tracking-widest text-[13px]"
+                className="w-full bg-gradient-to-r from-[#fc0a7a] to-[#d60866] hover:from-[#ff1f8b] hover:to-[#fc0a7a] text-white font-bold h-[52px] rounded-xl flex items-center justify-center transition-all shadow-[0_0_20px_rgba(252,10,122,0.2)] hover:shadow-[0_0_30px_rgba(252,10,122,0.4)] uppercase tracking-widest text-[13px]"
               >
                 Continue to Login
               </Link>
@@ -182,7 +183,7 @@ export function ResetPasswordForm() {
     <Suspense
       fallback={
         <div className="flex items-center justify-center min-h-screen">
-          <Loader2 className="animate-spin w-8 h-8 text-[#d4b986]" />
+          <Loader2 className="animate-spin w-8 h-8 text-[#fc0a7a]" />
         </div>
       }
     >

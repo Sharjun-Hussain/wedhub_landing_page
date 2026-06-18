@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { API_BASE_URL } from "@/lib/api";
 import { toast } from "sonner";
 import Link from "next/link";
+import Image from "next/image";
 import * as z from "zod";
 
 const registerLocalSchema = z.object({
@@ -110,11 +111,9 @@ const RegisterFormInner = memo(function RegisterFormInner() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
 
         {/* Header Text */}
-        <div className="mb-8 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
-          <h2 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
-            WedHub
-          </h2>
-          <p className="text-white/60 text-[14px] font-light">
+        <div className="mb-8 text-center animate-fade-in-up flex flex-col items-center" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
+          <Image src="/logo.png" alt="WedHub Logo" width={180} height={60} className="mb-4 object-contain brightness-0 invert opacity-90 drop-shadow-md" priority />
+          <p className="text-white/60 text-[14px] font-light mt-2">
             Create your account
           </p>
         </div>
@@ -122,17 +121,17 @@ const RegisterFormInner = memo(function RegisterFormInner() {
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* First and Last Name */}
           <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "150ms", animationFillMode: "both" }}>
-            <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+            <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
               Full Name
             </label>
             <div className="relative group flex items-center">
-              <User className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+              <User className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
               <input
                 type="text"
                 placeholder="Marcus Elegance"
                 className={`w-full bg-transparent border-b ${
                   errors.name ? "border-red-400" : "border-white/20"
-                } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                 {...register("name")}
               />
               {errors.name && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.name.message}</p>}
@@ -141,17 +140,17 @@ const RegisterFormInner = memo(function RegisterFormInner() {
 
           {/* Email */}
           <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
-            <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+            <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
               Email Address
             </label>
             <div className="relative group flex items-center">
-              <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+              <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
               <input
                 type="email"
                 placeholder="marcus@elegance.com"
                 className={`w-full bg-transparent border-b ${
                   errors.email ? "border-red-400" : "border-white/20"
-                } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                 {...register("email")}
               />
               {errors.email && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.email.message}</p>}
@@ -160,7 +159,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
 
           {/* Password */}
           <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "250ms", animationFillMode: "both" }}>
-            <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+            <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
               Password
             </label>
             <div className="relative group flex items-center">
@@ -169,7 +168,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
                 placeholder="••••••••"
                 className={`w-full bg-transparent border-b ${
                   errors.password ? "border-red-400" : "border-white/20"
-                } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                 {...register("password")}
               />
               {errors.password && <p className="text-red-400/90 text-xs mt-1 absolute -bottom-5">{errors.password.message}</p>}
@@ -179,7 +178,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
           <div className="grid grid-cols-2 gap-4 animate-fade-in-up" style={{ animationDelay: "300ms", animationFillMode: "both" }}>
             {/* Getting Married In */}
             <div className="space-y-2">
-              <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+              <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                 Location
               </label>
               <div className="relative group flex items-center">
@@ -188,7 +187,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
                   placeholder="Colombo..."
                   className={`w-full bg-transparent border-b ${
                     errors.location ? "border-red-400" : "border-white/20"
-                  } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                  } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                   {...register("location")}
                 />
               </div>
@@ -196,16 +195,16 @@ const RegisterFormInner = memo(function RegisterFormInner() {
 
             {/* Wedding Date */}
             <div className="space-y-2">
-              <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+              <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                 Date
               </label>
               <div className="relative group flex items-center">
-                <Calendar className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 z-0 transition-colors" strokeWidth={1.5} />
+                <Calendar className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 z-0 transition-colors" strokeWidth={1.5} />
                 <input
                   type="date"
                   className={`w-full bg-transparent border-b ${
                     errors.weddingDate ? "border-red-400" : "border-white/20"
-                  } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors [&::-webkit-calendar-picker-indicator]:opacity-0 relative z-10`}
+                  } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors [&::-webkit-calendar-picker-indicator]:opacity-0 relative z-10`}
                   {...register("weddingDate")}
                 />
               </div>
@@ -214,14 +213,14 @@ const RegisterFormInner = memo(function RegisterFormInner() {
 
           {/* Role Selection */}
           <div className="flex flex-col gap-3 pt-2 animate-fade-in-up" style={{ animationDelay: "350ms", animationFillMode: "both" }}>
-            <span className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">I am</span>
+            <span className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">I am</span>
             
             <div className="flex items-center gap-6">
               <label className="flex items-center gap-2 cursor-pointer group">
                 <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
-                  selectedRole === "planning" ? "border-[#d4b986]" : "border-white/30 group-hover:border-white/60"
+                  selectedRole === "planning" ? "border-[#fc0a7a]" : "border-white/30 group-hover:border-white/60"
                 }`}>
-                  {selectedRole === "planning" && <div className="w-2 h-2 rounded-full bg-[#d4b986]" />}
+                  {selectedRole === "planning" && <div className="w-2 h-2 rounded-full bg-[#fc0a7a]" />}
                 </div>
                 <input 
                   type="radio" 
@@ -234,9 +233,9 @@ const RegisterFormInner = memo(function RegisterFormInner() {
 
               <label className="flex items-center gap-2 cursor-pointer group">
                 <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
-                  selectedRole === "guest" ? "border-[#d4b986]" : "border-white/30 group-hover:border-white/60"
+                  selectedRole === "guest" ? "border-[#fc0a7a]" : "border-white/30 group-hover:border-white/60"
                 }`}>
-                  {selectedRole === "guest" && <div className="w-2 h-2 rounded-full bg-[#d4b986]" />}
+                  {selectedRole === "guest" && <div className="w-2 h-2 rounded-full bg-[#fc0a7a]" />}
                 </div>
                 <input 
                   type="radio" 
@@ -264,7 +263,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-[#d4b986] to-[#b89a61] hover:from-[#e6d0a7] hover:to-[#c4a66e] text-[#1a120e] font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(212,185,134,0.2)] hover:shadow-[0_0_30px_rgba(212,185,134,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-2"
+              className="w-full bg-gradient-to-r from-[#fc0a7a] to-[#d60866] hover:from-[#ff1f8b] hover:to-[#fc0a7a] text-white font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(252,10,122,0.2)] hover:shadow-[0_0_30px_rgba(252,10,122,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-2"
             >
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Create Account"}
             </button>
@@ -313,7 +312,7 @@ const RegisterFormInner = memo(function RegisterFormInner() {
         <div className="text-center mt-6 pt-6 border-t border-white/5 animate-fade-in-up" style={{ animationDelay: "600ms", animationFillMode: "both" }}>
           <p className="text-[13px] text-white/60">
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-[#d4b986] hover:text-white transition-colors">
+            <Link href="/login" className="font-semibold text-[#fc0a7a] hover:text-[#ff1f8b] transition-colors">
               Log in
             </Link>
           </p>
@@ -328,7 +327,7 @@ export function RegisterForm() {
     <Suspense
       fallback={
         <div className="flex items-center justify-center min-h-screen">
-          <Loader2 className="animate-spin w-8 h-8 text-[#d4b986]" />
+          <Loader2 className="animate-spin w-8 h-8 text-[#fc0a7a]" />
         </div>
       }
     >
