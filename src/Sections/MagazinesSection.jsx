@@ -28,10 +28,10 @@ const MagazinesSection = memo(function MagazinesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
-              Digital Newsstand
+              Inspiration & Ideas
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
-              Editorial <em className="text-[#fc0a7a] italic not-italic">Lookbook</em>
+              Wedding <em className="text-[#fc0a7a] italic not-italic">Magazines</em>
             </h2>
             <div className="flex items-center gap-3 mt-3">
               <div className="h-px w-14 bg-[#d4a853]" />
