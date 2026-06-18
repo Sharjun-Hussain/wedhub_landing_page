@@ -58,7 +58,7 @@ export default async function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextTopLoader
-          color="#d4af37"
+          color="#fc0a7a"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
@@ -66,7 +66,7 @@ export default async function RootLayout({ children }) {
           showSpinner={false}
           easing="ease"
           speed={200}
-          shadow="0 0 10px #d4af37,0 0 5px #d4af37"
+          shadow="0 0 10px #fc0a7a,0 0 5px #fc0a7a"
         />
         <StoreProvider>
           <AuthProvider session={session}>
