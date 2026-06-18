@@ -12,6 +12,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import NextTopLoader from "nextjs-toploader";
+import LenisProvider from "@/providers/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -142,8 +143,10 @@ export default async function RootLayout({ children }) {
               enableSystem
               disableTransitionOnChange
             >
-              <MainWrapper>{children}</MainWrapper>
-              <BottomNav />
+              <LenisProvider>
+                <MainWrapper>{children}</MainWrapper>
+                <BottomNav />
+              </LenisProvider>
               <Toaster
                 position="top-center"
                 closeButton
