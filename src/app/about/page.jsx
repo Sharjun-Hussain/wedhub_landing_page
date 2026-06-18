@@ -98,7 +98,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── ENHANCED PILLARS (Bento Grid) ─────────────────────────────── */}
-        <section className="bg-white py-32 border-y border-[#ede2cc] mb-32 relative overflow-hidden">
+        <section className="bg-white py-24 border-y border-[#ede2cc] mb-16 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#fc0a7a]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -180,7 +180,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── CONTACT INFORMATION ───────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="bg-white rounded-[2.5rem] border border-[#ede2cc] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
             <div className="max-w-xl text-center md:text-left">
               <h2 className="text-[2rem] font-serif font-bold text-[#2C1A0E] mb-4">Get in Touch</h2>
