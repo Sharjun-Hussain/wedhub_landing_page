@@ -86,18 +86,17 @@ const WeddingHero = memo(function WeddingHero() {
         {/* Headline */}
         <div>
           <h1 className="text-[2.6rem] sm:text-[3.4rem] md:text-[4rem] font-serif font-bold text-white leading-[1.12] tracking-tight drop-shadow-xl">
-            Find Everything You Need For
+            Sri Lanka's
             <br />
             <span className="relative">
-              Your{" "}
               <em className="not-italic italic font-serif"
                 style={{ color: "#d4a853", textShadow: "0 2px 12px rgba(212,168,83,0.35)" }}>
-                Perfect Wedding
+                Best Wedding Marketplace
               </em>
             </span>
           </h1>
           <p className="mt-5 text-[16px] md:text-[18px] text-white/85 font-light leading-relaxed max-w-2xl mx-auto">
-            Discover elite wedding vendors, venues, photographers, decorators,
+            Welcome to the best wedding marketplace. Discover elite wedding vendors, venues, photographers, decorators,
             caterers and more across Sri Lanka's most breathtaking locations.
           </p>
         </div>

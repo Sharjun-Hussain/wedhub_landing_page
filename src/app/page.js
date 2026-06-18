@@ -78,16 +78,16 @@ const page = async () => {
 export default page;
 
 export const metadata = {
-  title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
+  title: "WedHub | The Best Wedding Marketplace in Sri Lanka",
   description:
-    "Your ultimate destination for wedding planning in Sri Lanka. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
+    "Discover the best wedding marketplace in Sri Lanka. Your ultimate destination for wedding planning. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
   alternates: {
     canonical: "https://wedhub.lk",
   },
   openGraph: {
-    title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
+    title: "WedHub | The Best Wedding Marketplace in Sri Lanka",
     description:
-      "Your ultimate destination for wedding planning in Sri Lanka. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
+      "Discover the best wedding marketplace in Sri Lanka. Your ultimate destination for wedding planning. Browse curated wedding venues, expert photographers, makeup artists, and exclusive vendor offers.",
     url: "https://wedhub.lk",
     siteName: "WedHub",
     images: [
@@ -102,8 +102,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WedHub | Sri Lanka's Premium Wedding Marketplace & Directory",
-    description: "Your ultimate destination for wedding planning in Sri Lanka.",
+    title: "WedHub | The Best Wedding Marketplace in Sri Lanka",
+    description: "Discover the best wedding marketplace in Sri Lanka.",
     images: ["/logo.png"],
   },
 };

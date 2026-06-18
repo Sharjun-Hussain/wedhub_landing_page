@@ -26,12 +26,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL("https://wedhub.lk"),
   title: {
-    template: "%s | WedHub - Sri Lanka's Premier Luxury Wedding Marketplace",
-    default: "WedHub | Find Wedding Vendors & Venues in Sri Lanka",
+    template: "%s | WedHub - The Best Wedding Marketplace in Sri Lanka",
+    default: "WedHub | The Best Wedding Marketplace for Venues & Vendors",
   },
   description:
-    "Plan your perfect Sri Lankan wedding with WedHub. Discover top-rated local wedding vendors, luxury venues, bridal dressing, photographers, and comprehensive planning tools.",
+    "Plan your perfect Sri Lankan wedding with WedHub, the best wedding marketplace. Discover top-rated local wedding vendors, luxury venues, bridal dressing, photographers, and comprehensive planning tools.",
   keywords: [
+    "best wedding marketplace",
+    "best wedding marketplace Sri Lanka",
     "Sri Lanka weddings",
     "wedding vendors Sri Lanka",
     "Colombo wedding venues",
@@ -47,8 +49,8 @@ export const metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "WedHub | Sri Lanka's Premier Luxury Wedding Marketplace",
-    description: "Connect with top-tier verified wedding vendors across Sri Lanka. Plan your dream wedding effortlessly.",
+    title: "WedHub | The Best Wedding Marketplace in Sri Lanka",
+    description: "Discover the best wedding marketplace in Sri Lanka. Connect with top-tier verified wedding vendors across Sri Lanka. Plan your dream wedding effortlessly.",
     url: "https://wedhub.lk",
     siteName: "WedHub",
     images: [
