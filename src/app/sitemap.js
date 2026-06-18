@@ -8,13 +8,16 @@ export default async function sitemap() {
   // 1. Static routes
   const staticRoutes = [
     "",
-    "/vendors",
-
-    "/megazines",
-
+    "/about",
     "/contact",
+    "/vendors",
+    "/magazines",
+    "/offers",
     "/login",
     "/register",
+    "/privacy-policy",
+    "/terms-and-conditions",
+    "/cookies",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -28,7 +31,7 @@ export default async function sitemap() {
     const categoriesResponse = await fetchCategories();
     if (categoriesResponse?.data) {
       categoryRoutes = categoriesResponse.data.map((cat) => ({
-        url: `${baseUrl}/shop?category=${cat.id}`,
+        url: `${baseUrl}/vendors?category=${cat.id}`,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 0.7,
