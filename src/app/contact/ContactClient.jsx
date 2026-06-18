@@ -109,10 +109,29 @@ function FaqItem({ q, a }) {
 }
 
 // ── Security / Sanitization ─────────────────────────────────────────────────
+const deepDecode = (str) => {
+  let decoded = str;
+  let previous = "";
+  let maxDepth = 5; // Prevent infinite loops
+  
+  while (decoded !== previous && maxDepth > 0) {
+    previous = decoded;
+    try {
+      decoded = decodeURIComponent(decoded);
+    } catch (e) {
+      break; // Stop if malformed URI encoding is hit
+    }
+    maxDepth--;
+  }
+  return decoded;
+};
+
 const sanitizeInput = (str) => {
   if (!str) return "";
-  // Use DOMPurify to safely strip out all HTML tags and prevent advanced XSS payloads
-  return DOMPurify.sanitize(str, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  // 1. Deep decode to catch double, triple, or recursively encoded payloads
+  const fullyDecoded = deepDecode(str);
+  // 2. Use DOMPurify to safely strip out all HTML tags
+  return DOMPurify.sanitize(fullyDecoded, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 };
 
 // ── Main Client Component ───────────────────────────────────────────────────
