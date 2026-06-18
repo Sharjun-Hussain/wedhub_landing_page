@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import {
-  Facebook, Instagram, Twitter, Youtube,
+  Facebook, Instagram, Twitter, Youtube, Linkedin, MessageCircle, Music,
   MapPin, Phone, Mail, Heart, ArrowUpRight, ChevronRight
 } from "lucide-react";
 
@@ -67,8 +67,8 @@ const DISTRICTS = [
 const SOCIALS = [
   { Icon: Facebook, href: "#", label: "Facebook" },
   { Icon: Instagram, href: "#", label: "Instagram" },
-  { Icon: Twitter, href: "#", label: "Twitter / X" },
-  { Icon: Youtube, href: "#", label: "YouTube" },
+  { Icon: Music, href: "#", label: "TikTok" },
+  { Icon: Linkedin, href: "#", label: "LinkedIn" },
 ];
 
 // ── FOOTER COMPONENT ───────────────────────────────────────────────────────────
@@ -130,7 +130,7 @@ export default async function Footer({ initialCmsData }) {
           <div className="lg:col-span-3 flex flex-col gap-6">
             {/* Logo */}
             <Link href="/" className="inline-block">
-              <img src="/logo.png" alt="WedHub Logo" className="h-10 sm:h-40 w-auto brightness-0 invert" />
+              <img src="/logo.png" alt="WedHub Logo" className="h-24 sm:h-40 w-auto brightness-0 invert" />
             </Link>
 
             <p className="text-[13px] text-white/90 leading-relaxed">
@@ -143,19 +143,25 @@ export default async function Footer({ initialCmsData }) {
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/90">Colombo 03, Sri Lanka</span>
+                <span className="text-[13px] text-white/90">252A Galle Rd, Colombo 00400</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/90">+94 11 234 5678</span>
+                <span className="text-[13px] text-white/90">+94 77 289 0063</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                </div>
+                <span className="text-[13px] text-white/90">+94 77 289 0063</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-3.5 h-3.5 text-[#d4a853]" />
                 </div>
-                <span className="text-[13px] text-white/90">hello@wedhub.lk</span>
+                <span className="text-[13px] text-white/90">info@wedhub.lk</span>
               </div>
             </div>
 

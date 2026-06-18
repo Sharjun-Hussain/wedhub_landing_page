@@ -179,56 +179,53 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── ENHANCED CTA SECTION ──────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-[3rem] overflow-hidden">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0">
-              <img 
-                src="https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=2033&auto=format&fit=crop" 
-                className="w-full h-full object-cover"
-                alt="Wedding celebration"
-              />
+        {/* ── CONTACT INFORMATION ───────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
+          <div className="bg-white rounded-[2.5rem] border border-[#ede2cc] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+            <div className="max-w-xl text-center md:text-left">
+              <h2 className="text-[2rem] font-serif font-bold text-[#2C1A0E] mb-4">Get in Touch</h2>
+              <p className="text-[15px] text-[#4a3728]/80 leading-relaxed">
+                Whether you have a question about our verified vendors, need assistance with your account, or just want to say hello, our team is here for you.
+              </p>
             </div>
             
-            {/* Overlay Layers for Depth */}
-            <div className="absolute inset-0 bg-[#2C1A0E]/90 mix-blend-multiply" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a05] via-[#1a0a05]/95 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#fc0a7a_0%,transparent_40%)] opacity-40" />
-
-            {/* Content Content */}
-            <div className="relative z-10 p-12 md:p-24 flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="max-w-xl text-center md:text-left">
-                <div className="inline-flex items-center gap-2 mb-6">
-                  <span className="w-2 h-2 rounded-full bg-[#d4a853] animate-pulse" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#d4a853]">Your Journey Starts Here</span>
+            <div className="flex flex-col sm:flex-row gap-6 md:gap-12 flex-shrink-0 w-full md:w-auto">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center">
+                    <span className="text-[#d4a853]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Visit Us</p>
+                    <p className="text-[14px] font-semibold text-[#2C1A0E]">252A Galle Rd, Colombo 00400</p>
+                  </div>
                 </div>
-                <h2 className="text-[2.5rem] md:text-[3.5rem] font-serif font-bold text-white leading-[1.1] mb-6">
-                  Ready to plan your <br />
-                  <span className="italic text-[#d4a853] font-light">dream day?</span>
-                </h2>
-                <p className="text-white/70 text-[16px] leading-relaxed mb-0">
-                  Join thousands of couples planning their perfect day on Sri Lanka's most trusted luxury wedding platform.
-                </p>
-              </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center">
+                    <span className="text-[#25D366]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Call / WhatsApp</p>
+                    <p className="text-[14px] font-semibold text-[#2C1A0E]">+94 77 289 0063</p>
+                  </div>
+                </div>
 
-              <div className="flex flex-col gap-4 w-full md:w-auto flex-shrink-0">
-                <Link
-                  href="/register"
-                  className="inline-flex items-center justify-between gap-6 bg-[#d4a853] hover:bg-[#c09240] text-[#1a0a05] font-bold text-[13px] uppercase tracking-wider px-8 py-5 rounded-2xl transition-all shadow-xl shadow-[#d4a853]/20 hover:-translate-y-1"
-                >
-                  Start Planning <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/vendor-signup"
-                  className="inline-flex items-center justify-between gap-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-[13px] uppercase tracking-wider px-8 py-5 rounded-2xl transition-all backdrop-blur-md hover:-translate-y-1"
-                >
-                  List as a Vendor <ArrowRight className="w-4 h-4" />
-                </Link>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center">
+                    <span className="text-[#d4a853]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Email Us</p>
+                    <p className="text-[14px] font-semibold text-[#2C1A0E]">info@wedhub.lk</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
+
+
 
       </main>
 
