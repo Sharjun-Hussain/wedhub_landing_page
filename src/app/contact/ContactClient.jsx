@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   Mail, MapPin, Phone, Send, Clock,
   Instagram, Facebook, ArrowRight, CheckCircle,
@@ -106,13 +107,28 @@ function FaqItem({ q, a }) {
   );
 }
 
+// ── Security / Sanitization ─────────────────────────────────────────────────
+const sanitizeInput = (str) => {
+  if (!str) return "";
+  // Strip < and > to prevent basic XSS or HTML injection via URL params
+  return str.replace(/[<>]/g, "");
+};
+
 // ── Main Client Component ───────────────────────────────────────────────────
 export default function ContactClient() {
+  const searchParams = useSearchParams();
   const [subject, setSubject] = useState("couple");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const sub = searchParams.get("subject");
+    if (sub) setSubject(sanitizeInput(sub));
+    const msg = searchParams.get("message");
+    if (msg) setMessage(sanitizeInput(msg));
+  }, [searchParams]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -245,11 +261,11 @@ export default function ContactClient() {
 
                   {/* Floating label inputs */}
                   <div className="grid md:grid-cols-2 gap-8">
-                    <FloatInput id="name" label="Full Name" value={name} onChange={(e) => setName(e.target.value)} />
-                    <FloatInput id="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <FloatInput id="name" label="Full Name" value={name} onChange={(e) => setName(sanitizeInput(e.target.value))} />
+                    <FloatInput id="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(sanitizeInput(e.target.value))} />
                   </div>
 
-                  <FloatInput id="message" label="Your Message" value={message} onChange={(e) => setMessage(e.target.value)} multiline />
+                  <FloatInput id="message" label="Your Message" value={message} onChange={(e) => setMessage(sanitizeInput(e.target.value))} multiline />
 
                   {/* Submit */}
                   <button

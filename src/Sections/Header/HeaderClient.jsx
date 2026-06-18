@@ -207,7 +207,7 @@ export function HeaderClient({
 
               {/* ADVERTISE CTA */}
               <Link
-                href="/advertise"
+                href="/contact?subject=vendor&message=Hi%20WedHub%20Team%2C%0A%0AI%20would%20like%20to%20list%20my%20wedding%20business%20on%20your%20platform.%20Please%20send%20me%20more%20details."
                 className="hidden md:flex items-center text-[12px] font-bold uppercase tracking-wider text-[#fc0a7a] border-2 border-[#fc0a7a] hover:bg-[#fc0a7a] hover:text-white transition-all duration-200 px-4 py-[7px] rounded-sm"
               >
                 Advertise With Us

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "@/Sections/Header/Header";
 import Footer from "@/Sections/Footer/Footer";
 import ContactClient from "./ContactClient";
@@ -12,7 +12,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#fdf8f0]">
       <Header />
-      <ContactClient />
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+        <ContactClient />
+      </Suspense>
       <Footer />
     </div>
   );
