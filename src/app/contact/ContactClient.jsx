@@ -10,10 +10,10 @@ import {
 
 // ── Subject Options ─────────────────────────────────────────────────────────
 const SUBJECTS = [
-  { id: "couple",  icon: Users,         label: "Couple Planning" },
-  { id: "vendor",  icon: Building2,     label: "List My Business" },
+  { id: "couple", icon: Users, label: "Couple Planning" },
+  { id: "vendor", icon: Building2, label: "List My Business" },
   { id: "support", icon: MessageSquare, label: "Support" },
-  { id: "other",   icon: HelpCircle,    label: "Other" },
+  { id: "other", icon: HelpCircle, label: "Other" },
 ];
 
 // ── FAQ Data ────────────────────────────────────────────────────────────────
@@ -41,7 +41,10 @@ function FloatInput({ label, type = "text", id, value, onChange, multiline = fal
   const base =
     "peer w-full bg-transparent border-b-2 border-[#ede2cc] pt-6 pb-2 text-[15px] text-[#2C1A0E] placeholder-transparent focus:outline-none focus:border-[#fc0a7a] transition-colors resize-none";
   const labelBase =
-    "absolute left-0 top-6 text-[14px] text-[#9a8070] pointer-events-none transition-all duration-200 peer-placeholder-shown:top-6 peer-placeholder-shown:text-[14px] peer-focus:top-0 peer-focus:text-[11px] peer-focus:text-[#fc0a7a] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wider";
+    "absolute left-0 pointer-events-none transition-all duration-200 " +
+    "top-0 text-[11px] font-bold uppercase tracking-wider text-[#9a8070] " +
+    "peer-placeholder-shown:top-6 peer-placeholder-shown:text-[14px] peer-placeholder-shown:font-normal peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal " +
+    "peer-focus:top-0 peer-focus:text-[11px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wider peer-focus:text-[#fc0a7a]";
 
   return (
     <div className="relative">
@@ -102,10 +105,10 @@ function FaqItem({ q, a }) {
 // ── Main Client Component ───────────────────────────────────────────────────
 export default function ContactClient() {
   const [subject, setSubject] = useState("couple");
-  const [name,    setName]    = useState("");
-  const [email,   setEmail]   = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [sent,    setSent]    = useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -152,7 +155,7 @@ export default function ContactClient() {
           <div className="lg:col-span-2 space-y-6">
 
             {/* Dark info card */}
-            <div className="bg-[#2C1A0E] rounded-[2rem] p-8 relative overflow-hidden">
+            <div className="bg-[#022e43] rounded-[2rem] p-8 relative overflow-hidden">
               {/* Decorative glow */}
               <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#fc0a7a] rounded-full blur-[80px] opacity-40 pointer-events-none" />
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4a853] to-transparent opacity-50" />
@@ -161,9 +164,9 @@ export default function ContactClient() {
 
               <div className="space-y-6 relative z-10">
                 {[
-                  { Icon: MapPin, label: "Our Office", lines: ["No. 45, Galle Road,", "Colombo 03, Sri Lanka"] },
-                  { Icon: Phone, label: "Phone", lines: ["+94 11 234 5678", "+94 77 123 4567"] },
-                  { Icon: Mail, label: "Email", lines: ["hello@ceylonweddings.lk", "support@ceylonweddings.lk"] },
+                  { Icon: MapPin, label: "Our Office", lines: ["252A Galle Rd,", "Colombo 00400"] },
+                  { Icon: Phone, label: "Phone & WhatsApp", lines: ["+94 77 289 0063"] },
+                  { Icon: Mail, label: "Email", lines: ["info@wedhub.lk"] },
                   { Icon: Clock, label: "Hours", lines: ["Mon – Fri: 9:00 AM – 6:00 PM", "Saturday: 9:00 AM – 1:00 PM"] },
                 ].map(({ Icon, label, lines }) => (
                   <div key={label} className="flex items-start gap-4 group">
@@ -201,32 +204,7 @@ export default function ContactClient() {
               </div>
             </div>
 
-            {/* Response time card */}
-            <div className="bg-white border border-[#ede2cc] rounded-[2rem] p-7 flex items-center gap-5">
-              <div className="relative flex-shrink-0">
-                <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center">
-                  <div className="w-3 h-3 rounded-full bg-emerald-500" />
-                </div>
-                <div className="absolute inset-0 rounded-full border-2 border-emerald-200 animate-ping opacity-40" />
-              </div>
-              <div>
-                <p className="text-[16px] font-bold text-[#2C1A0E]">We reply fast</p>
-                <p className="text-[13px] text-[#9a8070]">Average response time under <strong className="text-[#fc0a7a]">2 hours</strong></p>
-              </div>
-            </div>
 
-            {/* Mini stats row */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: "1,500+", label: "Vendors Listed" },
-                { value: "10,000+", label: "Couples Served" },
-              ].map(({ value, label }) => (
-                <div key={label} className="bg-white border border-[#ede2cc] rounded-2xl p-6 text-center">
-                  <p className="text-[2rem] font-serif font-black text-[#fc0a7a] leading-none">{value}</p>
-                  <p className="text-[11px] font-bold text-[#9a8070] uppercase tracking-wider mt-2">{label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── RIGHT: FORM ─────────────────────────────────────── */}
@@ -249,11 +227,10 @@ export default function ContactClient() {
                           key={id}
                           type="button"
                           onClick={() => setSubject(id)}
-                          className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 text-center transition-all duration-200 ${
-                            subject === id
+                          className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 text-center transition-all duration-200 ${subject === id
                               ? "border-[#fc0a7a] bg-[#fc0a7a]/5 text-[#fc0a7a]"
                               : "border-[#ede2cc] text-[#4a3728] hover:border-[#d4a853]"
-                          }`}
+                            }`}
                         >
                           <Icon className="w-5 h-5" />
                           <span className="text-[11px] font-bold leading-tight">{label}</span>
@@ -264,8 +241,8 @@ export default function ContactClient() {
 
                   {/* Floating label inputs */}
                   <div className="grid md:grid-cols-2 gap-8">
-                    <FloatInput id="name"  label="Full Name"      value={name}  onChange={(e) => setName(e.target.value)} />
-                    <FloatInput id="email" label="Email Address"  type="email"  value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <FloatInput id="name" label="Full Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <FloatInput id="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </div>
 
                   <FloatInput id="message" label="Your Message" value={message} onChange={(e) => setMessage(e.target.value)} multiline />
@@ -283,7 +260,7 @@ export default function ContactClient() {
 
                   <p className="text-center text-[12px] text-[#9a8070]">
                     By submitting, you agree to our{" "}
-                    <Link href="/privacy" className="underline underline-offset-2 hover:text-[#fc0a7a] transition-colors">Privacy Policy</Link>.
+                    <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-[#fc0a7a] transition-colors">Privacy Policy</Link>.
                   </p>
                 </form>
               ) : (
