@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   X,
@@ -14,6 +14,7 @@ import {
   Sparkles,
   Camera,
   ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { getCategoryIcon } from "./HeaderIcons";
@@ -94,6 +95,7 @@ export function MobileNav({
   hasMoreCategories,
   session,
 }) {
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
   useEffect(() => {
     if (document.getElementById("__mn-kf")) return;
     const s = document.createElement("style");
@@ -181,6 +183,7 @@ export function MobileNav({
         </div>
 
         {/* ── Group 2: Search ─────────────────────────────────────── */}
+        {/*
         <div
           className="shrink-0 px-5 pb-4"
           style={ga(isMobileMenuOpen, 130, "left")}
@@ -213,6 +216,7 @@ export function MobileNav({
             </button>
           </form>
         </div>
+        */}
 
         {/* ── Group 3: Scroll body ─── */}
         <div
@@ -226,6 +230,7 @@ export function MobileNav({
           }}
         >
           {/* Categories */}
+          {/*
           <section>
             <p className="text-[9px] font-bold uppercase tracking-widest text-[#d4a853] mb-2.5">
               Wedding Categories
@@ -271,10 +276,11 @@ export function MobileNav({
               )}
             </ul>
           </section>
+          */}
 
+          {/*
           <div className="h-px bg-[#ede2cc]" />
 
-          {/* Quick links */}
           <section>
             <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-2.5">
               Quick Links
@@ -295,6 +301,7 @@ export function MobileNav({
               ))}
             </ul>
           </section>
+          */}
 
           {/* Browse / CMS nav links */}
           {cmsData.navLinks?.length > 0 && (
@@ -306,6 +313,70 @@ export function MobileNav({
                 </p>
                 <nav className="flex flex-col gap-1">
                   {cmsData.navLinks.map((link) => {
+                    if (link.label === "CATEGORIES") {
+                      return (
+                        <div key={link.label} className="flex flex-col">
+                          <button
+                            onClick={() => setCategoriesOpen(!categoriesOpen)}
+                            className="flex items-center justify-between px-3.5 py-3 rounded-2xl text-[15px] font-bold text-[#2C1A0E] active:bg-white transition-colors duration-100 tracking-wide w-full text-left"
+                            style={tapStyle}
+                          >
+                            {link.label}
+                            <ChevronDown className={cn("w-[18px] h-[18px] text-zinc-300 flex-shrink-0 transition-transform duration-200", categoriesOpen && "rotate-180")} />
+                          </button>
+                          <div
+                            className={cn(
+                              "grid transition-all duration-300 ease-in-out",
+                              categoriesOpen ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0 mt-0 pointer-events-none"
+                            )}
+                          >
+                            <div className="overflow-hidden">
+                              <div className="pl-4 pr-2 py-2 space-y-1.5">
+                                {cats.slice(0, 5).map((cat, idx) => (
+                                  <Link 
+                                    key={cat.key} 
+                                    href={cat.href} 
+                                    onClick={close}
+                                    className={cn(
+                                      "flex items-center gap-3.5 px-3 py-2.5 rounded-2xl text-[15px] font-semibold text-[#2C1A0E] active:bg-rose-50 active:text-[#fc0a7a] transition-all",
+                                      categoriesOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                                    )}
+                                    style={{ 
+                                      transitionDuration: "350ms", 
+                                      transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+                                      transitionDelay: categoriesOpen ? `${idx * 45}ms` : `${(5 - idx) * 30}ms` 
+                                    }}
+                                  >
+                                    <span className="text-[#fc0a7a] bg-rose-50 w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
+                                      {getCategoryIcon(cat.iconKey, "w-[18px] h-[18px]")}
+                                    </span>
+                                    {cat.label}
+                                  </Link>
+                                ))}
+                                <Link 
+                                  href="/vendors" 
+                                  onClick={close}
+                                  className={cn(
+                                    "flex items-center gap-3.5 px-3 py-3 mt-2 rounded-2xl text-[14px] font-bold text-[#d4a853] active:bg-[#d4a853]/5 transition-all border-t border-[#ede2cc]/40",
+                                    categoriesOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                                  )}
+                                  style={{ 
+                                    transitionDuration: "350ms", 
+                                    transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+                                    transitionDelay: categoriesOpen ? `${5 * 45}ms` : "0ms" 
+                                  }}
+                                >
+                                  <span className="text-[#d4a853] bg-[#d4a853]/10 w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <ArrowRight className="w-[18px] h-[18px]" />
+                                  </span>
+                                  Browse All Categories
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
                     return (
                       <Link
                         key={link.label}
