@@ -8,6 +8,7 @@ import { ArrowLeft, Loader2, LogIn, Mail, Lock } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import Link from "next/link";
+import Image from "next/image";
 import { loginSchema } from "@/lib/validations/auth";
 import { sanitizeObject } from "@/lib/security";
 
@@ -77,11 +78,16 @@ export const LoginForm = memo(function LoginForm() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
 
         {/* Header Texts */}
-        <div className="mb-10 text-center animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
-          <h1 className="text-[28px] font-serif font-bold text-white mb-2 tracking-wide">
-            WedHub
-          </h1>
-          <p className="text-white/60 text-[14px] font-light">
+        <div className="mb-10 text-center animate-fade-in-up flex flex-col items-center" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
+          <Image
+            src="/logo.png"
+            alt="WedHub Logo"
+            width={180}
+            height={60}
+            className="mb-4 object-contain brightness-0 invert opacity-90 drop-shadow-md"
+            priority
+          />
+          <p className="text-white/60 text-[14px] font-light mt-2">
             Sign in to continue your journey
           </p>
         </div>
@@ -89,17 +95,17 @@ export const LoginForm = memo(function LoginForm() {
         <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
           {/* Email */}
           <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
-            <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+            <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
               Email Address
             </label>
             <div className="relative group flex items-center">
-              <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+              <Mail className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
               <input
                 type="email"
                 placeholder="marcus@elegance.com"
                 className={`w-full bg-transparent border-b ${
                   errors.email ? "border-red-400" : "border-white/20"
-                } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                 {...register("email")}
               />
             </div>
@@ -111,7 +117,7 @@ export const LoginForm = memo(function LoginForm() {
           {/* Password */}
           <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: "300ms", animationFillMode: "both" }}>
             <div className="flex items-center justify-between">
-              <label className="block text-[11px] font-bold text-[#d4b986] tracking-widest uppercase">
+              <label className="block text-[11px] font-bold text-[#fc0a7a] tracking-widest uppercase">
                 Password
               </label>
               <Link
@@ -122,13 +128,13 @@ export const LoginForm = memo(function LoginForm() {
               </Link>
             </div>
             <div className="relative group flex items-center">
-              <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#d4b986] w-5 h-5 transition-colors" strokeWidth={1.5} />
+              <Lock className="absolute left-0 text-white/40 group-focus-within:text-[#fc0a7a] w-5 h-5 transition-colors" strokeWidth={1.5} />
               <input
                 type="password"
                 placeholder="••••••••"
                 className={`w-full bg-transparent border-b ${
                   errors.password ? "border-red-400" : "border-white/20"
-                } focus:outline-none focus:border-[#d4b986] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
+                } focus:outline-none focus:border-[#fc0a7a] pb-2 pt-1 pl-8 text-white text-[15px] placeholder:text-white/30 transition-colors`}
                 {...register("password")}
               />
             </div>
@@ -142,7 +148,7 @@ export const LoginForm = memo(function LoginForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-[#d4b986] to-[#b89a61] hover:from-[#e6d0a7] hover:to-[#c4a66e] text-[#1a120e] font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(212,185,134,0.2)] hover:shadow-[0_0_30px_rgba(212,185,134,0.4)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
+              className="w-full bg-gradient-to-r from-[#fc0a7a] to-[#d60866] hover:from-[#ff1f8b] hover:to-[#fc0a7a] text-white font-bold h-[52px] rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(252,10,122,0.3)] hover:shadow-[0_0_30px_rgba(252,10,122,0.5)] uppercase tracking-widest text-[13px] disabled:opacity-70 mt-4"
             >
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
                 <>
@@ -196,7 +202,7 @@ export const LoginForm = memo(function LoginForm() {
         <div className="text-center mt-8 pt-6 border-t border-white/5 animate-fade-in-up" style={{ animationDelay: "700ms", animationFillMode: "both" }}>
           <p className="text-[13px] text-white/60">
             Don't have an account?{" "}
-            <Link href="/register" className="font-semibold text-[#d4b986] hover:text-white transition-colors">
+            <Link href="/register" className="font-semibold text-[#fc0a7a] hover:text-[#ff1f8b] transition-colors">
               Create an account
             </Link>
           </p>
