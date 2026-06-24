@@ -7,6 +7,7 @@ import {
   ChevronLeft, ChevronRight, SlidersHorizontal, X, BadgeCheck
 } from "lucide-react";
 import { AdBanner } from "@/components/ui/AdBanner";
+import { API_BASE_URL } from "@/lib/api";
 
 // ── Mock Vendor Data ───────────────────────────────────────────────────────────
 const VENDORS = [
@@ -170,7 +171,9 @@ function VendorCard({ vendor }) {
 }
 
 // ── Main Client Component ────────────────────────────────────────────────────
-export default function VendorsClient() {
+export default function VendorsClient({ ads = [] }) {
+  const middleAd = ads.length > 0 ? ads[0] : null;
+
   const [search,    setSearch]    = useState("");
   const [cats,      setCats]      = useState([]);
   const [district,  setDistrict]  = useState("All Districts");
@@ -412,14 +415,14 @@ export default function VendorsClient() {
                     <React.Fragment key={v.id}>
                       <VendorCard vendor={v} />
                       {/* Inject Ad after the 3rd card */}
-                      {index === 2 && (
+                      {index === 2 && middleAd && (
                         <div className="col-span-1 sm:col-span-2 lg:col-span-3">
                           <AdBanner 
-                            imageSrc="/ads/resort_banner.png"
-                            title="The Ultimate Romantic Escape"
-                            subtitle="Honeymoon in Paradise"
-                            link="#"
-                            linkText="Book Now"
+                            imageSrc={`${API_BASE_URL.replace('/api/v1', '')}${middleAd.image}`}
+                            title={middleAd.title}
+                            subtitle="Sponsored Advertisement"
+                            link={middleAd.url || "#"}
+                            linkText={middleAd.url ? "Visit Website" : "Discover More"}
                           />
                         </div>
                       )}

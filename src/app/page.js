@@ -37,8 +37,22 @@ const fetchHomeCmsServer = async () => {
   }
 };
 
+const fetchHomeAdsServer = async () => {
+  const url = `${API_BASE_URL}/public/ads?placement=homepage_banner`;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.data || [];
+  } catch (error) {
+    console.error("Failed to fetch home ads on server:", error);
+    return [];
+  }
+};
+
 const page = async () => {
   const cmsData = await fetchHomeCmsServer();
+  const adsData = await fetchHomeAdsServer();
 
   return (
     <Fragment>
@@ -54,16 +68,21 @@ const page = async () => {
         {/* <VendorCategories /> */}
         <HowItWorks />
 
-        {/* Premium Ad Placement */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <AdBanner
-            imageSrc="/ads/jewelry_banner.png"
-            title="The Aurelia & Co. Bridal Collection"
-            subtitle="Fine Bridal Jewelry"
-            link="/vendors"
-            linkText="Explore the Collection"
-          />
-        </section>
+        {/* Dynamic Premium Ad Placement */}
+        {adsData && adsData.length > 0 && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+            {adsData.map((ad) => (
+              <AdBanner
+                key={ad.id}
+                imageSrc={`${API_BASE_URL.replace('/api/v1', '')}${ad.image}`}
+                title={ad.title}
+                subtitle="Sponsored Advertisement"
+                link={ad.url || "#"}
+                linkText={ad.url ? "Visit Website" : "Discover More"}
+              />
+            ))}
+          </section>
+        )}
 
         <MagazinesSection />
 
