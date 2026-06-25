@@ -60,7 +60,7 @@ const page = async () => {
         <Header initialCmsData={cmsData} />
         <ScrollToTop />
 
-        <WeddingHero />
+        <WeddingHero cmsData={cmsData} />
         <TrustMarquee />
         <FeaturedVendors />
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}

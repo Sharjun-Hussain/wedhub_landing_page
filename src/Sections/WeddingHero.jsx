@@ -25,7 +25,16 @@ const STATS = [
   { value: "Elite", label: "LISTINGS", icon: <Star className="w-3.5 h-3.5 fill-[#d4a853] text-[#d4a853]" /> },
 ];
 
-const WeddingHero = memo(function WeddingHero() {
+import { API_BASE_URL } from "@/lib/api";
+
+const WeddingHero = memo(function WeddingHero({ cmsData }) {
+  const hero = cmsData?.data?.hero || {};
+  const heroTitle = hero.title || "Sri Lanka's Best Wedding Marketplace";
+  const heroSubtitle = hero.subtitle || "Welcome to the best wedding marketplace. Discover elite wedding vendors, venues, photographers, decorators, caterers and more across Sri Lanka's most breathtaking locations.";
+  let heroImage = hero.image || "https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2187&auto=format&fit=crop";
+  if (heroImage.startsWith("/")) {
+    heroImage = `${API_BASE_URL.replace('/api/v1', '')}${heroImage}`;
+  }
   const [category, setCategory] = useState("");
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
@@ -64,7 +73,7 @@ const WeddingHero = memo(function WeddingHero() {
         <picture>
           <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=800&auto=format&fit=crop" />
           <img
-            src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2187&auto=format&fit=crop"
+            src={heroImage}
             alt="Wedding Hero Background"
             className="w-full h-full object-cover object-center"
             fetchPriority="high"
@@ -85,19 +94,9 @@ const WeddingHero = memo(function WeddingHero() {
 
         {/* Headline */}
         <div>
-          <h1 className="text-[2.6rem] sm:text-[3.4rem] md:text-[4rem] font-serif font-bold text-white leading-[1.12] tracking-tight drop-shadow-xl">
-            Sri Lanka's
-            <br />
-            <span className="relative">
-              <em className="not-italic italic font-serif"
-                style={{ color: "#d4a853", textShadow: "0 2px 12px rgba(212,168,83,0.35)" }}>
-                Best Wedding Marketplace
-              </em>
-            </span>
-          </h1>
+          <h1 className="text-[2.6rem] sm:text-[3.4rem] md:text-[4rem] font-serif font-bold text-white leading-[1.12] tracking-tight drop-shadow-xl" dangerouslySetInnerHTML={{ __html: heroTitle }} />
           <p className="mt-5 text-[16px] md:text-[18px] text-white/85 font-light leading-relaxed max-w-2xl mx-auto">
-            Welcome to the best wedding marketplace. Discover elite wedding vendors, venues, photographers, decorators,
-            caterers and more across Sri Lanka's most breathtaking locations.
+            {heroSubtitle}
           </p>
         </div>
 
