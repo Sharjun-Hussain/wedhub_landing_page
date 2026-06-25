@@ -61,7 +61,7 @@ const page = async () => {
         <ScrollToTop />
 
         <WeddingHero cmsData={cmsData} />
-        <TrustMarquee />
+        <TrustMarquee cmsData={cmsData} />
         <FeaturedVendors />
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}
         <TrustBar2 />      {/* Design v2 — editorial magazine */}
