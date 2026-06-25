@@ -12,28 +12,24 @@ const STEPS = [
     title: "Search & Discover",
     desc: "Browse 1,500+ verified vendors across all 25 districts. Filter by category, location and budget to build your perfect shortlist.",
     image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000&auto=format&fit=crop",
-    cta: { label: "Browse Vendors", href: "/vendors" },
   },
   {
     num: "02",
     title: "Compare & Shortlist",
     desc: "View full profiles, portfolios and packages. Save favourites with one tap and build your dream wedding team.",
     image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1000&auto=format&fit=crop",
-    cta: { label: "Create Account", href: "/register" },
   },
   {
     num: "03",
     title: "Connect Directly",
     desc: "Message vendors in real-time, request custom quotes and schedule meetings — all within your dashboard.",
     image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1000&auto=format&fit=crop",
-    cta: { label: "Get Started", href: "/register" },
   },
   {
     num: "04",
     title: "Celebrate Your Day",
     desc: "Confirm bookings, track your checklist and enjoy your perfect Sri Lankan wedding day with complete peace of mind.",
     image: "https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=1000&auto=format&fit=crop",
-    cta: { label: "Start Planning", href: "/register" },
   },
 ];
 
@@ -154,14 +150,6 @@ const HowItWorks = memo(function HowItWorks({ cmsData }) {
               <p className="text-[15px] text-white/65 leading-relaxed mb-7 max-w-md">
                 {step.desc}
               </p>
-
-              {/* CTA */}
-              <Link
-                href={step.cta.href}
-                className="inline-flex items-center gap-2 self-start bg-[#d4a853] hover:bg-[#c09240] text-[#1a0a05] font-bold text-[12px] uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-[#d4a853]/20 hover:shadow-[#d4a853]/40"
-              >
-                {step.cta.label} <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
             </div>
           </div>
 
