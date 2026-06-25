@@ -199,11 +199,10 @@ export default function VendorsClient({ ads = [] }) {
   const [search,    setSearch]    = useState("");
   const [cats,      setCats]      = useState([]);
   const [selectedDistricts, setSelectedDistricts] = useState([]);
-  const [city,      setCity]      = useState("");
   const [sort,      setSort]      = useState("Featured");
   const [page,      setPage]      = useState(1);
   const [sideOpen,  setSideOpen]  = useState(false);
-  const [applied,   setApplied]   = useState({ cats: [], districts: [], city: "" });
+  const [applied,   setApplied]   = useState({ cats: [], districts: [] });
 
   const PER_PAGE = 6;
 
@@ -212,16 +211,13 @@ export default function VendorsClient({ ads = [] }) {
       const params = new URLSearchParams(window.location.search);
       const cat = params.get("category");
       const dist = params.get("district");
-      const c = params.get("city");
       
       const newCats = cat ? [cat] : [];
       const newDistricts = dist ? [dist] : [];
-      const newCity = c || "";
 
       setCats(newCats);
       setSelectedDistricts(newDistricts);
-      setCity(newCity);
-      setApplied({ cats: newCats, districts: newDistricts, city: newCity });
+      setApplied({ cats: newCats, districts: newDistricts });
     }
   }, []);
 
@@ -233,14 +229,14 @@ export default function VendorsClient({ ads = [] }) {
     setSelectedDistricts((prev) => prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]);
 
   const applyFilters = () => {
-    setApplied({ cats, districts: selectedDistricts, city });
+    setApplied({ cats, districts: selectedDistricts });
     setPage(1);
     setSideOpen(false);
   };
 
   const clearFilters = () => {
-    setCats([]); setSelectedDistricts([]); setCity(""); setSearch("");
-    setApplied({ cats: [], districts: [], city: "" });
+    setCats([]); setSelectedDistricts([]); setSearch("");
+    setApplied({ cats: [], districts: [] });
     setPage(1);
   };
 
@@ -249,7 +245,6 @@ export default function VendorsClient({ ads = [] }) {
     if (search)                v = v.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
     if (applied.cats.length)   v = v.filter(x => applied.cats.includes(x.category));
     if (applied.districts.length > 0) v = v.filter(x => applied.districts.includes(x.district));
-    if (applied.city)          v = v.filter(x => x.city.toLowerCase().includes(applied.city.toLowerCase()));
     if (sort === "Rating: High to Low")    v = v.sort((a,b) => b.rating - a.rating);
     return v;
   }, [search, applied, sort]);
@@ -261,10 +256,10 @@ export default function VendorsClient({ ads = [] }) {
   const catLabel = applied.cats.length === 1 ? applied.cats[0] : "All Vendors";
   const districtLabel = applied.districts.length === 1 ? ` in ${applied.districts[0]}` : applied.districts.length > 1 ? ` in multiple locations` : " Across Sri Lanka";
 
-  const activeFilterCount = applied.cats.length + applied.districts.length + (applied.city ? 1 : 0);
+  const activeFilterCount = applied.cats.length + applied.districts.length;
 
   // ── Sidebar content (reused on mobile sheet + desktop) ──────────────────
-  const Sidebar = () => (
+  const sidebarContent = (
     <div className="space-y-7">
       {/* Search */}
       <div>
@@ -284,17 +279,14 @@ export default function VendorsClient({ ads = [] }) {
       {/* Category */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Category</p>
-        <div className="space-y-2.5">
+        <div className="space-y-2.5 pr-1">
           {fetchedCategories.map((c) => (
-            <label key={c} className="flex items-center gap-3 cursor-pointer group">
-              <div
-                onClick={() => toggleCat(c)}
-                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${cats.includes(c) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}
-              >
+            <div key={c} onClick={() => toggleCat(c)} className="flex items-center gap-3 cursor-pointer group">
+              <div className={`w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${cats.includes(c) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}>
                 {cats.includes(c) && <span className="text-white text-[10px] font-black">✓</span>}
               </div>
               <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#fc0a7a] transition-colors">{c}</span>
-            </label>
+            </div>
           ))}
         </div>
       </div>
@@ -302,31 +294,16 @@ export default function VendorsClient({ ads = [] }) {
       {/* District */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">District</p>
-        <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2">
+        <div className="space-y-2.5 pr-1">
           {DISTRICTS.filter(d => d !== "All Districts").map((d) => (
-            <label key={d} className="flex items-center gap-3 cursor-pointer group">
-              <div
-                onClick={() => toggleDistrict(d)}
-                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${selectedDistricts.includes(d) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}
-              >
+            <div key={d} onClick={() => toggleDistrict(d)} className="flex items-center gap-3 cursor-pointer group">
+              <div className={`w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${selectedDistricts.includes(d) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}>
                 {selectedDistricts.includes(d) && <span className="text-white text-[10px] font-black">✓</span>}
               </div>
               <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#fc0a7a] transition-colors">{d}</span>
-            </label>
+            </div>
           ))}
         </div>
-      </div>
-
-      {/* City */}
-      <div>
-        <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">City</p>
-        <input
-          type="text"
-          placeholder="Enter city name…"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          className="w-full bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none focus:border-[#fc0a7a] transition-colors"
-        />
       </div>
 
       {/* Buttons */}
@@ -362,7 +339,7 @@ export default function VendorsClient({ ads = [] }) {
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <Sidebar />
+            {sidebarContent}
           </div>
         </div>
       )}
@@ -428,9 +405,9 @@ export default function VendorsClient({ ads = [] }) {
           <div className="flex gap-8 items-start">
 
             {/* Desktop Sidebar */}
-            <aside className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
+            <aside data-lenis-prevent className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
               <h2 className="text-[15px] font-bold text-[#2C1A0E] mb-6">Refine Search</h2>
-              <Sidebar />
+              {sidebarContent}
             </aside>
 
             {/* Cards Grid */}
