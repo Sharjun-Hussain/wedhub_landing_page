@@ -62,7 +62,7 @@ const page = async () => {
 
         <WeddingHero cmsData={cmsData} />
         <TrustMarquee cmsData={cmsData} />
-        <FeaturedVendors />
+        <FeaturedVendors cmsData={cmsData} />
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}
         <TrustBar2 />      {/* Design v2 — editorial magazine */}
         {/* <VendorCategories /> */}

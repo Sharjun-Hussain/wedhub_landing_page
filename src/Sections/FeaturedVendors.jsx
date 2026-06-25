@@ -8,7 +8,9 @@ import {
   BadgeCheck, Heart, MessageCircle
 } from "lucide-react";
 
-// ── Vendor Data (module-level — never re-created on render) ────────────────────
+import { API_BASE_URL } from "@/lib/api";
+
+// ── Vendor Data (module-level — fallback) ────────────────────
 const VENDORS = [
   {
     id: 1,
@@ -112,7 +114,7 @@ const VendorCard = memo(function VendorCard({ vendor }) {
     <div className="fv-card flex-shrink-0 w-[295px] sm:w-[315px] rounded-3xl overflow-hidden bg-white border border-[#ede2cc] cursor-pointer">
       <div className="relative h-[205px] overflow-hidden">
         <Image
-          src={vendor.image}
+          src={vendor.cover_image ? (vendor.cover_image.startsWith('/') ? `${API_BASE_URL.replace('/api/v1', '')}${vendor.cover_image}` : vendor.cover_image) : (vendor.image || "https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2000&auto=format&fit=crop")}
           alt={vendor.name}
           fill
           sizes="(max-width: 640px) 295px, 315px"
@@ -128,9 +130,9 @@ const VendorCard = memo(function VendorCard({ vendor }) {
         </button>
         <div
           className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
-          style={{ backgroundColor: vendor.categoryColor + "dd" }}
+          style={{ backgroundColor: (vendor.categoryColor || "#1a4d8B") + "dd" }}
         >
-          {vendor.category}
+          {vendor.category || "Vendor"}
         </div>
       </div>
 
@@ -144,13 +146,13 @@ const VendorCard = memo(function VendorCard({ vendor }) {
 
         <div className="flex items-center gap-1.5 text-[#9a8070] mb-4">
           <MapPin className="w-3 h-3 flex-shrink-0" />
-          <span className="text-[12px] truncate">{vendor.location} · {vendor.district}</span>
+          <span className="text-[12px] truncate">{vendor.location || "Sri Lanka"} {vendor.district ? `· ${vendor.district}` : ""}</span>
         </div>
 
         <div className="flex items-center justify-end gap-3">
           <div className="flex items-center gap-2 flex-shrink-0">
             <Link
-              href={`/vendors/${vendor.id}#contact`}
+              href={`/vendors/${vendor.slug || vendor.id}#contact`}
               onClick={(e) => e.stopPropagation()}
               className="w-8 h-8 rounded-xl border border-[#ede2cc] flex items-center justify-center text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-colors"
               title="Enquire"
@@ -159,7 +161,7 @@ const VendorCard = memo(function VendorCard({ vendor }) {
               <MessageCircle className="w-3.5 h-3.5" />
             </Link>
             <Link
-              href={`/vendors/${vendor.id}`}
+              href={`/vendors/${vendor.slug || vendor.id}`}
               onClick={(e) => e.stopPropagation()}
               className="h-8 px-4 rounded-xl bg-[#fc0a7a] hover:bg-[#d90066] text-white text-[11px] font-bold transition-colors flex items-center"
             >
@@ -189,13 +191,19 @@ const FilterPill = memo(function FilterPill({ label, active, onClick }) {
 });
 
 // ── Main Section ───────────────────────────────────────────────────────────────
-const FeaturedVendors = memo(function FeaturedVendors() {
+const FeaturedVendors = memo(function FeaturedVendors({ cmsData }) {
   const scrollRef = useRef(null);
   const [active, setActive] = useState("All");
 
+  const title = cmsData?.data?.featured_vendors_title || "Featured Vendors";
+  const subtitle = cmsData?.data?.featured_vendors_subtitle || "Hand-Picked For You";
+  const linkText = cmsData?.data?.featured_vendors_link_text || "View All";
+
+  const vendorList = cmsData?.data?.featured_vendors?.length > 0 ? cmsData.data.featured_vendors : VENDORS;
+
   const filtered = useMemo(
-    () => active === "All" ? VENDORS : VENDORS.filter((v) => v.category.toLowerCase().includes(active.toLowerCase())),
-    [active]
+    () => active === "All" ? vendorList : vendorList.filter((v) => (v.category || "").toLowerCase().includes(active.toLowerCase())),
+    [active, vendorList]
   );
 
   const scrollLeft  = useCallback(() => scrollRef.current?.scrollBy({ left: -350, behavior: "smooth" }), []);
@@ -220,10 +228,10 @@ const FeaturedVendors = memo(function FeaturedVendors() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
           <div>
             <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
-              Hand-Picked For You
+              {subtitle}
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
-              Featured Vendors
+              {title}
             </h2>
             <div className="flex items-center gap-3 mt-3">
               <div className="h-px w-14 bg-[#d4a853]" />
@@ -240,7 +248,7 @@ const FeaturedVendors = memo(function FeaturedVendors() {
               <ChevronRight className="w-4 h-4" />
             </button>
             <Link href="/vendors" className="hidden sm:inline-flex items-center gap-2 text-[13px] font-bold text-[#fc0a7a] hover:text-[#d90066] transition-colors group ml-2">
-              View All
+              {linkText}
               <span className="w-7 h-7 rounded-full border-2 border-[#fc0a7a] flex items-center justify-center group-hover:bg-[#fc0a7a] group-hover:text-white transition-all">
                 <ArrowRight className="w-3 h-3" />
               </span>
