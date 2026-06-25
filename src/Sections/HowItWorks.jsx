@@ -36,18 +36,34 @@ const STEPS = [
   },
 ];
 
-const HowItWorks = memo(function HowItWorks() {
+const HowItWorks = memo(function HowItWorks({ cmsData }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+
+  const subtitle = cmsData?.data?.how_it_works_subtitle || "Simple Process";
+  const titleMain = cmsData?.data?.how_it_works_title_main || "Your Perfect Wedding,";
+  const titleHighlight = cmsData?.data?.how_it_works_title_highlight || "4 Steps Away";
+  
+  let stepsList = STEPS;
+  if (cmsData?.data?.how_it_works_steps) {
+    try {
+      const parsed = JSON.parse(cmsData.data.how_it_works_steps);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        stepsList = parsed;
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
 
   // Auto-advance
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => setActive((p) => (p + 1) % STEPS.length), 3800);
+    const id = setInterval(() => setActive((p) => (p + 1) % stepsList.length), 3800);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, stepsList.length]);
 
-  const step = STEPS[active];
+  const step = stepsList[active];
 
   return (
     <section className="pt-10 pb-16 md:pt-16 md:pb-24 bg-[#fdf8f0]">
@@ -57,11 +73,11 @@ const HowItWorks = memo(function HowItWorks() {
         <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#fc0a7a] bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full mb-4">
-              Simple Process
+              {subtitle}
             </span>
             <h2 className="text-[1.9rem] md:text-[2.6rem] font-serif font-bold text-[#2C1A0E] leading-tight">
-              Your Perfect Wedding,<br />
-              <span className="italic text-[#fc0a7a]">4 Steps Away</span>
+              {titleMain}<br />
+              <span className="italic text-[#fc0a7a]">{titleHighlight}</span>
             </h2>
             <div className="flex items-center gap-3 mt-4">
               <div className="h-px w-14 bg-[#d4a853]" />
@@ -86,7 +102,7 @@ const HowItWorks = memo(function HowItWorks() {
           {/* ── LEFT: Active Step Preview ──────────────────────── */}
           <div className="lg:col-span-3 relative overflow-hidden rounded-3xl min-h-[440px] lg:min-h-[520px]">
             {/* Background image with crossfade */}
-            {STEPS.map((s, i) => (
+            {stepsList.map((s, i) => (
               <Image
                 key={s.num}
                 src={s.image}
@@ -150,7 +166,7 @@ const HowItWorks = memo(function HowItWorks() {
 
           {/* ── RIGHT: Step Selector List ──────────────────────── */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            {STEPS.map((s, i) => (
+            {stepsList.map((s, i) => (
               <button
                 key={s.num}
                 onClick={() => { setActive(i); setPaused(true); }}

@@ -66,7 +66,7 @@ const page = async () => {
         {/* <TrustBar /> */}  {/* Design v1 — dark cinematic */}
         <TrustBar2 />      {/* Design v2 — editorial magazine */}
         {/* <VendorCategories /> */}
-        <HowItWorks />
+        <HowItWorks cmsData={cmsData} />
 
         {/* Dynamic Premium Ad Placement */}
         {adsData && adsData.length > 0 && (
