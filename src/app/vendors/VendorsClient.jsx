@@ -92,13 +92,6 @@ const VENDORS = [
     verified: true,
   },
 ];
-
-const CATEGORIES = [
-  "Wedding Halls", "Photographers", "Makeup Artists", "Decorators",
-  "Caterers", "Wedding Cars", "Jewelry", "Honeymoon Services",
-  "Wedding Cakes", "Videographers", "DJs & Bands", "Invitation Cards",
-  "Bridal Wear", "Florists"
-];
 const DISTRICTS  = [
   "All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Nuwara Eliya",
   "Jaffna", "Trincomalee", "Matara", "Kurunegala", "Anuradhapura",
@@ -106,6 +99,7 @@ const DISTRICTS  = [
   "Kalutara", "Gampaha", "Kegalle", "Polonnaruwa", "Monaragala",
   "Vavuniya", "Mannar", "Mullaitivu", "Kilinochchi", "Puttalam",
 ];
+
 const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Newest"];
 
 // ── Vendor Card ───────────────────────────────────────────────────────────────
@@ -185,14 +179,31 @@ function VendorCard({ vendor }) {
 export default function VendorsClient({ ads = [] }) {
   const middleAd = ads.length > 0 ? ads[0] : null;
 
+  const [fetchedCategories, setFetchedCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchSidebarData = async () => {
+      try {
+        const catRes = await fetch(`${API_BASE_URL}/public/categories`);
+        const catData = await catRes.json();
+        if (catData?.data) {
+          setFetchedCategories(catData.data.map(c => c.name || c.label));
+        }
+      } catch (err) {
+        console.error("Failed to fetch categories", err);
+      }
+    };
+    fetchSidebarData();
+  }, []);
+
   const [search,    setSearch]    = useState("");
   const [cats,      setCats]      = useState([]);
-  const [district,  setDistrict]  = useState("All Districts");
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [city,      setCity]      = useState("");
   const [sort,      setSort]      = useState("Featured");
   const [page,      setPage]      = useState(1);
   const [sideOpen,  setSideOpen]  = useState(false);
-  const [applied,   setApplied]   = useState({ cats: [], district: "All Districts", city: "" });
+  const [applied,   setApplied]   = useState({ cats: [], districts: [], city: "" });
 
   const PER_PAGE = 6;
 
@@ -204,13 +215,13 @@ export default function VendorsClient({ ads = [] }) {
       const c = params.get("city");
       
       const newCats = cat ? [cat] : [];
-      const newDist = dist || "All Districts";
+      const newDistricts = dist ? [dist] : [];
       const newCity = c || "";
 
       setCats(newCats);
-      setDistrict(newDist);
+      setSelectedDistricts(newDistricts);
       setCity(newCity);
-      setApplied({ cats: newCats, district: newDist, city: newCity });
+      setApplied({ cats: newCats, districts: newDistricts, city: newCity });
     }
   }, []);
 
@@ -218,15 +229,18 @@ export default function VendorsClient({ ads = [] }) {
   const toggleCat = (c) =>
     setCats((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
 
+  const toggleDistrict = (d) =>
+    setSelectedDistricts((prev) => prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]);
+
   const applyFilters = () => {
-    setApplied({ cats, district, city });
+    setApplied({ cats, districts: selectedDistricts, city });
     setPage(1);
     setSideOpen(false);
   };
 
   const clearFilters = () => {
-    setCats([]); setDistrict("All Districts"); setCity(""); setSearch("");
-    setApplied({ cats: [], district: "All Districts", city: "" });
+    setCats([]); setSelectedDistricts([]); setCity(""); setSearch("");
+    setApplied({ cats: [], districts: [], city: "" });
     setPage(1);
   };
 
@@ -234,7 +248,7 @@ export default function VendorsClient({ ads = [] }) {
     let v = [...VENDORS];
     if (search)                v = v.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
     if (applied.cats.length)   v = v.filter(x => applied.cats.includes(x.category));
-    if (applied.district !== "All Districts") v = v.filter(x => x.district === applied.district);
+    if (applied.districts.length > 0) v = v.filter(x => applied.districts.includes(x.district));
     if (applied.city)          v = v.filter(x => x.city.toLowerCase().includes(applied.city.toLowerCase()));
     if (sort === "Rating: High to Low")    v = v.sort((a,b) => b.rating - a.rating);
     return v;
@@ -245,9 +259,9 @@ export default function VendorsClient({ ads = [] }) {
 
   // Active category label for title
   const catLabel = applied.cats.length === 1 ? applied.cats[0] : "All Vendors";
-  const districtLabel = applied.district !== "All Districts" ? ` in ${applied.district}` : " Across Sri Lanka";
+  const districtLabel = applied.districts.length === 1 ? ` in ${applied.districts[0]}` : applied.districts.length > 1 ? ` in multiple locations` : " Across Sri Lanka";
 
-  const activeFilterCount = (applied.cats.length > 0 ? 1 : 0) + (applied.district !== "All Districts" ? 1 : 0) + (applied.city ? 1 : 0);
+  const activeFilterCount = applied.cats.length + applied.districts.length + (applied.city ? 1 : 0);
 
   // ── Sidebar content (reused on mobile sheet + desktop) ──────────────────
   const Sidebar = () => (
@@ -271,7 +285,7 @@ export default function VendorsClient({ ads = [] }) {
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Category</p>
         <div className="space-y-2.5">
-          {CATEGORIES.map((c) => (
+          {fetchedCategories.map((c) => (
             <label key={c} className="flex items-center gap-3 cursor-pointer group">
               <div
                 onClick={() => toggleCat(c)}
@@ -288,15 +302,18 @@ export default function VendorsClient({ ads = [] }) {
       {/* District */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">District</p>
-        <div className="relative">
-          <select
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
-            className="w-full appearance-none bg-[#fdf8f0] border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] text-[#2C1A0E] focus:outline-none focus:border-[#fc0a7a] transition-colors cursor-pointer"
-          >
-            {DISTRICTS.map((d) => <option key={d}>{d}</option>)}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9a8070] pointer-events-none" />
+        <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2">
+          {DISTRICTS.filter(d => d !== "All Districts").map((d) => (
+            <label key={d} className="flex items-center gap-3 cursor-pointer group">
+              <div
+                onClick={() => toggleDistrict(d)}
+                className={`w-4.5 h-4.5 w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${selectedDistricts.includes(d) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}
+              >
+                {selectedDistricts.includes(d) && <span className="text-white text-[10px] font-black">✓</span>}
+              </div>
+              <span className="text-[13px] text-[#2C1A0E] group-hover:text-[#fc0a7a] transition-colors">{d}</span>
+            </label>
+          ))}
         </div>
       </div>
 
@@ -411,7 +428,7 @@ export default function VendorsClient({ ads = [] }) {
           <div className="flex gap-8 items-start">
 
             {/* Desktop Sidebar */}
-            <aside className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28">
+            <aside className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
               <h2 className="text-[15px] font-bold text-[#2C1A0E] mb-6">Refine Search</h2>
               <Sidebar />
             </aside>
