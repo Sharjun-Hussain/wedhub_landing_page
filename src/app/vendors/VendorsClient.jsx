@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
   Search, MapPin, MessageCircle, ChevronDown,
-  ChevronLeft, ChevronRight, SlidersHorizontal, X, BadgeCheck
+  ChevronLeft, ChevronRight, SlidersHorizontal, X, BadgeCheck, Phone, Facebook, Instagram
 } from "lucide-react";
 import { AdBanner } from "@/components/ui/AdBanner";
 import { API_BASE_URL } from "@/lib/api";
@@ -106,7 +106,7 @@ const DISTRICTS  = [
   "Kalutara", "Gampaha", "Kegalle", "Polonnaruwa", "Monaragala",
   "Vavuniya", "Mannar", "Mullaitivu", "Kilinochchi", "Puttalam",
 ];
-const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Price: Low to High", "Price: High to Low", "Newest"];
+const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Newest"];
 
 // ── Vendor Card ───────────────────────────────────────────────────────────────
 function VendorCard({ vendor }) {
@@ -139,18 +139,29 @@ function VendorCard({ vendor }) {
           {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0 mt-0.5" />}
         </div>
 
-        <div className="flex items-center gap-1 text-[#9a8070] mb-3">
+        <div className="flex items-center gap-1 text-[#9a8070] mb-2">
           <MapPin className="w-3 h-3 flex-shrink-0" />
-          <span className="text-[12px]">{vendor.city}</span>
+          <span className="text-[12px]">{vendor.location || vendor.city}</span>
         </div>
 
-        <p className="text-[13px] text-[#4a3728]/70 leading-relaxed line-clamp-2 flex-1 mb-4">
+        <p className="text-[13px] text-[#4a3728]/70 leading-relaxed line-clamp-2 flex-1 mb-3">
           {vendor.desc}
         </p>
 
-        {/* Price */}
-        <div className="text-[12px] font-bold text-[#fc0a7a] mb-4">
-          From {vendor.price}
+        {/* Phone and Socials */}
+        <div className="flex items-center justify-between mt-auto mb-4">
+          <div className="flex items-center gap-1.5 text-[#2C1A0E]">
+            <Phone className="w-3.5 h-3.5 flex-shrink-0 text-[#fc0a7a]" />
+            <span className="text-[12px] font-semibold">{vendor.phone || "+94 77 000 0000"}</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <a href={vendor.facebook || "#"} target="_blank" rel="noopener noreferrer" className="text-[#9a8070] hover:text-[#1877F2] transition-colors">
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a href={vendor.instagram || "#"} target="_blank" rel="noopener noreferrer" className="text-[#9a8070] hover:text-[#E4405F] transition-colors">
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
         {/* Actions */}
@@ -226,8 +237,6 @@ export default function VendorsClient({ ads = [] }) {
     if (applied.district !== "All Districts") v = v.filter(x => x.district === applied.district);
     if (applied.city)          v = v.filter(x => x.city.toLowerCase().includes(applied.city.toLowerCase()));
     if (sort === "Rating: High to Low")    v = v.sort((a,b) => b.rating - a.rating);
-    if (sort === "Price: Low to High")     v = v.sort((a,b) => parseInt(a.price.replace(/\D/g,"")) - parseInt(b.price.replace(/\D/g,"")));
-    if (sort === "Price: High to Low")     v = v.sort((a,b) => parseInt(b.price.replace(/\D/g,"")) - parseInt(a.price.replace(/\D/g,"")));
     return v;
   }, [search, applied, sort]);
 
