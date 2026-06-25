@@ -4,6 +4,7 @@ import React, { useEffect, useState, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
+import { API_BASE_URL } from "@/lib/api";
 
 const STEPS = [
   {
@@ -105,7 +106,7 @@ const HowItWorks = memo(function HowItWorks({ cmsData }) {
             {stepsList.map((s, i) => (
               <Image
                 key={s.num}
-                src={s.image}
+                src={s.image?.startsWith('/') ? `${API_BASE_URL.replace('/api/v1', '')}${s.image}` : s.image}
                 alt={s.title}
                 fill
                 priority={i === 0}
@@ -179,7 +180,7 @@ const HowItWorks = memo(function HowItWorks({ cmsData }) {
                 {/* Thumbnail strip — only when active */}
                 {active === i && (
                   <div className="absolute top-0 right-0 w-24 h-full opacity-30 overflow-hidden rounded-r-2xl">
-                    <Image src={s.image} alt="" fill sizes="96px" className="object-cover" />
+                    <Image src={s.image?.startsWith('/') ? `${API_BASE_URL.replace('/api/v1', '')}${s.image}` : s.image} alt="" fill sizes="96px" className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2C1A0E] to-transparent" />
                   </div>
                 )}
