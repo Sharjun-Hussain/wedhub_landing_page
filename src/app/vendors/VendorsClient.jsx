@@ -174,6 +174,18 @@ export default function VendorsClient({ ads = [] }) {
     setPage(1);
   };
 
+  const removeAppliedCat = (c) => {
+    setCats(prev => prev.filter(x => x !== c));
+    setApplied(prev => ({ ...prev, cats: prev.cats.filter(x => x !== c) }));
+    setPage(1);
+  };
+
+  const removeAppliedDistrict = (d) => {
+    setSelectedDistricts(prev => prev.filter(x => x !== d));
+    setApplied(prev => ({ ...prev, districts: prev.districts.filter(x => x !== d) }));
+    setPage(1);
+  };
+
   const filtered = useMemo(() => {
     let v = [...vendorsData];
     if (search)                v = v.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
@@ -319,9 +331,42 @@ export default function VendorsClient({ ads = [] }) {
             </div>
           </div>
 
-          <p className="text-[13px] text-[#9a8070] mb-6">
-            Showing <strong className="text-[#2C1A0E]">{filtered.length}</strong> vendors
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4 border-b border-[#ede2cc]/50 pb-4">
+            <p className="text-[13px] text-[#9a8070] flex-shrink-0">
+              Showing <strong className="text-[#2C1A0E]">{filtered.length}</strong> vendors
+            </p>
+
+            {(applied.cats.length > 0 || applied.districts.length > 0 || search) && (
+              <div className="flex flex-wrap gap-2 items-center justify-start sm:justify-end">
+                <span className="text-[11px] font-black text-[#4a3728] uppercase tracking-widest mr-1 hidden lg:block">Active Filters:</span>
+                
+                {search && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#ede2cc] text-[#2C1A0E] text-[12px] font-medium shadow-sm">
+                    "{search}"
+                    <button onClick={() => setSearch("")} className="hover:text-[#fc0a7a] transition-colors"><X className="w-3.5 h-3.5" /></button>
+                  </span>
+                )}
+                
+                {applied.cats.map(c => (
+                  <span key={c} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fc0a7a]/10 border border-[#fc0a7a]/20 text-[#fc0a7a] text-[12px] font-medium shadow-sm">
+                    {c}
+                    <button onClick={() => removeAppliedCat(c)} className="hover:text-[#d90066] transition-colors"><X className="w-3.5 h-3.5" /></button>
+                  </span>
+                ))}
+                
+                {applied.districts.map(d => (
+                  <span key={d} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d4a853]/10 border border-[#d4a853]/30 text-[#2C1A0E] text-[12px] font-medium shadow-sm">
+                    {d}
+                    <button onClick={() => removeAppliedDistrict(d)} className="hover:text-[#4a3728] transition-colors"><X className="w-3.5 h-3.5" /></button>
+                  </span>
+                ))}
+                
+                <button onClick={clearFilters} className="text-[10px] font-black text-[#fc0a7a] uppercase tracking-widest ml-1 hover:underline">
+                  Clear All
+                </button>
+              </div>
+            )}
+          </div>
 
           <div className="flex gap-8 items-start">
             <aside data-lenis-prevent className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">

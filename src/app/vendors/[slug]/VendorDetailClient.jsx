@@ -28,7 +28,16 @@ export default function VendorDetailClient({ productData }) {
     description = "<p>No description provided.</p>",
     images = [],
     category = { name: "Wedding Venue" },
+    contact_person_name,
+    contact_person_designation,
+    contact_person_image,
+    contact_phone,
   } = productData || {};
+
+  const backendUrl = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : 'http://localhost:5000';
+  const displayContactName = contact_person_name || "Sales Team";
+  const displayContactDesignation = contact_person_designation || "Vendor Representative";
+  const displayContactImage = contact_person_image ? `${backendUrl}${contact_person_image}` : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop";
 
   // Form state
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -212,33 +221,6 @@ export default function VendorDetailClient({ productData }) {
               />
             </section>
 
-            {/* Amenities & Offerings */}
-            <section>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#fc0a7a]/30" />
-                <h2 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E]">Amenities & Offerings</h2>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  { icon: Utensils, title: "In-House Catering", desc: "Award-winning culinary team offering global and local delicacies." },
-                  { icon: Bed, title: "Bridal Suite", desc: "Complimentary luxury suite for preparation and overnight stay." },
-                  { icon: TreePine, title: "Outdoor Spaces", desc: "Manicured ocean-front gardens for ceremonies and cocktails." },
-                  { icon: Car, title: "Valet Service", desc: "Seamless arrival experience for all your distinguished guests." },
-                ].map((amenity, idx) => {
-                  const Icon = amenity.icon;
-                  return (
-                    <div key={idx} className="group bg-white p-6 border border-[#ede2cc] rounded-2xl hover:border-[#d4a853] transition-all duration-300 hover:shadow-lg hover:shadow-[#d4a853]/10 hover:-translate-y-1 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#d4a853]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="w-12 h-12 rounded-xl bg-[#fdf8f0] border border-[#ede2cc] flex items-center justify-center text-[#9a8070] group-hover:text-[#fc0a7a] group-hover:border-[#fc0a7a]/30 group-hover:bg-[#fc0a7a]/5 transition-all duration-300 mb-5 relative z-10">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <p className="text-[15px] font-bold text-[#2C1A0E] mb-2 relative z-10">{amenity.title}</p>
-                      <p className="text-[13px] text-[#9a8070] leading-relaxed group-hover:text-[#4a3728] transition-colors relative z-10">{amenity.desc}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
 
             {/* Location */}
             <section>
@@ -264,23 +246,27 @@ export default function VendorDetailClient({ productData }) {
           <div className="lg:sticky lg:top-32 bg-white border border-[#ede2cc] rounded-[2rem] p-8 shadow-2xl shadow-[#2C1A0E]/5">
             <div className="flex items-center gap-4 mb-8">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" 
-                alt="Roshan Silva"
+                src={displayContactImage} 
+                alt={displayContactName}
                 className="w-14 h-14 rounded-full object-cover"
               />
               <div>
-                <p className="font-serif font-bold text-[#2C1A0E] text-[18px]">Roshan Silva</p>
-                <p className="text-[12px] text-[#9a8070] uppercase tracking-wider font-bold">Director of Events</p>
+                <p className="font-serif font-bold text-[#2C1A0E] text-[18px]">{displayContactName}</p>
+                <p className="text-[12px] text-[#9a8070] uppercase tracking-wider font-bold">{displayContactDesignation}</p>
               </div>
             </div>
 
             <div className="space-y-3 mb-8 pb-8 border-b border-[#f0e6d3]">
-              <button className="w-full flex items-center justify-center gap-2 bg-[#6a5413] hover:bg-[#4a3709] text-white py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
-                <MessageCircle className="w-4 h-4" /> WhatsApp Artisan
-              </button>
-              <button className="w-full flex items-center justify-center gap-2 border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] text-[#4a3728] py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
-                <Phone className="w-4 h-4" /> Direct Call
-              </button>
+              {contact_phone && (
+                <a href={`https://wa.me/${contact_phone.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-[#6a5413] hover:bg-[#4a3709] text-white py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
+                  <MessageCircle className="w-4 h-4" /> WhatsApp Artisan
+                </a>
+              )}
+              {contact_phone && (
+                <a href={`tel:${contact_phone}`} className="w-full flex items-center justify-center gap-2 border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] text-[#4a3728] py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
+                  <Phone className="w-4 h-4" /> Direct Call
+                </a>
+              )}
             </div>
 
             {!sent ? (
