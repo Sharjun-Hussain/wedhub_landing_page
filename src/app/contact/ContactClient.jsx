@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import DOMPurify from "isomorphic-dompurify";
+import { submitContact } from "@/lib/api";
+import { Loader2 } from "lucide-react";
 import {
   Mail, MapPin, Phone, Send, Clock,
   Instagram, Facebook, ArrowRight, CheckCircle,
@@ -140,8 +142,10 @@ export default function ContactClient() {
   const [subject, setSubject] = useState("couple");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const sub = searchParams.get("subject");
@@ -150,9 +154,27 @@ export default function ContactClient() {
     if (msg) setMessage(sanitizeInput(msg));
   }, [searchParams]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    if (!name || !email || !message) return; // Simple validation
+    
+    setIsLoading(true);
+    try {
+      const result = await submitContact({ name, email, phone, subject, message });
+      if (result.success || result.status === "success") {
+        setSent(true);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+      } else {
+        alert(result.message || "Failed to send message");
+      }
+    } catch (error) {
+      alert("Something went wrong while sending your message.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -285,16 +307,19 @@ export default function ContactClient() {
                     <FloatInput id="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(sanitizeInput(e.target.value))} />
                   </div>
 
+                  <FloatInput id="phone" label="Phone Number (Optional)" type="tel" value={phone} onChange={(e) => setPhone(sanitizeInput(e.target.value))} />
+
                   <FloatInput id="message" label="Your Message" value={message} onChange={(e) => setMessage(sanitizeInput(e.target.value))} multiline />
 
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="group w-full flex items-center justify-between bg-[#2C1A0E] hover:bg-[#fc0a7a] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10 hover:shadow-[#fc0a7a]/20"
+                    disabled={isLoading}
+                    className="group w-full flex items-center justify-between bg-[#2C1A0E] hover:bg-[#fc0a7a] text-white font-bold text-[13px] uppercase tracking-widest px-8 py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-[#2C1A0E]/10 hover:shadow-[#fc0a7a]/20 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span>Send Message</span>
+                    <span>{isLoading ? "Sending..." : "Send Message"}</span>
                     <span className="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-all group-hover:scale-110">
-                      <Send className="w-4 h-4" />
+                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     </span>
                   </button>
 
