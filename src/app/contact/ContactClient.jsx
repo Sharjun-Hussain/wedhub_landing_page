@@ -20,8 +20,8 @@ const SUBJECTS = [
   { id: "other", icon: HelpCircle, label: "Other" },
 ];
 
-// ── FAQ Data ────────────────────────────────────────────────────────────────
-const FAQS = [
+// ── FAQ Data (Default, will be overwritten by API) ──────────────────────────
+const DEFAULT_FAQS = [
   {
     q: "How do I list my wedding business on WedHub?",
     a: "Simply fill out the contact form selecting 'List My Business' or visit our vendor signup page. Our team will review your portfolio and get back to you within 24 hours.",
@@ -147,12 +147,30 @@ export default function ContactClient() {
   const [sent, setSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [faqs, setFaqs] = useState(DEFAULT_FAQS);
+
   useEffect(() => {
     const sub = searchParams.get("subject");
     if (sub) setSubject(sanitizeInput(sub));
     const msg = searchParams.get("message");
     if (msg) setMessage(sanitizeInput(msg));
   }, [searchParams]);
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      try {
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.wedhub.lk/api/v1";
+        const res = await fetch(`${API_BASE_URL}/public/cms/contact`);
+        const data = await res.json();
+        if (data.success && data.data?.faqs) {
+          setFaqs(data.data.faqs);
+        }
+      } catch (err) {
+        console.error("Failed to load FAQs:", err);
+      }
+    };
+    fetchFaqs();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -363,7 +381,7 @@ export default function ContactClient() {
             </h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-4">
-            {FAQS.map((f) => <FaqItem key={f.q} {...f} />)}
+            {faqs.map((f, i) => <FaqItem key={i} {...f} />)}
           </div>
         </div>
       </div>
