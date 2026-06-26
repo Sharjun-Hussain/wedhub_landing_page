@@ -243,7 +243,7 @@ const ContactForm = memo(function ContactForm() {
           <Input
             label="Full Name"
             name="name"
-            placeholder="e.g. Ajm Afees"
+            placeholder="e.g. Jogn Doe"
             value={formData.name}
             onChange={handleChange}
             error={errors.name}
@@ -252,7 +252,7 @@ const ContactForm = memo(function ContactForm() {
             label="Email Address"
             name="email"
             type="email"
-            placeholder="e.g. mim.insath007@gmail.com"
+            placeholder="e.g. john.doe@gmail.com"
             icon={Mail}
             value={formData.email}
             onChange={handleChange}
