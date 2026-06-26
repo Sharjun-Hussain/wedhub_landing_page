@@ -6,10 +6,15 @@ import {
   MapPin, Share2, Heart, ExternalLink,
   MessageCircle, Phone, ArrowUpRight,
   X, ChevronLeft, ChevronRight, Image as ImageIcon,
-  Utensils, Bed, TreePine, Car
+  Utensils, Bed, TreePine, Car, Calendar as CalendarIcon
 } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize"; 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
@@ -40,7 +45,7 @@ export default function VendorDetailClient({ productData }) {
   const displayContactImage = contact_person_image ? `${backendUrl}${contact_person_image}` : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop";
 
   // Form state
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, control, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "", email: "", phone: "", date: "", message: ""
@@ -282,11 +287,35 @@ export default function VendorDetailClient({ productData }) {
                   </div>
                   
                   <div>
-                    <input
-                      type="text"
-                      placeholder="Estimated Wedding Date"
-                      className={`w-full border-b bg-transparent pb-3 text-[14px] text-[#2C1A0E] placeholder:text-[#9a8070] focus:outline-none transition-colors ${errors.date ? 'border-red-500' : 'border-[#ede2cc] focus:border-[#fc0a7a]'}`}
-                      {...register("date")}
+                    <Controller
+                      control={control}
+                      name="date"
+                      render={({ field }) => (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full justify-start text-left font-normal bg-transparent border-0 border-b border-[#ede2cc] rounded-none px-0 pb-3 hover:bg-transparent hover:border-[#fc0a7a] transition-colors shadow-none focus-visible:ring-0 data-[state=open]:border-[#fc0a7a]",
+                                !field.value ? "text-[#9a8070]" : "text-[#2C1A0E]",
+                                errors.date && "border-red-500 hover:border-red-500 data-[state=open]:border-red-500"
+                              )}
+                            >
+                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              {field.value ? format(new Date(field.value), "PPP") : <span className="text-[14px]">Estimated Wedding Date</span>}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0 border-[#ede2cc]" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={field.value ? new Date(field.value) : undefined}
+                              onSelect={(date) => field.onChange(date ? format(date, "yyyy-MM-dd") : "")}
+                              initialFocus
+                              className="[&_button[data-selected-single=true]]:bg-[#fc0a7a] [&_button[data-selected-single=true]]:text-white [&_button[data-selected-single=true]]:hover:bg-[#fc0a7a]/90 [&_button:hover:not([data-selected-single=true])]:bg-[#fc0a7a]/10"
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      )}
                     />
                     {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date.message}</p>}
                   </div>
