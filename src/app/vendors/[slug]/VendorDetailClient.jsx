@@ -209,17 +209,7 @@ export default function VendorDetailClient({ productData }) {
           {/* LEFT COLUMN: Details */}
           <div className="lg:col-span-2 space-y-16">
             
-            {/* The Experience */}
-            <section>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#fc0a7a]/30" />
-                <h2 className="text-[1.8rem] font-serif font-bold text-[#2C1A0E]">The Experience</h2>
-              </div>
-              <div
-                className="prose prose-p:text-[15px] prose-p:leading-relaxed prose-p:text-[#4a3728]/80 max-w-none"
-                dangerouslySetInnerHTML={{ __html: sanitizeHtml(description) }}
-              />
-            </section>
+
 
 
             {/* Location */}
@@ -254,19 +244,6 @@ export default function VendorDetailClient({ productData }) {
                 <p className="font-serif font-bold text-[#2C1A0E] text-[18px]">{displayContactName}</p>
                 <p className="text-[12px] text-[#9a8070] uppercase tracking-wider font-bold">{displayContactDesignation}</p>
               </div>
-            </div>
-
-            <div className="space-y-3 mb-8 pb-8 border-b border-[#f0e6d3]">
-              {contact_phone && (
-                <a href={`https://wa.me/${contact_phone.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-[#6a5413] hover:bg-[#4a3709] text-white py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
-                  <MessageCircle className="w-4 h-4" /> WhatsApp Artisan
-                </a>
-              )}
-              {contact_phone && (
-                <a href={`tel:${contact_phone}`} className="w-full flex items-center justify-center gap-2 border border-[#ede2cc] hover:border-[#fc0a7a] hover:text-[#fc0a7a] text-[#4a3728] py-3.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-colors">
-                  <Phone className="w-4 h-4" /> Direct Call
-                </a>
-              )}
             </div>
 
             {!sent ? (
