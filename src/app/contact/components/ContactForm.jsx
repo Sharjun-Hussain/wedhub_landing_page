@@ -77,6 +77,7 @@ const ContactForm = memo(function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -140,6 +141,8 @@ const ContactForm = memo(function ContactForm() {
         cleanVal = sanitizeText(value, 100);
       } else if (name === "email") {
         cleanVal = sanitizeText(value, 100).toLowerCase().replace(/\s/g, "");
+      } else if (name === "phone") {
+        cleanVal = sanitizeText(value, 20).replace(/[^\d+()\s-]/g, "");
       } else if (name === "message") {
         cleanVal = sanitizeText(value, 2000);
       }
@@ -167,6 +170,11 @@ const ContactForm = memo(function ContactForm() {
       newErrors.email = "Email address is required";
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
+    }
+
+    const trimmedPhone = formData.phone.trim();
+    if (trimmedPhone && trimmedPhone.length < 9) {
+      newErrors.phone = "Please enter a valid phone number";
     }
 
     if (!trimmedSubject) {
@@ -251,6 +259,16 @@ const ContactForm = memo(function ContactForm() {
             error={errors.email}
           />
         </div>
+
+        <Input
+          label="Phone Number (Optional)"
+          name="phone"
+          type="tel"
+          placeholder="e.g. +94 77 000 0000"
+          value={formData.phone}
+          onChange={handleChange}
+          error={errors.phone}
+        />
 
         <Input
           label="Subject"

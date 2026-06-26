@@ -9,89 +9,6 @@ import {
 import { AdBanner } from "@/components/ui/AdBanner";
 import { API_BASE_URL } from "@/lib/api";
 
-// ── Mock Vendor Data ───────────────────────────────────────────────────────────
-const VENDORS = [
-  {
-    id: 1, name: "The Shangri-La Grand", initials: "SL",
-    category: "Wedding Halls",
-    district: "Colombo", city: "Colombo 01",
-    rating: 4.9, price: "LKR 350,000",
-    desc: "Experience unparalleled luxury and breathtaking ocean views in our iconic grand ballroom, seating up to 500 guests.",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop",
-    tags: ["Ballroom", "Ocean View"],
-    verified: true,
-  },
-  {
-    id: 2, name: "Mount Lavinia Hotel", initials: "ML",
-    category: "Wedding Halls",
-    district: "Colombo", city: "Mount Lavinia, Colombo",
-    rating: 4.8, price: "LKR 280,000",
-    desc: "Heritage and romance intertwine at this iconic colonial venue. Offering private beach access and majestic terrace views for a timeless celebration.",
-    image: "https://images.unsplash.com/photo-1478146059778-26028b07395a?q=80&w=800&auto=format&fit=crop",
-    tags: ["Beach", "Heritage"],
-    verified: true,
-  },
-  {
-    id: 3, name: "Waters Edge", initials: "W",
-    category: "Wedding Halls",
-    district: "Colombo", city: "Battaramulla, Colombo",
-    rating: 4.7, price: "LKR 220,000",
-    desc: "Surrounded by tranquil waterways and manicured gardens, providing a versatile setting for intimate and grand celebrations alike.",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop",
-    tags: ["Garden", "Lakeside"],
-    verified: true,
-  },
-  {
-    id: 4, name: "Cinnamon Grand", initials: "CG",
-    category: "Wedding Halls",
-    district: "Colombo", city: "Colombo 03",
-    rating: 4.9, price: "LKR 400,000",
-    desc: "The epitome of classic grandeur in the heart of the city, offering opulent ballroom settings and world-class hospitality.",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop",
-    tags: ["Grand", "City"],
-    verified: true,
-  },
-  {
-    id: 5, name: "Kalindu Photography", initials: "KP",
-    category: "Photographers",
-    district: "Kandy", city: "Kandy",
-    rating: 5.0, price: "LKR 85,000",
-    desc: "Award-winning wedding photographer capturing timeless Sri Lankan moments with cinematic precision and artistic flair.",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop",
-    tags: ["Cinematic", "Drone"],
-    verified: true,
-  },
-  {
-    id: 6, name: "Nelum Bridal Studio", initials: "NB",
-    category: "Bridal Wear",
-    district: "Galle", city: "Galle",
-    rating: 4.8, price: "LKR 45,000",
-    desc: "Bespoke bridal couture crafted with the finest fabrics, blending traditional Sri Lankan elegance with contemporary design.",
-    image: "https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=800&auto=format&fit=crop",
-    tags: ["Saree", "Gown"],
-    verified: false,
-  },
-  {
-    id: 7, name: "WedHub Bloom Florists", initials: "CB",
-    category: "Florists",
-    district: "Colombo", city: "Colombo 05",
-    rating: 4.9, price: "LKR 35,000",
-    desc: "Exquisite floral arrangements sourced from the finest local and imported blooms, transforming venues into breathtaking botanical dreams.",
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
-    tags: ["Floral", "Decor"],
-    verified: true,
-  },
-  {
-    id: 8, name: "Paradise Beach Resort", initials: "PB",
-    category: "Wedding Halls",
-    district: "Galle", city: "Bentota",
-    rating: 4.9, price: "LKR 180,000",
-    desc: "A tropical paradise offering beachfront ceremonies and receptions with stunning Indian Ocean sunsets as your backdrop.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
-    tags: ["Beachfront", "Tropical"],
-    verified: true,
-  },
-];
 const DISTRICTS  = [
   "All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Nuwara Eliya",
   "Jaffna", "Trincomalee", "Matara", "Kurunegala", "Anuradhapura",
@@ -109,7 +26,7 @@ function VendorCard({ vendor }) {
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
         <img
-          src={vendor.image}
+          src={vendor.cover_image ? (vendor.cover_image.startsWith('/') ? `${API_BASE_URL.replace('/api/v1', '')}${vendor.cover_image}` : vendor.cover_image) : "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop"}
           alt={vendor.name}
           loading="lazy"
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -120,17 +37,17 @@ function VendorCard({ vendor }) {
         </span>
         {/* Initials circle */}
         <div className="absolute bottom-3 left-3 w-9 h-9 rounded-full bg-[#d4a853] text-[#1a0a05] text-[11px] font-black flex items-center justify-center border-2 border-white shadow">
-          {vendor.initials}
+          {vendor.name ? vendor.name.substring(0, 2).toUpperCase() : "WH"}
         </div>
       </div>
 
       {/* Info */}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start gap-1.5 mb-1">
-          <h3 className="text-[16px] font-bold text-[#2C1A0E] leading-snug flex-1 hover:text-[#fc0a7a] transition-colors">
+          <h3 className="text-[16px] font-bold text-[#2C1A0E] leading-snug flex-1 hover:text-[#fc0a7a] transition-colors truncate">
             {vendor.name}
           </h3>
-          {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0 mt-0.5" />}
+          {(vendor.verified || vendor.status === 'Active') && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0 mt-0.5" />}
         </div>
 
         <div className="flex items-center gap-1 text-[#9a8070] mb-2">
@@ -139,14 +56,14 @@ function VendorCard({ vendor }) {
         </div>
 
         <p className="text-[13px] text-[#4a3728]/70 leading-relaxed line-clamp-2 flex-1 mb-3">
-          {vendor.desc}
+          {vendor.description || "No description provided."}
         </p>
 
         {/* Phone and Socials */}
         <div className="flex items-center justify-between mt-auto mb-4">
           <div className="flex items-center gap-1.5 text-[#2C1A0E]">
             <Phone className="w-3.5 h-3.5 flex-shrink-0 text-[#fc0a7a]" />
-            <span className="text-[12px] font-semibold">{vendor.phone || "+94 77 000 0000"}</span>
+            <span className="text-[12px] font-semibold">{vendor.contact_phone || "Contact to view"}</span>
           </div>
           <div className="flex items-center gap-2.5">
             <a href={vendor.facebook || "#"} target="_blank" rel="noopener noreferrer" className="text-[#9a8070] hover:text-[#1877F2] transition-colors">
@@ -180,6 +97,8 @@ export default function VendorsClient({ ads = [] }) {
   const middleAd = ads.length > 0 ? ads[0] : null;
 
   const [fetchedCategories, setFetchedCategories] = useState([]);
+  const [vendorsData, setVendorsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSidebarData = async () => {
@@ -193,7 +112,23 @@ export default function VendorsClient({ ads = [] }) {
         console.error("Failed to fetch categories", err);
       }
     };
+
+    const fetchVendors = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/public/vendors`);
+        const json = await res.json();
+        if (json.success) {
+          const activeVendors = json.data.filter(v => v.status === 'Active');
+          setVendorsData(activeVendors);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchSidebarData();
+    fetchVendors();
   }, []);
 
   const [search,    setSearch]    = useState("");
@@ -221,7 +156,6 @@ export default function VendorsClient({ ads = [] }) {
     }
   }, []);
 
-  // Toggle a category checkbox
   const toggleCat = (c) =>
     setCats((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
 
@@ -241,27 +175,24 @@ export default function VendorsClient({ ads = [] }) {
   };
 
   const filtered = useMemo(() => {
-    let v = [...VENDORS];
+    let v = [...vendorsData];
     if (search)                v = v.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
     if (applied.cats.length)   v = v.filter(x => applied.cats.includes(x.category));
     if (applied.districts.length > 0) v = v.filter(x => applied.districts.includes(x.district));
     if (sort === "Rating: High to Low")    v = v.sort((a,b) => b.rating - a.rating);
     return v;
-  }, [search, applied, sort]);
+  }, [vendorsData, search, applied, sort]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const paged = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
-  // Active category label for title
   const catLabel = applied.cats.length === 1 ? applied.cats[0] : "All Vendors";
   const districtLabel = applied.districts.length === 1 ? ` in ${applied.districts[0]}` : applied.districts.length > 1 ? ` in multiple locations` : " Across Sri Lanka";
 
   const activeFilterCount = applied.cats.length + applied.districts.length;
 
-  // ── Sidebar content (reused on mobile sheet + desktop) ──────────────────
   const sidebarContent = (
     <div className="space-y-7">
-      {/* Search */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Search Vendors</p>
         <div className="relative">
@@ -276,7 +207,6 @@ export default function VendorsClient({ ads = [] }) {
         </div>
       </div>
 
-      {/* Category */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">Category</p>
         <div className="space-y-2.5 pr-1">
@@ -291,7 +221,6 @@ export default function VendorsClient({ ads = [] }) {
         </div>
       </div>
 
-      {/* District */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">District</p>
         <div className="space-y-2.5 pr-1">
@@ -306,7 +235,6 @@ export default function VendorsClient({ ads = [] }) {
         </div>
       </div>
 
-      {/* Buttons */}
       <div className="space-y-3 pt-2">
         <button
           onClick={applyFilters}
@@ -328,7 +256,6 @@ export default function VendorsClient({ ads = [] }) {
 
   return (
     <>
-      {/* ── Mobile filter sheet ────────────────────────────────────────── */}
       {sideOpen && (
         <div className="fixed inset-0 z-50 flex">
           <div className="flex-1 bg-black/40 backdrop-blur-sm" onClick={() => setSideOpen(false)} />
@@ -347,7 +274,6 @@ export default function VendorsClient({ ads = [] }) {
       <main className="pt-24 md:pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* ── Breadcrumb ──────────────────────────────────────────── */}
           <div className="flex items-center gap-2 text-[12px] text-[#9a8070] mb-6">
             <Link href="/"       className="hover:text-[#fc0a7a] transition-colors">Home</Link>
             <span>/</span>
@@ -358,7 +284,6 @@ export default function VendorsClient({ ads = [] }) {
             </>}
           </div>
 
-          {/* ── Page Title + Sort ────────────────────────────────────── */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
               <h1 className="text-[2rem] md:text-[2.8rem] font-serif font-bold text-[#2C1A0E] leading-tight">
@@ -370,7 +295,6 @@ export default function VendorsClient({ ads = [] }) {
             </div>
 
             <div className="flex items-center gap-3 flex-shrink-0">
-              {/* Mobile filter button */}
               <button
                 onClick={() => setSideOpen(true)}
                 className="lg:hidden flex items-center gap-2 border border-[#ede2cc] rounded-xl px-4 py-2.5 text-[13px] font-bold text-[#4a3728] hover:border-[#fc0a7a] hover:text-[#fc0a7a] transition-all"
@@ -379,7 +303,6 @@ export default function VendorsClient({ ads = [] }) {
                 Filters {activeFilterCount > 0 && <span className="bg-[#fc0a7a] text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center">{activeFilterCount}</span>}
               </button>
 
-              {/* Sort */}
               <div className="flex items-center gap-2">
                 <span className="text-[12px] text-[#9a8070] hidden sm:block">Sort by:</span>
                 <div className="relative">
@@ -396,28 +319,26 @@ export default function VendorsClient({ ads = [] }) {
             </div>
           </div>
 
-          {/* ── Results count ──────────────────────────────────────────── */}
           <p className="text-[13px] text-[#9a8070] mb-6">
             Showing <strong className="text-[#2C1A0E]">{filtered.length}</strong> vendors
           </p>
 
-          {/* ── Main Layout: Sidebar + Grid ─────────────────────────── */}
           <div className="flex gap-8 items-start">
-
-            {/* Desktop Sidebar */}
             <aside data-lenis-prevent className="hidden lg:block w-56 flex-shrink-0 bg-white border border-[#ede2cc] rounded-2xl p-6 sticky top-28 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
               <h2 className="text-[15px] font-bold text-[#2C1A0E] mb-6">Refine Search</h2>
               {sidebarContent}
             </aside>
 
-            {/* Cards Grid */}
             <div className="flex-1 min-w-0">
-              {paged.length > 0 ? (
+              {loading ? (
+                <div className="flex justify-center py-20">
+                  <div className="w-8 h-8 border-4 border-[#fc0a7a] border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              ) : paged.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {paged.map((v, index) => (
                     <React.Fragment key={v.id}>
                       <VendorCard vendor={v} />
-                      {/* Inject Ad after the 3rd card */}
                       {index === 2 && middleAd && (
                         <div className="col-span-1 sm:col-span-2 lg:col-span-3">
                           <AdBanner 
@@ -442,7 +363,6 @@ export default function VendorsClient({ ads = [] }) {
                 </div>
               )}
 
-              {/* ── Pagination ──────────────────────────────────────── */}
               {totalPages > 1 && (
                 <div className="flex items-center justify-center gap-2 mt-12">
                   <button
