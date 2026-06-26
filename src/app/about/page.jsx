@@ -52,8 +52,8 @@ export default function AboutPage() {
               <div className="absolute -inset-4 bg-[#fc0a7a] rounded-[2.5rem] transform -rotate-3 opacity-10" />
               <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop"
-                  alt="Couple"
+                  src="/images/about_krishnaraj.jpg"
+                  alt="Krishnaraj Mekala"
                   className="w-full h-[550px] object-cover"
                 />
                 
@@ -64,8 +64,8 @@ export default function AboutPage() {
                       <Star className="w-6 h-6 text-[#1a0a05] fill-current" />
                     </div>
                     <div>
-                      <p className="text-[2rem] font-serif font-black text-white leading-none">10,000+</p>
-                      <p className="text-[11px] font-bold text-white/80 uppercase tracking-wider mt-1">Weddings Brought to Life</p>
+                      <p className="text-[2rem] font-serif font-black text-white leading-none">10+ Years</p>
+                      <p className="text-[11px] font-bold text-white/80 uppercase tracking-wider mt-1">Of Industry Experience</p>
                     </div>
                   </div>
                 </div>
@@ -75,15 +75,18 @@ export default function AboutPage() {
             {/* Right Content */}
             <div className="lg:col-span-7">
               <h2 className="text-[2.2rem] md:text-[3rem] font-serif font-bold text-[#2C1A0E] leading-[1.1] mb-8">
-                Planning your big day should be a <span className="italic text-[#fc0a7a]">joy</span>, not a chore.
+                Creating Dream Weddings with 10+ Years of Experience
               </h2>
               
               <div className="space-y-6 text-[#4a3728]/80 text-[16px] leading-relaxed mb-10 border-l-2 border-[#d4a853] pl-6">
                 <p>
-                  Historically, planning a wedding in Sri Lanka meant endless phone calls, disorganized spreadsheets, and relying purely on word-of-mouth. We built WedHub to change that narrative entirely.
+                  My name is Krishnaraj Mekala, and I have over 10 years of experience in the wedding industry as an Event Organizer. Throughout my career, I have successfully planned and coordinated weddings of all sizes, helping couples create unforgettable memories on their special day.
                 </p>
                 <p>
-                  Our platform brings the island's finest venues, photographers, decorators, and artists into one curated, highly visual space. We rigorously verify our vendors so you can book with absolute confidence and enjoy the journey to the altar.
+                  From venue selection and vendor coordination to décor, entertainment, and complete wedding management, I bring creativity, professionalism, and attention to detail to every event. My goal is to make wedding planning simple, stress-free, and enjoyable for every couple.
+                </p>
+                <p>
+                  At WedHub, we connect couples with trusted wedding vendors and provide expert guidance to help turn their dream wedding into reality.
                 </p>
               </div>
 
