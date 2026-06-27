@@ -93,9 +93,16 @@ export function CouponsContent({ initialCoupons }) {
                     {coupon.title}
                   </h3>
                   {coupon.vendor && (
-                    <p className="text-sm text-[#9a8070] dark:text-slate-400 mt-2 font-medium">
-                      by {coupon.vendor.name}
-                    </p>
+                    <div>
+                      <p className="text-sm text-[#9a8070] dark:text-slate-400 mt-2 font-medium">
+                        by {coupon.vendor.name}
+                      </p>
+                      {coupon.vendor.category && (
+                        <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">
+                          {coupon.vendor.category}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
@@ -137,9 +144,16 @@ export function CouponsContent({ initialCoupons }) {
                   {selectedCoupon.title}
                 </h3>
                 {selectedCoupon.vendor && (
-                  <p className="text-white/80 mt-1 font-medium text-sm">
-                    by {selectedCoupon.vendor.name}
-                  </p>
+                  <div>
+                    <p className="text-white/80 mt-1 font-medium text-sm">
+                      by {selectedCoupon.vendor.name}
+                    </p>
+                    {selectedCoupon.vendor.category && (
+                      <p className="text-white/60 text-xs mt-0.5">
+                        {selectedCoupon.vendor.category}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
