@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useRef, useState, useMemo, useCallback, memo } from "react";
+import React, { useRef, useState, useEffect, useMemo, useCallback, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
   MapPin, ChevronLeft, ChevronRight, ArrowRight,
-  BadgeCheck, Heart, MessageCircle
+  BadgeCheck, Heart, MessageCircle, ChevronDown
 } from "lucide-react";
 
 import { API_BASE_URL } from "@/lib/api";
@@ -98,7 +98,7 @@ const VENDORS = [
   },
 ];
 
-const FILTERS = ["All", "Venues", "Photographers", "Makeup", "Decorators", "Cars", "Honeymoon"];
+const FALLBACK_FILTERS = ["All", "Venues", "Photographers", "Makeup", "Decorators", "Cars", "Honeymoon"];
 
 // ── VendorCard — memoized, only re-renders when vendor prop changes ─────────────
 const VendorCard = memo(function VendorCard({ vendor }) {
@@ -201,10 +201,49 @@ const FeaturedVendors = memo(function FeaturedVendors({ cmsData }) {
 
   const vendorList = cmsData?.data?.featured_vendors?.length > 0 ? cmsData.data.featured_vendors : VENDORS;
 
-  const filtered = useMemo(
-    () => active === "All" ? vendorList : vendorList.filter((v) => (v.category || "").toLowerCase().includes(active.toLowerCase())),
-    [active, vendorList]
-  );
+  const [categories, setCategories] = useState(FALLBACK_FILTERS);
+  const [districts, setDistricts] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [districtSearch, setDistrictSearch] = useState("");
+  const [showDistrictDropdown, setShowDistrictDropdown] = useState(false);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/public/districts`)
+      .then(res => res.json())
+      .then(data => {
+        if(data?.success && data?.data) {
+          setDistricts(data.data);
+        } else if (Array.isArray(data)) {
+          setDistricts(data);
+        } else if (data?.data && Array.isArray(data.data)) {
+           setDistricts(data.data);
+        }
+      })
+      .catch(err => console.error("Error fetching districts", err));
+
+    fetch(`${API_BASE_URL}/public/categories`)
+      .then(res => res.json())
+      .then(data => {
+        if (data?.success && data?.data) {
+            const catNames = data.data.map(c => c.name);
+            if (catNames.length > 0) {
+              setCategories(["All", ...catNames]);
+            }
+        }
+      })
+      .catch(err => console.error("Error fetching categories", err));
+  }, []);
+
+  const filtered = useMemo(() => {
+    let list = vendorList;
+    if (active !== "All") {
+      list = list.filter((v) => (v.category || "").toLowerCase().includes(active.toLowerCase()));
+    }
+    if (selectedDistrict) {
+      list = list.filter((v) => (v.district || "").toLowerCase() === selectedDistrict.toLowerCase());
+    }
+    return list;
+  }, [active, selectedDistrict, vendorList]);
 
   const scrollLeft  = useCallback(() => scrollRef.current?.scrollBy({ left: -350, behavior: "smooth" }), []);
   const scrollRight = useCallback(() => scrollRef.current?.scrollBy({ left:  350, behavior: "smooth" }), []);
@@ -256,16 +295,70 @@ const FeaturedVendors = memo(function FeaturedVendors({ cmsData }) {
           </div>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex items-center gap-2 mb-7 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
-          {FILTERS.map((f) => (
-            <FilterPill
-              key={f}
-              label={f}
-              active={active === f}
-              onClick={() => setActive(f)}
+        {/* Filters and District Dropdown */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-7">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full" style={{ scrollbarWidth: "none" }}>
+            {categories.map((f) => (
+              <FilterPill
+                key={f}
+                label={f}
+                active={active === f}
+                onClick={() => setActive(f)}
+              />
+            ))}
+          </div>
+
+          {/* District Dropdown */}
+          <div className="relative w-full md:w-[250px] z-20 flex-shrink-0">
+            <input 
+              type="text"
+              placeholder="Search District..."
+              value={selectedDistrict ? selectedDistrict : districtSearch}
+              onChange={(e) => {
+                setDistrictSearch(e.target.value);
+                setSelectedDistrict("");
+                setShowDistrictDropdown(true);
+              }}
+              onFocus={() => setShowDistrictDropdown(true)}
+              onBlur={() => setTimeout(() => setShowDistrictDropdown(false), 200)}
+              className="w-full bg-white border border-[#ede2cc] rounded-full pl-5 pr-10 py-2.5 text-[13px] font-bold text-[#4a3728] focus:outline-none focus:border-[#fc0a7a] transition-all placeholder:text-[#9a8070] shadow-sm"
             />
-          ))}
+            {selectedDistrict ? (
+                <button 
+                  onClick={() => { setSelectedDistrict(""); setDistrictSearch(""); }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 text-[#4a3728] hover:bg-[#fc0a7a] hover:text-white transition-colors"
+                >
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            ) : (
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9a8070] pointer-events-none" />
+            )}
+            
+            {showDistrictDropdown && (
+              <div 
+                className="absolute top-full left-0 right-0 mt-2 bg-white border border-[#ede2cc] rounded-2xl shadow-xl max-h-60 overflow-y-auto z-30" 
+                style={{ scrollbarWidth: "thin" }}
+                data-lenis-prevent="true"
+              >
+                {districts.filter(d => d.toLowerCase().includes(districtSearch.toLowerCase())).map(d => (
+                  <div 
+                    key={d}
+                    onClick={() => {
+                      setSelectedDistrict(d);
+                      setDistrictSearch("");
+                      setShowDistrictDropdown(false);
+                    }}
+                    className="px-5 py-2.5 hover:bg-[#fc0a7a]/10 cursor-pointer text-[13px] font-bold text-[#4a3728] transition-colors"
+                  >
+                    {d}
+                  </div>
+                ))}
+                {districts.filter(d => d.toLowerCase().includes(districtSearch.toLowerCase())).length === 0 && (
+                  <div className="px-5 py-3 text-[13px] text-[#9a8070] text-center font-medium">No districts found</div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Card Row */}
