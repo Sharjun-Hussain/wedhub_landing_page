@@ -9,13 +9,7 @@ import {
 import { AdBanner } from "@/components/ui/AdBanner";
 import { API_BASE_URL } from "@/lib/api";
 
-const DISTRICTS  = [
-  "All Districts", "Colombo", "Kandy", "Galle", "Negombo", "Nuwara Eliya",
-  "Jaffna", "Trincomalee", "Matara", "Kurunegala", "Anuradhapura",
-  "Ratnapura", "Badulla", "Batticaloa", "Ampara", "Hambantota",
-  "Kalutara", "Gampaha", "Kegalle", "Polonnaruwa", "Monaragala",
-  "Vavuniya", "Mannar", "Mullaitivu", "Kilinochchi", "Puttalam",
-];
+// Districts are now fetched dynamically from the API
 
 const SORT_OPTIONS = ["Featured", "Rating: High to Low", "Newest"];
 
@@ -99,6 +93,7 @@ export default function VendorsClient({ ads = [] }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const [vendorsData, setVendorsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fetchedDistricts, setFetchedDistricts] = useState(["All Districts"]);
 
   useEffect(() => {
     const fetchSidebarData = async () => {
@@ -110,6 +105,16 @@ export default function VendorsClient({ ads = [] }) {
         }
       } catch (err) {
         console.error("Failed to fetch categories", err);
+      }
+      
+      try {
+        const distRes = await fetch(`${API_BASE_URL}/public/districts`);
+        const distData = await distRes.json();
+        if (distData?.data) {
+          setFetchedDistricts(["All Districts", ...distData.data]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch districts", err);
       }
     };
 
@@ -236,7 +241,7 @@ export default function VendorsClient({ ads = [] }) {
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest text-[#4a3728] mb-3">District</p>
         <div className="space-y-2.5 pr-1">
-          {DISTRICTS.filter(d => d !== "All Districts").map((d) => (
+          {fetchedDistricts.filter(d => d !== "All Districts").map((d) => (
             <div key={d} onClick={() => toggleDistrict(d)} className="flex items-center gap-3 cursor-pointer group">
               <div className={`w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${selectedDistricts.includes(d) ? "bg-[#fc0a7a] border-[#fc0a7a]" : "border-[#ede2cc] group-hover:border-[#fc0a7a]"}`}>
                 {selectedDistricts.includes(d) && <span className="text-white text-[10px] font-black">✓</span>}
