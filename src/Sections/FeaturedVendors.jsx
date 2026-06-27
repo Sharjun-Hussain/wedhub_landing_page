@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   MapPin, ChevronLeft, ChevronRight, ArrowRight,
-  BadgeCheck, Heart, MessageCircle, ChevronDown
+  BadgeCheck, Heart, MessageCircle, ChevronDown,
+  Phone, Facebook, Instagram
 } from "lucide-react";
 
 import { API_BASE_URL } from "@/lib/api";
@@ -136,7 +137,7 @@ const VendorCard = memo(function VendorCard({ vendor }) {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center gap-1.5 mb-1">
           <h3 className="fv-name text-[15px] font-bold text-[#2C1A0E] leading-snug line-clamp-1 flex-1">
             {vendor.name}
@@ -144,12 +145,33 @@ const VendorCard = memo(function VendorCard({ vendor }) {
           {vendor.verified && <BadgeCheck className="w-4 h-4 text-[#1a4d8B] flex-shrink-0" />}
         </div>
 
-        <div className="flex items-center gap-1.5 text-[#9a8070] mb-4">
+        <div className="flex items-center gap-1.5 text-[#9a8070] mb-2">
           <MapPin className="w-3 h-3 flex-shrink-0" />
           <span className="text-[12px] truncate">{vendor.location || "Sri Lanka"} {vendor.district ? `· ${vendor.district}` : ""}</span>
         </div>
 
-        <div className="flex items-center justify-end gap-3">
+        <p className="text-[13px] text-[#4a3728]/70 leading-relaxed line-clamp-2 flex-1 mb-3">
+          {vendor.description || "No description provided."}
+        </p>
+
+        {/* Phone and Socials */}
+        <div className="flex items-center justify-between mt-auto mb-4">
+          <div className="flex items-center gap-1.5 text-[#2C1A0E]">
+            <Phone className="w-3.5 h-3.5 flex-shrink-0 text-[#fc0a7a]" />
+            <span className="text-[12px] font-semibold">{vendor.contact_phone || "Contact to view"}</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <a href={vendor.facebook || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-[#9a8070] hover:text-[#1877F2] transition-colors">
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a href={vendor.instagram || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-[#9a8070] hover:text-[#E4405F] transition-colors">
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#f0e6d3]">
           <div className="flex items-center gap-2 flex-shrink-0">
             <Link
               href={`/vendors/${vendor.slug || vendor.id}#contact`}
