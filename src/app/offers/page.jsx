@@ -1,12 +1,8 @@
 import { Suspense } from "react";
 import {
-  API_BASE_URL,
-  fetchProducts,
-  fetchBrands,
-  fetchShopCMS,
+  fetchPublicCoupons,
 } from "@/lib/api";
-import { OffersContent } from "./components/OffersContent";
-import { ShopSkeleton } from "./components/ShopSkeleton";
+import { CouponsContent } from "./components/CouponsContent";
 import Header from "@/Sections/Header/Header";
 import Footer from "@/Sections/Footer/Footer";
 
@@ -47,68 +43,14 @@ export const metadata = {
   },
 };
 
-const fetchCategoriesServer = async () => {
-  const url = `${API_BASE_URL}/public/categories`;
-  try {
-    const res = await fetch(url, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      return { data: [] };
-    }
-    return await res.json();
-  } catch (error) {
-    console.error("Failed to fetch categories on server:", error);
-    return { data: [] };
-  }
-};
-
-export default async function OffersPage({ searchParams }) {
-  // Extract parameters for API and skeleton
-  const params = await searchParams;
-  const viewMode = params?.view || "grid";
-
-  // Format parameters for the API call - Hardcode is_offer to 1
-  const apiParams = {
-    category: params.category || "All",
-    q: params.q || "",
-    minPrice: params.minPrice,
-    maxPrice: params.maxPrice,
-    sort: params.sort,
-    brands: params.brands ? params.brands.split(",") : [],
-    conditions: params.conditions ? params.conditions.split(",") : [],
-    is_offer: "true", // ALWAYS TRUE FOR THIS PAGE
-    page: params.page || 1,
-    per_page: 24, 
-  };
-
-  // Fetch products, categories, and brands server-side.
-  const [productsData, categoriesData, brandsData, shopCmsData] =
-    await Promise.all([
-      fetchProducts(apiParams).catch(() => null),
-      fetchCategoriesServer(),
-      fetchBrands().catch(() => null),
-      fetchShopCMS().catch(() => null),
-    ]);
-
-  // Override the CMS Title and Banner for the Offers page
-  const customCmsData = shopCmsData ? {
-    ...shopCmsData,
-    data: {
-      ...shopCmsData.data,
-      shop_title: "Exclusive Offers | WedHub - The Best Wedding Marketplace",
-      shop_description: "Discover the best wedding marketplace in Sri Lanka. Discover limited-time deals on our premium imported collections.",
-    }
-  } : null;
+export default async function OffersPage() {
+  const couponsData = await fetchPublicCoupons().catch(() => null);
 
   return (
     <div className="min-h-screen bg-[#faf9f6] dark:bg-[#130f0d] transition-colors duration-300">
       <Header />
-      <Suspense fallback={<ShopSkeleton viewMode={viewMode} />}>
-        <OffersContent
-          initialProducts={productsData}
-          initialCmsData={customCmsData}
-        />
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-[#fc0a7a] border-t-transparent rounded-full animate-spin"></div></div>}>
+        <CouponsContent initialCoupons={couponsData} />
       </Suspense>
       <div className="hidden md:block">
         <Footer />

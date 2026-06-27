@@ -157,8 +157,30 @@ export const fetchOfferProducts = async () => {
 
 // New Arrival Products fetcher
 export const fetchNewArrivalProducts = async () => {
-  const url = `${API_BASE_URL}/public/new-arrival-products`;
+  const url = `${API_BASE_URL}/public/products?sort=newest&per_page=8`;
   return fetcher(url);
+};
+
+// Public Coupons fetcher
+export const fetchPublicCoupons = async () => {
+  const url = `${API_BASE_URL}/public/coupons`;
+  return fetcher(url);
+};
+
+export const submitCouponClaim = async (couponId, customerId) => {
+  const url = `${API_BASE_URL}/public/coupons/${couponId}/claim`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ customer_id: customerId }),
+  });
+  const data = await response.json();
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || "Failed to claim coupon");
+  }
+  return data;
 };
 
 // Category-wise Products fetcher
