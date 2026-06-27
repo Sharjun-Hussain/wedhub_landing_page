@@ -92,6 +92,11 @@ export function CouponsContent({ initialCoupons }) {
                   <h3 className="text-lg font-bold text-[#2C1A0E] dark:text-white leading-snug line-clamp-2">
                     {coupon.title}
                   </h3>
+                  {coupon.vendor && (
+                    <p className="text-sm text-[#9a8070] dark:text-slate-400 mt-2 font-medium">
+                      by {coupon.vendor.name}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -131,6 +136,11 @@ export function CouponsContent({ initialCoupons }) {
                 <h3 className="text-xl font-bold text-white line-clamp-2">
                   {selectedCoupon.title}
                 </h3>
+                {selectedCoupon.vendor && (
+                  <p className="text-white/80 mt-1 font-medium text-sm">
+                    by {selectedCoupon.vendor.name}
+                  </p>
+                )}
               </div>
             </div>
 
